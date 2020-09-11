@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html style="scroll-behavior: smooth;" lang="en">
+
+<head>
+    <!-- general metas -->
+    <meta charset="utf-8">
+    <meta name="robots" content="follow">
+    <meta name="language" content="English">
+    <meta name="author" content="Alessio Tudisco">
+    <meta name="copyright" content="2020">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description"
+          content="Alessio Tudisco, a.k.a LightDestory, is a young Computer Science university student, programmer, back-end lover, sysadmin and manga & anime addicted. Strong believer of open-source, he is working on obtaining the knowledge needed to be able to contribute on his favourite projects and, someday, create something useful for the community. Motto: 'If you need something that doesn't exist, you create it.'">
+    <title>Alessio Tudisco | Portfolio</title>
+    <meta name="keywords"
+          content="Alessio Tudisco LightDestory WebPortal developer junior github linkedin youtube telegram coder programmer contacts sysadmin about projects email">
+    <link rel="canonical" href="https://test.lightdestory.com"/>
+    <!-- end general metas -->
+
+    <!-- og, twitter tags-->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alessio Tudisco | LightDestory - Portfolio">
+    <meta property="og:site_name" content="Alessio Tudisco | LightDestory - Portfolio">
+    <meta property="og:description"
+          content="Alessio Tudisco, a.k.a LightDestory, is a young Computer Science university student, programmer, back-end lover, sysadmin and manga & anime addicted. Strong believer of open-source, he is working on obtaining the knowledge needed to be able to contribute on his favourite projects and, someday, create something useful for the community. Motto: 'If you need something that doesn't exist, you create it.'">
+    <meta property="og:image" content="http://test.lightdestory.com/assets/images/share-image.jpg"/>
+    <meta property="og:image:secure_url" content="https://test.lightdestory.com/assets/images/share-image.jpg"/>
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:url" content="https://test.lightdestory.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alessio Tudisco | LightDestory - Portfolio">
+    <meta name="twitter:description"
+          content="Alessio Tudisco, a.k.a LightDestory, is a young Computer Science university student, programmer, back-end lover, sysadmin and manga & anime addicted. Strong believer of open-source, he is working on obtaining the knowledge needed to be able to contribute on his favourite projects and, someday, create something useful for the community. Motto: 'If you need something that doesn't exist, you create it.'">
+    <meta name="twitter:creator" content="@LightDestory">
+    <meta property="twitter:image" content="https://test.lightdestory.com/assets/images/share-image.jpg">
+    <meta name="twitter:site" content="https://test.lightdestory.com">
+    <!-- end og, twitter tags -->
+
+    <!-- favicons -->
+    <link rel="shortcut icon" type="image/ico" href="assets/images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-48x48.png" sizes="48x48">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-196x196.png" sizes="196x196">
+    <link rel="apple-touch-icon" href="assets/images/favicons/favicon-180x180.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-512x512.png" sizes="512x512">
+    <meta name="msapplication-square150x150logo" content="assets/images/favicons/favicon-150x150.png"/>
+    <!-- end favicons -->
+
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="css/app/style.css">
+    <link rel="stylesheet" href="css/app/aos.css">
+    <link rel="stylesheet" href="css/fontawesome/fontawesome.css">
+    <link rel="stylesheet" href="css/devicon/devicon.css">
+    <!-- end styles -->
+
+    <!-- browser compatibility -->
+    <script>
+        const ua = window.navigator.userAgent;
+        // IE
+        if (/MSIE|Trident/.test(ua)) {
+            alert("This website is not compatible with Internet Explorer. Please upgrade to a newer browser.");
+            document.execCommand('Stop');
+        }
+        // EdgeHTML
+        else if (/Edge/.test(ua)) {
+            alert("The full compatibility with Edge (EdgeHTML-based) is not guaranteed. To get a better experience use thw new Edge.");
+        }
+    </script>
+    <!-- end browser compatibility -->
+
+    <!-- load 3rd party libs -->
+    <script src="js/libs/bundle_libs.js"></script>
+    <!-- end load 3rd party libs -->
+
+    <!-- load core scripts -->
+    <script src="js/main.js"></script>
+    <!-- end load core scripts -->
+
+</head>
+
+<body>
+<!-- webgl -->
+<canvas id="webgl"></canvas>
+<!-- end webgl -->
+
+<!-- loader -->
+<div class="loader"></div>
+<!-- end loader -->
+
+<!-- menu -->
+<div class="menu">
+    <ul class="menu-items"></ul>
+</div>
+<!-- end menu -->
+
+<!-- header -->
+<div class="header">
+    <img class="logo" src="assets/images/favicons/favicon-150x150.png" alt="Logo">
+    <div class="header-menu">
+        <ul class="menu-items"></ul>
+    </div>
+    <div class="menu-button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!-- end header -->
+
+<!-- bars -->
+<div class="top-bar"></div>
+<div class="bottom-bar"></div>
+<!-- bars -->
+
+<!-- sound-controls -->
+<div class="footer-sound">
+    <i id="sound-icon" class="fas fa-lg fa-volume-mute fa"></i>
+    <span id="bar-1" class="sbar noAnim"></span>
+    <span id="bar-2" class="sbar noAnim"></span>
+    <span id="bar-3" class="sbar noAnim"></span>
+    <span id="bar-4" class="sbar noAnim"></span>
+</div>
+<!-- end sound-controls -->
+
+<!-- home -->
+<div class="home page hide">
+    <div class="titles">
+        <div class="page-title"></div>
+        <div class="page-akatitle"></div>
+        <div class="page-subtitle"></div>
+    </div>
+</div>
+<div class="footer-menu">
+    <ul class="menu-items">
+    </ul>
+</div>
+<!-- end home -->
+
+<!-- about -->
+<div class="info page hide">
+    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+    <div class="feature">
+        <img alt="Bio Image" class='lazy feature-image' src=""/>
+    </div>
+    <!-- biography -->
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="bio-title section-title"></div>
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="bio"></div>
+    <!-- skills -->
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="skillset-title section-title"></div>
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="skill_intro"></div>
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class='skillset'></div>
+    <!-- Ethics -->
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="ethic-title section-title"></div>
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="ethic"></div>
+</div>
+<!-- end about -->
+
+<!-- projects -->
+<div class="projects page hide">
+    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+    <div class="feature">
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='5' data-aos-duration='1000'
+             data-aos-delay='5' class="github-card"></div>
+    </div>
+    <div class="titles-container">
+        <!-- Projects -->
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='5' data-aos-duration='1000'
+             data-aos-delay='50' class="projects-title section-title"></div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+             data-aos-delay='50' class="projects-content list"></div>
+        <!-- Contributions -->
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+             data-aos-delay='50' class="contributions-title section-title"></div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+             data-aos-delay='50' class="contributions-content list"></div>
+    </div>
+</div>
+<!-- end projects -->
+
+<!-- projects detail -->
+<div class="project-detail page hide">
+    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+    <div class="feature" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50'>
+        <img class="projectDetailImage lazy" src="" alt="Project Image"/>
+    </div>
+    <div class="content-title section-title" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50'
+         data-aos-duration='1000'
+         data-aos-delay='50'></div>
+    <!-- projectDetails data -->
+    <div class="content" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50'></div>
+    <div class='details-container' data-aos='fade-in'>
+    </div>
+    <!-- projectDetails nav-controls -->
+    <div class="bottom-nav">
+        <div class="ctlbutton bottom-back">&#8672; prev</div>
+        <div class="ctlbutton bottom-up">back to projects</div>
+        <div class="ctlbutton bottom-next">next &#8674;</div>
+    </div>
+</div>
+<!-- end projects detail -->
+
+<!-- platforms -->
+<div class="platforms page hide">
+    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+    <div data-aos='zoom-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="feature">
+        <img alt="Platforms Image" class='lazy feature-image' src=""/>
+    </div>
+    <!-- where-I-am -->
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="platforms-title section-title"></div>
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="platforms_intro"></div>
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="platforms-container"></div>
+</div>
+<!-- end platforms -->
+
+<!-- thanks-->
+<div class="thanks page hide">
+    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+    <div data-aos='zoom-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="feature">
+        <img alt="Thanks Image" class='lazy feature-image' src=""/>
+    </div>
+</div>
+<!-- end thanks -->
+<script>Core.init();</script>
+</body>
+
+</html>
