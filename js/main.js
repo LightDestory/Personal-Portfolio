@@ -7,10 +7,6 @@ APP = {
             webGLSupport: null,
             lazyHandle: null
         },
-        routes: {
-            url: "http://website",
-            list: ["about", "projects"]
-        },
         projectsFetch: {
             onProgress: false,
             data: {
@@ -34,7 +30,7 @@ APP = {
         // master init
         init: function () {
             // initialization the settings
-            console.log(Data.title, "v" + Data.version + " " + Data.language);
+            console.log(`${Data.information.title} v${Data.information.version}`);
             Settings.general.state = "loading";
             Views.loader.show();
             // get device specs and capabilities
@@ -42,11 +38,11 @@ APP = {
             // WebGL compatibility
             if (Settings.general.webGLSupport === -1) {
                 //WebGL is not supported
-                alert(Data.upgradeMessage);
+                alert(Data.webGL.upgradeMessage);
                 return;
             } else if (Settings.general.webGLSupport === 0) {
                 //WebGL is supported, but disabled
-                alert(Data.enableMessage);
+                alert(Data.webGL.enableMessage);
                 return;
             }
             // AOS init
@@ -104,18 +100,10 @@ APP = {
             // navigation logic
             const toPath = state.split('/'), fromPath = Settings.general.state.split('/');
             let toSection, toPage, fromSection, fromPage;
-            if (toPath[0]) {
-                toSection = toPath[0];
-            }
-            if (toPath[1]) {
-                toPage = toPath[1];
-            }
-            if (fromPath[0] !== "loading") {
-                fromSection = fromPath[0];
-            }
-            if (fromPath[1]) {
-                fromPage = fromPath[1];
-            }
+            toSection = toPath[0] ? toPath[0] : null;
+            toPage = toPath[1] ? toPath[1] : null;
+            fromSection = fromPath[0] != "loading" ? fromPath[0] : null;
+            fromPage = fromPath[1] ? fromPath[1] : null;
             if (toSection) {
                 console.log("section", toSection);
             }
@@ -137,35 +125,29 @@ APP = {
                 }
             }
             // handle entering new state
-            const docTitleRef = toPage ? "detail-title" : "page-title";
-            document.title = Data[toSection][docTitleRef];
+            const docTitleRef = toPage ? "detailTitle" : "pageTitle";
+            document.title = Data.views[toSection][docTitleRef];
             Settings.general.state = state;
-            if (toSection !== "projects") {
+            if (!toPage) {
                 WebGL.go(toSection);
                 Views.showPage(toSection);
             } else {
-                if (toPage) {
-                    // projects detail
-                    Settings.projectsFetch.currentID = toPage;
-                    Views.loader.update(.0);
-                    Views.loader.show();
-                    setTimeout(function () {
-                        Views.projectDetail.load(toPage);
-                    }, 800);
-                    WebGL.go("projectDetail");
-                    setTimeout(function () {
-                        Views.loader.update(.7);
-                    }, 500);
-                    setTimeout(function () {
-                        Views.showPage("project-detail");
-                        Views.loader.update(1.0);
-                        Views.loader.hide()
-                    }, 1000);
-                } else {
-                    // projects index
-                    WebGL.go("projects");
-                    Views.showPage("projects");
-                }
+                // projects detail
+                Settings.projectsFetch.currentID = toPage;
+                Views.loader.update(.0);
+                Views.loader.show();
+                setTimeout(function () {
+                    Views.projectDetail.load(toPage);
+                }, 800);
+                WebGL.go("projectDetail");
+                setTimeout(function () {
+                    Views.loader.update(.7);
+                }, 500);
+                setTimeout(function () {
+                    Views.showPage("project-detail");
+                    Views.loader.update(1.0);
+                    Views.loader.hide()
+                }, 1000);
             }
             // update loaded icon default image
             let rem = state === "home" ? "hide" : "bar";
@@ -199,7 +181,6 @@ APP = {
             Views.loader.hide();
             Views.header.show();
             Core.go("home");
-            history.pushState(Settings.routes.url, Data.home["page-title"], "/");
         }
     },
     soundSystem: {
@@ -294,15 +275,14 @@ APP = {
         manager: null,
         textures: [],
         mouse: new THREE.Vector2(0, 0),
+        BackgroundVertexShader: null,
+        BackgroundFragmentShader: null,
+        backgroundUniforms: null,
         windowHalfX: window.innerWidth / 2,
         windowHalfY: window.innerHeight / 2,
-        draggingObject: null,
         clock: new THREE.Clock(),
         backgroundPlane: null,
-        BackgroundFragShader: "varying vec2 vUv;uniform float iTime;uniform vec2 iResolution;uniform vec2 iMouse;uniform float audio1;uniform float adj;uniform sampler2D iChannel0;uniform sampler2D iChannel1;uniform float orbOpacity;uniform float intensity;mat2 makem2(in float theta){ float c = cos(theta); float s = sin(theta); return mat2(c, -s, s, c); }float noise( in vec2 x){ return texture2D(iChannel0, x * .01).x; }mat2 m2 = mat2(.80, 0.80, -0.80, 0.80);float grid(vec2 p){ float s = sin(p.x) * cos(p.y); return s;}float flow(in vec2 p){ float z = 4.; float rz = 0.; vec2 bp = p; for (float i = 1.; i < 8.; i++ ) { bp += (iTime * 0.1) * 1.5; vec2 gr = vec2(grid(p * 3. - (iTime * 0.1) * 2.), grid(p * 3. + 4. - (iTime * 0.1))) * 0.4; gr = normalize(gr) * 0.4; gr *= makem2((p.x + p.y) * .3 + (iTime * 0.1) * 10.); p += gr * 0.2; rz += (sin(noise(p) * 2.) * 0.5 + 0.5) / z; p = mix(bp, p, .5); z *= 1.5; p *= 2.5; p *= m2; bp *= 2.5; bp *= m2; } return rz;}float spiral(vec2 p, float scl){ float r = length(p); r = log(r); float a = atan(p.y, p.y); return abs(mod(scl * (r - 2. / scl * a), 6.2831853) - 1.) * 1.;}float Sin01(float t) { return .5 + 0.5 * sin(6.28319 * t);}float SineEggCarton(vec3 p) { return .1 + abs(sin(p.x) - cos(p.y) + sin(p.z)) * 1.2 * orbOpacity;}float Map(vec3 p, float scale) { float dSphere = length(p) - 1.0; return max(dSphere, (.85 - SineEggCarton(scale * p)) / scale);}vec3 GetColor(vec3 p) { float amount = clamp((1.5 - length(p)) / 2.0, 0.0, 1.0); vec3 col = 0.5 + 0.5 * cos(6.28319 * (vec3(0.2, 0.0, 0.0) + amount * (audio1 * .6) * vec3(1.0, .9, 0.8))); return col * amount * (orbOpacity);}void main() { vec2 coord = gl_FragCoord.xy; /*Ring of light, place above the orb*/ vec2 p = coord / iResolution.xy - 0.5; p.x *= iResolution.x / iResolution.y; p *= .5; p.y += .8; float rz = flow(p); p /= exp(mod(2.1, 2.1)); rz *= (3. - spiral(p, .5)) * .6 * audio1; /* intensity / thickness of ring */ vec3 col = vec3(.02, 0.04, 0.09) / rz; col = pow(abs(col), vec3(1.01)); gl_FragColor += vec4(col, 1.0); /* Orb relative position*/ vec3 rd = normalize(vec3(2.0 * coord - iResolution.xy, -iResolution.y)); vec3 ro = vec3(0, 0, -1.4 * (1.0 - orbOpacity) - .5 + mix(2.5, 2.0, adj + Sin01((0.05) * iTime))); rd.xz = rd.xz * cos(0.2 * iTime) + vec2(-rd.xz.y, rd.xz.x) * sin(0.2 * iTime); ro.xz = ro.xz * cos(0.2 * iTime) + vec2(-ro.xz.y, ro.xz.x) * sin(0.2 * iTime); rd.yz = rd.yz * cos(0.1 * iTime) + vec2(-rd.yz.y, rd.yz.x) * sin(0.1 * iTime); ro.yz = ro.yz * cos(0.1 * iTime) + vec2(-ro.yz.y, ro.yz.x) * sin(0.1 * iTime); float t = 0.0; float scale = mix(1.5, 24.0 * (orbOpacity * orbOpacity), Sin01(0.3 * iTime * (.01))); for (int i = 0; i < 80; i++) { vec3 p = ro + t * rd; /*(orbOpacity) is more solid lines*/ float d = Map(p, scale); if (t > 80.0 || d < 0.0001) { break; } t += 0.8 * d; gl_FragColor.rgb += (0.05 * GetColor(p) * (audio1 * .6)) * orbOpacity; }}",
-        BackgroundVertShader: "varying vec2 vUv;uniform float iTime;uniform vec2 iResolution;uniform vec2 iMouse;uniform float audio1;uniform sampler2D iChannel0;uniform sampler2D iChannel1;void main() {  vUv = uv;  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0 );  gl_Position = projectionMatrix * mvPosition;}",
         intensity: 1.0,
-
         init: function () {
             WebGL.canvas = document.getElementById("webgl");
             WebGL.camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 1, 1000);
@@ -319,7 +299,7 @@ APP = {
                 Views.loader.update(loaded / total);
             };
             const loader = new THREE.TextureLoader(WebGL.manager);
-            Data.textures.forEach(t => {
+            Data.webGL.textures.forEach(t => {
                 loader.load(t.file, function (object) {
                     WebGL.textures[t.name] = object;
                 });
@@ -344,9 +324,9 @@ APP = {
             }, true);
         },
         createBackgroundShader: function () {
-            console.log("background shader loaded");
-            WebGL.BackgroundVertexShader = WebGL.BackgroundVertShader;
-            WebGL.BackgroundFragmentShader = WebGL.BackgroundFragShader;
+            console.log("background shader loading");
+            WebGL.BackgroundVertexShader = Data.webGL.backgroundVertShader;
+            WebGL.BackgroundFragmentShader = Data.webGL.backgroundFragShader;
             WebGL.backgroundUniforms = {
                 iTime: {type: "f", value: 100.0},
                 iResolution: {type: "v2", value: new THREE.Vector2()},
@@ -399,16 +379,16 @@ APP = {
         },
         initObjects: function () {
             console.log("init webgl objects");
-            const quantity = Settings.general.isMobile ? 80 : 180;
             // ambient sprites
             const geometry = new THREE.BufferGeometry();
+            const particleQta = Settings.general.isMobile ? 80 : 180;
             let vertices = [];
             let materials = [];
             let parameters = [
                 [[1, 0.1, 0.1], WebGL.textures['sprite1'], 0.85],
                 [[0.3, 0.3, 0.3], WebGL.textures['sprite2'], 0.95]
             ];
-            for (let i = 0; i < quantity; i++) {
+            for (let i = 0; i < particleQta; i++) {
                 const x = Math.random() * 60 - 30;
                 const y = Math.random() * 60 - 30;
                 const z = Math.random() * 60 - 30;
@@ -436,25 +416,22 @@ APP = {
             }
             WebGL.render();
         },
-        showGoAnimation: function (name) {
-            console.log(`webgl: showing ${name} page`);
-            const vars = {
-                value: name === "home" ? 1.0 : 0.4,
-                immediateRender: true,
-                ease: name === "home" ? Circ.easeInOut : Quad.easeOut,
-            }
-            const duration = name === "home" ? 2.0 : 1.0;
-            TweenMax.to(WebGL.backgroundUniforms.orbOpacity, duration, vars);
-            if (name === "home") {
-                Views.loader.update(.0);
-            }
-        },
-        // handle the state specific aniamtions in the 3D scene
+        // handle the state specific animations in the 3D scene
         go: function (state) {
             //show the webgl canvas
             WebGL.canvas.classList.add("show");
             // navigation animation
-            WebGL.showGoAnimation(state);
+            console.log(`webgl: showing ${state} page`);
+            const vars = {
+                value: state === "home" ? 1.0 : 0.4,
+                immediateRender: true,
+                ease: state === "home" ? Circ.easeInOut : Quad.easeOut,
+            }
+            const duration = state === "home" ? 2.0 : 1.0;
+            TweenMax.to(WebGL.backgroundUniforms.orbOpacity, duration, vars);
+            if (state === "home") {
+                Views.loader.update(.0);
+            }
         }
     },
     views: {
@@ -479,8 +456,6 @@ APP = {
             subtitle.remove("aos-animate");
             setTimeout(function () {
                 title.add("aos-animate");
-            }, 500);
-            setTimeout(function () {
                 subtitle.add("aos-animate");
             }, 500);
             if (page === "projects") {
@@ -557,7 +532,7 @@ APP = {
             init: function () {
                 console.log("init menu");
                 let str = "", str2 = "", str3 = "";
-                Data.menu.forEach(function (m, i) {
+                Data.views.menu.forEach(function (m, i) {
                     const p = i === 0 ? "" : " | ";
                     str += `<li class="menu-item menu-${m.link}" data-link="${m.link}">${p}${m.title}</li>`;
                     if (m.link !== "home") {
@@ -605,10 +580,10 @@ APP = {
             name: "home",
             init: function () {
                 console.log("init home");
-                const collection = Data.home;
+                const collection = Data.views.home;
                 document.querySelector(".home .page-title").innerHTML = collection.title;
-                document.querySelector(".home .page-akatitle").innerHTML = collection.akatitle;
-                document.querySelector(".home .page-subtitle").innerHTML = collection.subtitle;
+                document.querySelector(".home .page-akatitle").innerHTML = collection.subtitle;
+                document.querySelector(".home .page-subtitle").innerHTML = collection.subtitle2;
             },
             show: function () {
                 console.log("show home");
@@ -623,27 +598,27 @@ APP = {
             name: "info",
             init: function () {
                 console.log("init info");
-                const collection = Data.info;
+                const collection = Data.views.info;
                 document.querySelector(".info .page-title").innerHTML = collection.title;
                 document.querySelector(".info .page-subtitle").innerHTML = collection.subtitle;
-                document.querySelector(".info .feature .feature-image").setAttribute("data-src", collection.biosplash);
+                document.querySelector(".info .feature .feature-image").setAttribute("data-src", collection.splash);
                 // longer bio
                 document.querySelector(".info .bio-title").innerHTML = "[ Biography ]";
-                document.querySelector(".info .bio").innerHTML = collection.bio;
+                document.querySelector(".info .bio").innerHTML = collection.biography;
                 //Skills
                 document.querySelector(".info .skillset-title").innerHTML = "[ Skills ]";
-                document.querySelector(".info .skill_intro").innerHTML = collection.skill_intro;
-                const skillSet = collection.skillset;
+                document.querySelector(".info .skill_intro").innerHTML = collection.skillInfo;
+                const skillSet = collection.skillSet;
                 const container = document.querySelector(".skillset");
                 skillSet.forEach(function (skill, i) {
                     const group = skill.collection;
                     let component = `<div class="skill-container"><div class="skill-title">${skill.title}</div><ul class=${skill.category}>`;
                     group.forEach(function (element) {
                         const percent = element.level * 10;
-                        const str_style = element.level === 10 ? `width:${percent}%;border-radius:50px;` : `width:${percent}%;`;
-                        const note_icon = element.note ? `<i id="icon-more-${element.friendly_name}" class="fas fa-chevron-right"></i>` : "";
-                        const note_div = element.note ? `<div class="more-skill-container more-${element.friendly_name}">${element.note}</div>` : "";
-                        component += `<div class="skillbar-container" skill="${element.friendly_name}">${note_icon}<li class="skill-name">${element.name} <i class='${element.icon}'></i></li><div class="skillbar" style="${str_style}"></div></div>${note_div}`;
+                        const strStyle = element.level === 10 ? `width:${percent}%;border-radius:50px;` : `width:${percent}%;`;
+                        const noteIcon = element.note ? `<i id="icon-more-${element.friendlyName}" class="fas fa-chevron-right"></i>` : "";
+                        const note = element.note ? `<div class="more-skill-container more-${element.friendlyName}">${element.note}</div>` : "";
+                        component += `<div class="skillbar-container" skill="${element.friendlyName}">${noteIcon}<li class="skill-name">${element.name} <i class='${element.icon}'></i></li><div class="skillbar" style="${strStyle}"></div></div>${note}`;
                     });
                     component += '</ul></div>';
                     if ((i + 1) % 2 === 1)
@@ -680,7 +655,7 @@ APP = {
             name: "projects",
             init: function () {
                 console.log("init projects");
-                const collection = Data.projects;
+                const collection = Data.views.projects;
                 // Titles
                 document.querySelector(".projects .page-title").innerHTML = collection.title;
                 document.querySelector(".projects .page-subtitle").innerHTML = collection.subtitle;
@@ -692,7 +667,7 @@ APP = {
             fetchData: function () {
                 console.log('async fetch repositories');
                 Settings.projectsFetch.onProgress = true;
-                fetch(Data.projects.githubUserAPI)
+                fetch(Data.views.projects.githubUserAPI)
                     .then(response => {
                         if (!response.ok) {
                             throw Error(response.statusText);
@@ -701,7 +676,7 @@ APP = {
                     })
                     .then(response => {
                         Settings.projectsFetch.data.user = response;
-                        return fetch(Data.projects.githubProjectsAPI)
+                        return fetch(Data.views.projects.githubProjectsAPI)
                     })
                     .then(response => {
                         if (!response.ok) {
@@ -729,7 +704,7 @@ APP = {
                 const projects = document.querySelector(".projects-content");
                 const forks = document.querySelector(".contributions-content");
                 Settings.projectsFetch.data.projects.forEach(function (element, i) {
-                    const desc = `${String(element.description) === "null" ? "No description has been set for the repository" : String(element.description).substr(0,64)}&hellip;`;
+                    const desc = `${String(element.description) === "null" ? "No description has been set for the repository" : String(element.description).substr(0, 64)}&hellip;`;
                     const name = `${String(element.name).replace(/-/g, " ").replace(/_/g, " ")}`;
                     const str = `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class='list-item project-item'><img alt="Repository Image" class='lazy' data-src='assets/images/projects/${element.id}.jpg'/><div class="info"><div class='title'>${name}</div><div class='text'><p>${desc}<p></div></div><div class="links"><div class='detail' data-link='projects/${i + 1}'>More</div></div></div>`;
                     if (!element['fork']) {
@@ -750,7 +725,7 @@ APP = {
                 // placeholder inject
                 document.querySelectorAll(".list-item img").forEach(image => {
                     image.addEventListener("error", () => {
-                        image.setAttribute("src", Data.projects.placeholder);
+                        image.setAttribute("src", Data.views.projects.placeHolder);
                     });
                 });
                 //lazyload update
@@ -777,7 +752,7 @@ APP = {
                     Core.go("projects");
                 });
                 document.querySelector(".project-detail img").addEventListener("error", () => {
-                    document.querySelector(".project-detail img").setAttribute("src", Data.projects.placeholder);
+                    document.querySelector(".project-detail img").setAttribute("src", Data.views.projects.placeHolder);
                 });
             },
             load: function (id) {
@@ -791,7 +766,7 @@ APP = {
                 document.querySelector(".project-detail .content-title").innerHTML = "[ Brief ]";
                 document.querySelector(".project-detail .content").innerHTML = `<p>${description}</p>`;
                 // getting useful data
-                const tags = APP.data.projects.projectDetailTags;
+                const tags = Data.views.projects.projectDetailTags;
                 let component = "";
                 for (const [key, value] of Object.entries(tags)) {
                     component += `<div class="detail detail-${key}"><span class="detail-title">${key}</span><span class="detail-data">${eval(value)}</span></div>`;
@@ -823,16 +798,16 @@ APP = {
             name: "platforms",
             init: function () {
                 console.log("init platforms");
-                const collection = Data.platforms;
+                const collection = Data.views.platforms;
                 document.querySelector(".platforms .page-title").innerHTML = collection.title;
                 document.querySelector(".platforms .page-subtitle").innerHTML = collection.subtitle;
-                document.querySelector(".platforms .feature .feature-image").setAttribute("data-src", collection.platsplash);
+                document.querySelector(".platforms .feature .feature-image").setAttribute("data-src", collection.splash);
                 document.querySelector(".platforms .platforms-title").innerHTML = "[ Where you can find me ]";
-                document.querySelector(".platforms .platforms_intro").innerHTML = collection.platforms_intro;
+                document.querySelector(".platforms .platforms_intro").innerHTML = collection.platformsInfo;
                 const links = collection.links;
                 let component = "";
                 links.forEach(platform => {
-                    component+= `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="platform platform-${String(platform.name).toLowerCase()}"><div class="platform-icon"><i class="${platform.fa_icon} fa-4x"></i></div><div class="platform-title">${platform.name}</div><div class="platform-link"><a href="${platform.link}" target="_blank">${platform.note}</a></div></div>`;
+                    component += `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="platform platform-${String(platform.name).toLowerCase()}"><div class="platform-icon"><i class="${platform.icon} fa-4x"></i></div><div class="platform-title">${platform.name}</div><div class="platform-link"><a href="${platform.link}" target="_blank">${platform.note}</a></div></div>`;
                 });
                 document.querySelector(".platforms .platforms-container").innerHTML = component;
             }
@@ -841,7 +816,7 @@ APP = {
             name: "thanks",
             init: function () {
                 console.log("init thanks");
-                const collection = Data.thanks;
+                const collection = Data.views.thanks;
                 document.querySelector(".thanks .page-title").innerHTML = collection.title;
                 document.querySelector(".thanks .page-subtitle").innerHTML = collection.subtitle;
                 //document.querySelector(".thanks .feature .feature-image").setAttribute("data-src", collection.thanksplash);
@@ -916,411 +891,436 @@ APP = {
         }
     },
     data: {
-        "title": "LightDestory webgl devtest",
-        "version": "0.1",
-        "language": "en",
-        "upgradeMessage": "It appears you are on an older device or browser. Please retry using a WebGL enabled device.",
-        "enableMessage": "It appears your browser supports WebGL but actually it is disabled. Please retry after enable WebGL support.",
-        "menu": [
-            {"title": "home", "link": "home"},
-            {"title": "about me", "link": "info"},
-            {"title": "projects", "link": "projects"},
-            {"title": "Socials & Contacts", "link": "platforms"},
-            {"title": "Special Thanks", "link": "thanks"}
-        ],
-        "home": {
-            "title": "Alessio Tudisco",
-            "akatitle": "a.k.a LightDestory",
-            "page-title": "Alessio Tudisco | Portfolio",
-            "subtitle": "Developer | SysAdmin | Manga&Anime Addicted"
+        "information": {
+            "title": "LightDestory's Personal Portfolio",
+            "version": "0.1"
         },
-        "info": {
-            "title": "info",
-            "page-title": "Alessio Tudisco | Info",
-            "subtitle": "Biography | Skills | Ethics",
-            "biosplash": "assets/images/bio/biosplash_darken.jpg",
-            //bio
-            "bio": "<p>Hello !<br/>Pleasure to 'meet' you, I'm <i>Alessio Tudisco</i>, also known as <i>LightDestory</i> (why? read below for a funny story*). I was born in a little city called 'Piazza Armerina' in Sicily, extreme south of Italy. I have a huge passion for computer science, communications' technologies and anime&manga. I am working hard to realize my <b>dream</b>: make a job out of my passions.</p><p>On 2018 I graduated with '100/100 cum laude' from a Technical Industrial Institute (high school) called '<a href='https://en.wikipedia.org/wiki/Ettore_Majorana'>Ettore Majorana</a>' where I attended Computer Science and Telecommunications course, you can find my record on Italy's <a href='http://www.indire.it/eccellenze/ricerca/index.php?action=risultato_specifico&provincia=Enna&database_richiesto=eccellenze_2018'>National Register of Excellence</a> managed by MIUR (Ministry of Education, University and Research). Currently I am a Computer Science university student at <a href='https://www.unict.it/en'>University of Catania</a>, Department of Mathematics and Informatics (DMI), in Sicily (Italy).</p><p>My journey as developer started at 11 year old learning the basics of programming and the language Visual Basic .NET. After that I started experiencing other languages such as C/C++, Java, C#, PHP, Python, JavaScript , SQL for databases, and learning nice stuff like pattern design, useful algorithms, containers and so on. I like to develop desktop application, both console and GUI, but also web app using framework such as Laravel.</p><p>Moreover, recently I got more interested on the System Administrator role: I am managing by myself few production and dev servers, learning every now and then new stuff.</p><p><i>Right now, I consider myself as Junior developer/sysadmin, I am still learning cool stuff every day and stacking up experience but if you need help or something from me don't wait and contact me!</i></p><p>(*) Why <i>LightDestory</i>? During my childhood I used <i>MeteoraPegaso</i> as username to play videogames but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p>",
-            //skills
-            "skill_intro": "<p>My aim is to became a software engineer and a full-stack developer. <i>I am still young and I am continuously improving my skills learning new languages and new frameworks</i>.</p><p>I think that charts are unable to express fully the capabilities of a person but they can be used to provide a nice visual component that lists my skills and let you know how much confident I feel with a specific workload.</p>",
-            "skillset": [
+        "webGL": {
+            "upgradeMessage": "It appears you are on an older device or browser. Please retry using a WebGL enabled device.",
+            "enableMessage": "It appears your browser supports WebGL but actually it is disabled. Please retry after enable WebGL support.",
+            "backgroundFragShader": "varying vec2 vUv;uniform float iTime;uniform vec2 iResolution;uniform vec2 iMouse;uniform float audio1;uniform float adj;uniform sampler2D iChannel0;uniform sampler2D iChannel1;uniform float orbOpacity;uniform float intensity;mat2 makem2(in float theta){ float c = cos(theta); float s = sin(theta); return mat2(c, -s, s, c); }float noise( in vec2 x){ return texture2D(iChannel0, x * .01).x; }mat2 m2 = mat2(.80, 0.80, -0.80, 0.80);float grid(vec2 p){ float s = sin(p.x) * cos(p.y); return s;}float flow(in vec2 p){ float z = 4.; float rz = 0.; vec2 bp = p; for (float i = 1.; i < 8.; i++ ) { bp += (iTime * 0.1) * 1.5; vec2 gr = vec2(grid(p * 3. - (iTime * 0.1) * 2.), grid(p * 3. + 4. - (iTime * 0.1))) * 0.4; gr = normalize(gr) * 0.4; gr *= makem2((p.x + p.y) * .3 + (iTime * 0.1) * 10.); p += gr * 0.2; rz += (sin(noise(p) * 2.) * 0.5 + 0.5) / z; p = mix(bp, p, .5); z *= 1.5; p *= 2.5; p *= m2; bp *= 2.5; bp *= m2; } return rz;}float spiral(vec2 p, float scl){ float r = length(p); r = log(r); float a = atan(p.y, p.y); return abs(mod(scl * (r - 2. / scl * a), 6.2831853) - 1.) * 1.;}float Sin01(float t) { return .5 + 0.5 * sin(6.28319 * t);}float SineEggCarton(vec3 p) { return .1 + abs(sin(p.x) - cos(p.y) + sin(p.z)) * 1.2 * orbOpacity;}float Map(vec3 p, float scale) { float dSphere = length(p) - 1.0; return max(dSphere, (.85 - SineEggCarton(scale * p)) / scale);}vec3 GetColor(vec3 p) { float amount = clamp((1.5 - length(p)) / 2.0, 0.0, 1.0); vec3 col = 0.5 + 0.5 * cos(6.28319 * (vec3(0.2, 0.0, 0.0) + amount * (audio1 * .6) * vec3(1.0, .9, 0.8))); return col * amount * (orbOpacity);}void main() { vec2 coord = gl_FragCoord.xy; /*Ring of light, place above the orb*/ vec2 p = coord / iResolution.xy - 0.5; p.x *= iResolution.x / iResolution.y; p *= .5; p.y += .8; float rz = flow(p); p /= exp(mod(2.1, 2.1)); rz *= (3. - spiral(p, .5)) * .6 * audio1; /* intensity / thickness of ring */ vec3 col = vec3(.02, 0.04, 0.09) / rz; col = pow(abs(col), vec3(1.01)); gl_FragColor += vec4(col, 1.0); /* Orb relative position*/ vec3 rd = normalize(vec3(2.0 * coord - iResolution.xy, -iResolution.y)); vec3 ro = vec3(0, 0, -1.4 * (1.0 - orbOpacity) - .5 + mix(2.5, 2.0, adj + Sin01((0.05) * iTime))); rd.xz = rd.xz * cos(0.2 * iTime) + vec2(-rd.xz.y, rd.xz.x) * sin(0.2 * iTime); ro.xz = ro.xz * cos(0.2 * iTime) + vec2(-ro.xz.y, ro.xz.x) * sin(0.2 * iTime); rd.yz = rd.yz * cos(0.1 * iTime) + vec2(-rd.yz.y, rd.yz.x) * sin(0.1 * iTime); ro.yz = ro.yz * cos(0.1 * iTime) + vec2(-ro.yz.y, ro.yz.x) * sin(0.1 * iTime); float t = 0.0; float scale = mix(1.5, 24.0 * (orbOpacity * orbOpacity), Sin01(0.3 * iTime * (.01))); for (int i = 0; i < 80; i++) { vec3 p = ro + t * rd; /*(orbOpacity) is more solid lines*/ float d = Map(p, scale); if (t > 80.0 || d < 0.0001) { break; } t += 0.8 * d; gl_FragColor.rgb += (0.05 * GetColor(p) * (audio1 * .6)) * orbOpacity; }}",
+            "backgroundVertShader": "varying vec2 vUv;uniform float iTime;uniform vec2 iResolution;uniform vec2 iMouse;uniform float audio1;uniform sampler2D iChannel0;uniform sampler2D iChannel1;void main() {  vUv = uv;  vec4 mvPosition = modelViewMatrix * vec4(position, 1.0 );  gl_Position = projectionMatrix * mvPosition;}",
+            "textures": [
                 {
-                    "category": "languages",
-                    "title": "Programming/Scripting Languages",
-                    "collection": [
-                        {
-                            "name": "AutoIT",
-                            "friendly_name": "autoit",
-                            "level": 5,
-                            "note": "Mostly used to develop prototypes of automation such as bots or other stuff that requires a simple/medium interaction.",
-                            "icon": "fas fa-cogs"
-                        },
-                        {
-                            "name": "C/C++",
-                            "friendly_name": "c_cpp",
-                            "level": 8,
-                            "icon": "devicon-cplusplus-plain colored"
-                        },
-                        {
-                            "name": "C#",
-                            "friendly_name": "csharp",
-                            "level": 6,
-                            "icon": "devicon-csharp-plain colored"
-                        },
-                        {
-                            "name": "CSS",
-                            "friendly_name": "css3",
-                            "level": 8,
-                            "icon": "devicon-css3-plain-wordmark colored"
-                        },
-                        {
-                            "name": "HTML5",
-                            "friendly_name": "html5",
-                            "level": 8,
-                            "icon": "devicon-html5-plain-wordmark colored"
-                        },
-                        {
-                            "name": "Haskell",
-                            "friendly_name": "html5",
-                            "level": 5,
-                            "icon": "devicon-haskell-plain colored"
-                        },
-                        {
-                            "name": "Java",
-                            "friendly_name": "java",
-                            "level": 8,
-                            "icon": "devicon-java-plain colored"
-                        },
-                        {
-                            "name": "JavaScript",
-                            "friendly_name": "js",
-                            "level": 5,
-                            "note": "I am learning it!",
-                            "icon": "devicon-javascript-plain colored"
-                        },
-                        {
-                            "name": "PHP",
-                            "friendly_name": "php",
-                            "level": 8,
-                            "icon": "devicon-php-plain colored"
-                        },
-                        {
-                            "name": "Python",
-                            "friendly_name": "py",
-                            "level": 5,
-                            "note": "I am learning it!",
-                            "icon": "devicon-python-plain-wordmark colored"
-                        },
-                        {
-                            "name": "Visual Basic .NET (VB 8)",
-                            "friendly_name": "vb8",
-                            "level": 5,
-                            "note": "Nowadays I don't use it anymore but I have still some knowledge of the language.",
-                            "icon": "devicon-dot-net-plain-wordmark colored"
-                        }
-                    ]
+                    "file": "assets/images/textures/tex1.png",
+                    "name": "tex1"
                 },
                 {
-                    "category": "frameworks",
-                    "title": "Frameworks",
-                    "collection": [
-                        {
-                            "name": "Boostrap",
-                            "friendly_name": "bshtmlcss",
-                            "level": 7,
-                            "icon": "devicon-bootstrap-plain-wordmark colored"
-                        },
-                        {
-                            "name": "jQuery",
-                            "friendly_name": "jquery",
-                            "level": 7,
-                            "icon": "devicon-jquery-plain-wordmark colored"
-                        },
-                        {
-                            "name": "Laravel",
-                            "friendly_name": "laravel",
-                            "level": 8,
-                            "note": "I think that it is a must-have when programming with PHP",
-                            "icon": "devicon-laravel-plain-wordmark colored"
-                        },
-                        {
-                            "name": "React",
-                            "friendly_name": "react",
-                            "level": 3,
-                            "icon": "devicon-react-original-wordmark colored"
-                        },
-                        {
-                            "name": "Vue.js",
-                            "friendly_name": "vuejs",
-                            "level": 3,
-                            "icon": "devicon-vuejs-plain-wordmark colored"
-                        },
-                        {
-                            "name": "Xamarin",
-                            "friendly_name": "xamarin",
-                            "level": 5,
-                            "note": "Mostly used for Android: a.k.a Xamarin.Android.",
-                            "icon": "fas fa-mobile-alt"
-                        }
-                    ]
+                    "file": "assets/images/textures/sprite1.png",
+                    "name": "sprite1"
                 },
                 {
-                    "category": "databases",
-                    "title": "Databases",
-                    "collection": [
-                        {
-                            "name": "CouchDB",
-                            "friendly_name": "couchdb",
-                            "level": 5,
-                            "icon": "devicon-couchdb-plain colored"
-                        },
-                        {
-                            "name": "MariaDB/MySQL",
-                            "friendly_name": "mysql",
-                            "level": 8,
-                            "icon": "devicon-mysql-plain-wordmark"
-                        },
-                        {
-                            "name": "SQLite",
-                            "friendly_name": "sqlite",
-                            "level": 8,
-                            "icon": "fas fa-database"
-                        },
-                        {
-                            "name": "PostgreSQL",
-                            "friendly_name": "postgresql",
-                            "level": 5,
-                            "icon": "devicon-postgresql-plain-wordmark colored"
-                        },
-                        {
-                            "name": "Redis",
-                            "friendly_name": "redis",
-                            "level": 4,
-                            "icon": "devicon-redis-plain-wordmark colored"
-                        }
-                    ]
-                },
-                {
-                    "category": "os",
-                    "title": "Operating Systems",
-                    "collection": [
-                        {
-                            "name": "Windows XP-10 (Pro features)",
-                            "friendly_name": "winclient",
-                            "level": 9,
-                            "icon": "devicon-windows8-original colored"
-                        },
-                        {
-                            "name": "Windows Server 2008+",
-                            "friendly_name": "winserver",
-                            "level": 7,
-                            "icon": "devicon-windows8-original colored"
-                        },
-                        {
-                            "name": "Linux (Debian-based)",
-                            "friendly_name": "linuxdebian",
-                            "level": 8,
-                            "icon": "devicon-debian-plain-wordmark colored"
-                        },
-                        {
-                            "name": "Linux (RHEL-based)",
-                            "friendly_name": "linuxrhel",
-                            "level": 7,
-                            "icon": "devicon-redhat-plain-wordmark colored"
-                        },
-                        {
-                            "name": "MacOS",
-                            "friendly_name": "macos",
-                            "level": 1,
-                            "note": "I don't own any Apple device",
-                            "icon": "devicon-apple-original"
-                        },
-                        {
-                            "name": "Android",
-                            "friendly_name": "android",
-                            "level": 7,
-                            "icon": "devicon-android-plain-wordmark colored"
-                        },
-                        {
-                            "name": "iOS",
-                            "friendly_name": "ios",
-                            "level": 1,
-                            "note": "I don't own any Apple device and Apple doesn't care giving devtools to non-Mac users",
-                            "icon": "devicon-apple-original"
-                        }
-                    ]
-                },
-                {
-                    "category": "devtools",
-                    "title": "Dev Tools",
-                    "collection": [
-                        {
-                            "name": "Atom",
-                            "friendly_name": "atom",
-                            "level": 6,
-                            "icon": "devicon-atom-original colored"
-                        },
-                        {
-                            "name": "Gimp",
-                            "friendly_name": "gimp",
-                            "level": 6,
-                            "icon": "devicon-gimp-plain"
-                        },
-                        {
-                            "name": "Git",
-                            "friendly_name": "git",
-                            "level": 8,
-                            "icon": "devicon-git-plain colored"
-                        },
-                        {
-                            "name": "JetBrains IDE",
-                            "friendly_name": "jetbrains",
-                            "level": 8,
-                            "icon": "devicon-jetbrains-plain colored",
-                            "note": "I use mainly IntelliJ, CLion, PyCharm and Datagrip"
-                        },
-                        {
-                            "name": "Photoshop",
-                            "friendly_name": "photoshop",
-                            "level": 7,
-                            "icon": "devicon-photoshop-plain colored"
-                        },
-                        {
-                            "name": "Visual Studio Code",
-                            "friendly_name": "vscode",
-                            "level": 8,
-                            "icon": "devicon-visualstudio-plain"
-                        },
-                        {
-                            "name": "Visual Studio",
-                            "friendly_name": "vs",
-                            "level": 7,
-                            "icon": "devicon-visualstudio-plain colored"
-                        }
-                    ]
-                },
-                {
-                    "category": "serenv",
-                    "title": "Server Setup",
-                    "collection": [
-                        {
-                            "name": "Apache WebServer",
-                            "friendly_name": "apachewebserver",
-                            "level": 5,
-                            "icon": "devicon-apache-line-wordmark colored"
-                        },
-                        {
-                            "name": "Cloudflare CDN/DNS",
-                            "friendly_name": "cloudflare",
-                            "level": 8,
-                            "icon": "fas fa-cloud"
-                        },
-                        {
-                            "name": "Docker",
-                            "friendly_name": "docker",
-                            "level": 5,
-                            "icon": "devicon-docker-plain-wordmark colored"
-                        },
-                        {
-                            "name": "Nginx",
-                            "friendly_name": "nginx",
-                            "level": 7,
-                            "icon": "devicon-nginx-original colored"
-                        }
-                    ]
-                }
-            ],
-            "ethic": "<p>I strongly believe that open-source is one of the most important cause on the IT world. Being able to contribute on any type of open-source project to make nicest software makes us programmers like a very big family.</p><p>An individual is not perfect, no one is able to do everything but if we share our projects makeing them open-source we will get the chance to get help from people that have more experience then us and continue our growth.</p><p>We live in a world that day after day depends more and more on Internet & Software. Nowadays it is unimaginable a scenario without these tools: <i>how many times our daily actions make use of Internet?</i></p><p>I strongly beleive that all the programmers around the world should think twice about the what are they coding and the usage that will be done. We must carry the responsibilities of our own code.</p><p><b>I will never write down code that aims to hurt someone or damage something.</b></p>"
-        },
-        "projects": {
-            "title": "projects",
-            "page-title": "Alessio Tudisco | Projects",
-            "detail-title": "Alessio Tudisco | Viewing Project",
-            "subtitle": "Projects | Contributions",
-            "githubUserAPI": "https://api.github.com/users/LightDestory",
-            "githubProjectsAPI": "https://api.github.com/users/LightDestory/repos?sort=pushed",
-            "placeholder": "assets/images/projects/placeholder.png",
-            // the variable containing the data must be called 'collection'
-            "projectDetailTags": {
-                "type": "(`This is a <i>${collection.fork ? 'forked' : 'original'}</i> repository`)",
-                "status": "(`It is <i>${collection.archived ? 'currently archived, no longer actively maintained' : 'still alive, an update can be released anytime'}</i>`)",
-                "stars": "collection.stargazers_count > 0 ? `It has <i>${collection.stargazers_count}</i> stars. Give a star if you find it useful!` : 'No stars has been given to the repository. <i>Be the first!</i>'",
-                "language": "collection.language != null ? `It is mainly programmed in <i>${collection.language}</i> <i class='devicon-${String(collection.language).replace('Processing', 'Java').replace('Kotlin', 'Java').replaceAll('+','Plus').replace('#', 'Sharp').toLowerCase()}-plain colored'></i>` : `The repository doesn't contain source code`",
-                "license": "collection.license != null && collection.license.name !='Other' ? `The repository is under <a href='${collection.license.url}'><i>${collection.license.name}</i></a>` : '<i>Custom license or no license has been applied to this repository</i>'",
-                "link": "(`<a href='${collection.html_url}' target='_blank' class='detail-button'>Visit GitHub Page for more details</a>`)"
-            }
-        },
-        "platforms": {
-            "title": "platforms",
-            "page-title": "Alessio Tudisco | Platforms",
-            "subtitle": "Socials | Contacts",
-            "platsplash": "assets/images/platforms/platforms.jpg",
-            "platforms_intro":"<p>You can find me on different social and gaming platforms. During my childhood I used <i>MeteoraPegaso</i> as username to play videogames but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p><br><p>Below a list of the main platforms where you can find me.</p>",
-            "links": [
-                {
-                    "name": "YouTube",
-                    "fa_icon": "fab fa-youtube",
-                    "note": "Look into my YT's channel, maybe you can find something useful!",
-                    "link": "https://www.youtube.com/channel/UCxzI-f2yCW9RPAz_K3swS2Q"
-                },
-                {
-                    "name": "GitHub",
-                    "fa_icon": "fab fa-github",
-                    "note": "Check my GitHub's profile!",
-                    "link": "https://github.com/LightDestory"
-                },
-                {
-                    "name": "Steam",
-                    "fa_icon": "fab fa-steam",
-                    "note": "Want to play together? Check my Steam's profile!",
-                    "link": "https://steamcommunity.com/id/LightDestory"
-                },
-                {
-                    "name": "Discord",
-                    "fa_icon": "fab fa-discord",
-                    "note": "LightDestory#3083",
-                    "link": ""
-                },
-                {
-                    "name": "Email",
-                    "fa_icon": "fas fa-envelope",
-                    "note": "Send me an e-mail!",
-                    "link": "mailto:apb231@gmail.com"
-                },
-                {
-                    "name": "LinkedIn",
-                    "fa_icon": "fab fa-linkedin-in",
-                    "note": "Let's discuss on LinkedIn!",
-                    "link": "https://www.linkedin.com/in/alessio-tudisco/"
-                },
-                {
-                    "name": "Telegram",
-                    "fa_icon": "fab fa-telegram-plane",
-                    "note": "Chat with me via Telegram!",
-                    "link": "https://t.me/lightdestory"
-                },
-                {
-                    "name": "Twitter",
-                    "fa_icon": "fab fa-twitter",
-                    "note": "Hmm... yeah, Twitter!",
-                    "link": "https://twitter.com/LightDestory"
+                    "file": "assets/images/textures/sprite2.png",
+                    "name": "sprite2"
                 }
             ]
         },
-        "thanks": {
-            "title": "thanks",
-            "page-title": "Alessio Tudisco | Thanks",
-            "subtitle": "Powered By | Thanks"
-        },
-        "textures": [
-            {"file": "assets/images/textures/tex1.png", "name": "tex1"},
-            {"file": "assets/images/textures/sprite1.png", "name": "sprite1"},
-            {"file": "assets/images/textures/sprite2.png", "name": "sprite2"}
-        ],
         "sounds": [
-            {"file": "assets/sounds/Knowing.ogg", "name": "ambient", "loop": true, "autoplay": true, "volume": 0.0},
-            {"file": "assets/sounds/Beep.mp3", "name": "click", "loop": false, "autoplay": false, "volume": 1.0}
-        ]
+            {
+                "file": "assets/sounds/Knowing.ogg",
+                "name": "ambient",
+                "loop": true,
+                "autoplay": true,
+                "volume": 0.0
+            },
+            {
+                "file": "assets/sounds/Beep.mp3",
+                "name": "click",
+                "loop": false,
+                "autoplay": false,
+                "volume": 1.0
+            }
+        ],
+        "views": {
+            "menu": [
+                {"title": "home", "link": "home"},
+                {"title": "about me", "link": "info"},
+                {"title": "projects", "link": "projects"},
+                {"title": "Socials & Contacts", "link": "platforms"},
+                {"title": "Special Thanks", "link": "thanks"}
+            ],
+            "home": {
+                "pageTitle": "Alessio Tudisco | Portfolio",
+                "title": "Alessio Tudisco",
+                "subtitle": "a.k.a LightDestory",
+                "subtitle2": "Developer | SysAdmin | Manga&Anime Addicted"
+            },
+            "info": {
+                "pageTitle": "Alessio Tudisco | Info",
+                "title": "info",
+                "subtitle": "Biography | Skills | Ethics",
+                "splash": "assets/images/splashes/biography.jpg",
+                "biography": "<p>Hello !<br/>Pleasure to 'meet' you, I'm <i>Alessio Tudisco</i>, also known as <i>LightDestory</i> (why? read below for a funny story*). I was born in a little city called 'Piazza Armerina' in Sicily, extreme south of Italy. I have a huge passion for computer science, communications' technologies and anime&manga. I am working hard to realize my <b>dream</b>: make a job out of my passions.</p><p>On 2018 I graduated with '100/100 cum laude' from a Technical Industrial Institute (high school) called '<a href='https://en.wikipedia.org/wiki/Ettore_Majorana'>Ettore Majorana</a>' where I attended Computer Science and Telecommunications course, you can find my record on Italy's <a href='http://www.indire.it/eccellenze/ricerca/index.php?action=risultato_specifico&provincia=Enna&database_richiesto=eccellenze_2018'>National Register of Excellence</a> managed by MIUR (Ministry of Education, University and Research). Currently I am a Computer Science university student at <a href='https://www.unict.it/en'>University of Catania</a>, Department of Mathematics and Informatics (DMI), in Sicily (Italy).</p><p>My journey as developer started at 11 year old learning the basics of programming and the language Visual Basic .NET. After that I started experiencing other languages such as C/C++, Java, C#, PHP, Python, JavaScript , SQL for databases, and learning nice stuff like pattern design, useful algorithms, containers and so on. I like to develop desktop application, both console and GUI, but also web app using framework such as Laravel.</p><p>Moreover, recently I got more interested on the System Administrator role: I am managing by myself few production and dev servers, learning every now and then new stuff.</p><p><i>Right now, I consider myself as Junior developer/sysadmin, I am still learning cool stuff every day and stacking up experience but if you need help or something from me don't wait and contact me!</i></p><p>(*) Why <i>LightDestory</i>? During my childhood I used <i>MeteoraPegaso</i> as username to play videogames but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p>",
+                "skillInfo": "<p>My aim is to became a software engineer and a full-stack developer. <i>I am still young and I am continuously improving my skills learning new languages and new frameworks</i>.</p><p>I think that charts are unable to express fully the capabilities of a person but they can be used to provide a nice visual component that lists my skills and let you know how much confident I feel with a specific workload.</p>",
+                "skillSet": [
+                    {
+                        "category": "languages",
+                        "title": "Programming/Scripting Languages",
+                        "collection": [
+                            {
+                                "name": "AutoIT",
+                                "friendlyName": "autoit",
+                                "level": 5,
+                                "note": "Mostly used to develop prototypes of automation such as bots or other stuff that requires a simple/medium interaction.",
+                                "icon": "fas fa-cogs"
+                            },
+                            {
+                                "name": "C/C++",
+                                "friendlyName": "c_cpp",
+                                "level": 8,
+                                "icon": "devicon-cplusplus-plain colored"
+                            },
+                            {
+                                "name": "C#",
+                                "friendlyName": "csharp",
+                                "level": 6,
+                                "icon": "devicon-csharp-plain colored"
+                            },
+                            {
+                                "name": "CSS",
+                                "friendlyName": "css3",
+                                "level": 8,
+                                "icon": "devicon-css3-plain-wordmark colored"
+                            },
+                            {
+                                "name": "HTML5",
+                                "friendlyName": "html5",
+                                "level": 8,
+                                "icon": "devicon-html5-plain-wordmark colored"
+                            },
+                            {
+                                "name": "Haskell",
+                                "friendlyName": "html5",
+                                "level": 5,
+                                "icon": "devicon-haskell-plain colored"
+                            },
+                            {
+                                "name": "Java",
+                                "friendlyName": "java",
+                                "level": 8,
+                                "icon": "devicon-java-plain colored"
+                            },
+                            {
+                                "name": "JavaScript",
+                                "friendlyName": "js",
+                                "level": 5,
+                                "note": "I am learning it!",
+                                "icon": "devicon-javascript-plain colored"
+                            },
+                            {
+                                "name": "PHP",
+                                "friendlyName": "php",
+                                "level": 8,
+                                "icon": "devicon-php-plain colored"
+                            },
+                            {
+                                "name": "Python",
+                                "friendlyName": "py",
+                                "level": 5,
+                                "note": "I am learning it!",
+                                "icon": "devicon-python-plain-wordmark colored"
+                            },
+                            {
+                                "name": "Visual Basic .NET (VB 8)",
+                                "friendlyName": "vb8",
+                                "level": 5,
+                                "note": "Nowadays I don't use it anymore but I have still some knowledge of the language.",
+                                "icon": "devicon-dot-net-plain-wordmark colored"
+                            }
+                        ]
+                    },
+                    {
+                        "category": "frameworks",
+                        "title": "Frameworks",
+                        "collection": [
+                            {
+                                "name": "Boostrap",
+                                "friendlyName": "bshtmlcss",
+                                "level": 7,
+                                "icon": "devicon-bootstrap-plain-wordmark colored"
+                            },
+                            {
+                                "name": "jQuery",
+                                "friendlyName": "jquery",
+                                "level": 7,
+                                "icon": "devicon-jquery-plain-wordmark colored"
+                            },
+                            {
+                                "name": "Laravel",
+                                "friendlyName": "laravel",
+                                "level": 8,
+                                "note": "I think that it is a must-have when programming with PHP",
+                                "icon": "devicon-laravel-plain-wordmark colored"
+                            },
+                            {
+                                "name": "React",
+                                "friendlyName": "react",
+                                "level": 3,
+                                "icon": "devicon-react-original-wordmark colored"
+                            },
+                            {
+                                "name": "Vue.js",
+                                "friendlyName": "vuejs",
+                                "level": 3,
+                                "icon": "devicon-vuejs-plain-wordmark colored"
+                            },
+                            {
+                                "name": "Xamarin",
+                                "friendlyName": "xamarin",
+                                "level": 5,
+                                "note": "Mostly used for Android: a.k.a Xamarin.Android.",
+                                "icon": "fas fa-mobile-alt"
+                            }
+                        ]
+                    },
+                    {
+                        "category": "databases",
+                        "title": "Databases",
+                        "collection": [
+                            {
+                                "name": "CouchDB",
+                                "friendlyName": "couchdb",
+                                "level": 5,
+                                "icon": "devicon-couchdb-plain colored"
+                            },
+                            {
+                                "name": "MariaDB/MySQL",
+                                "friendlyName": "mysql",
+                                "level": 8,
+                                "icon": "devicon-mysql-plain-wordmark"
+                            },
+                            {
+                                "name": "SQLite",
+                                "friendlyName": "sqlite",
+                                "level": 8,
+                                "icon": "fas fa-database"
+                            },
+                            {
+                                "name": "PostgreSQL",
+                                "friendlyName": "postgresql",
+                                "level": 5,
+                                "icon": "devicon-postgresql-plain-wordmark colored"
+                            },
+                            {
+                                "name": "Redis",
+                                "friendlyName": "redis",
+                                "level": 4,
+                                "icon": "devicon-redis-plain-wordmark colored"
+                            }
+                        ]
+                    },
+                    {
+                        "category": "os",
+                        "title": "Operating Systems",
+                        "collection": [
+                            {
+                                "name": "Windows XP-10 (Pro features)",
+                                "friendlyName": "winclient",
+                                "level": 9,
+                                "icon": "devicon-windows8-original colored"
+                            },
+                            {
+                                "name": "Windows Server 2008+",
+                                "friendlyName": "winserver",
+                                "level": 7,
+                                "icon": "devicon-windows8-original colored"
+                            },
+                            {
+                                "name": "Linux (Debian-based)",
+                                "friendlyName": "linuxdebian",
+                                "level": 8,
+                                "icon": "devicon-debian-plain-wordmark colored"
+                            },
+                            {
+                                "name": "Linux (RHEL-based)",
+                                "friendlyName": "linuxrhel",
+                                "level": 7,
+                                "icon": "devicon-redhat-plain-wordmark colored"
+                            },
+                            {
+                                "name": "MacOS",
+                                "friendlyName": "macos",
+                                "level": 1,
+                                "note": "I don't own any Apple device",
+                                "icon": "devicon-apple-original"
+                            },
+                            {
+                                "name": "Android",
+                                "friendlyName": "android",
+                                "level": 7,
+                                "icon": "devicon-android-plain-wordmark colored"
+                            },
+                            {
+                                "name": "iOS",
+                                "friendlyName": "ios",
+                                "level": 1,
+                                "note": "I don't own any Apple device and Apple doesn't care giving devtools to non-Mac users",
+                                "icon": "devicon-apple-original"
+                            }
+                        ]
+                    },
+                    {
+                        "category": "devtools",
+                        "title": "Dev Tools",
+                        "collection": [
+                            {
+                                "name": "Atom",
+                                "friendlyName": "atom",
+                                "level": 6,
+                                "icon": "devicon-atom-original colored"
+                            },
+                            {
+                                "name": "Gimp",
+                                "friendlyName": "gimp",
+                                "level": 6,
+                                "icon": "devicon-gimp-plain"
+                            },
+                            {
+                                "name": "Git",
+                                "friendlyName": "git",
+                                "level": 8,
+                                "icon": "devicon-git-plain colored"
+                            },
+                            {
+                                "name": "JetBrains IDE",
+                                "friendlyName": "jetbrains",
+                                "level": 8,
+                                "icon": "devicon-jetbrains-plain colored",
+                                "note": "I use mainly IntelliJ, CLion, PyCharm and Datagrip"
+                            },
+                            {
+                                "name": "Photoshop",
+                                "friendlyName": "photoshop",
+                                "level": 7,
+                                "icon": "devicon-photoshop-plain colored"
+                            },
+                            {
+                                "name": "Visual Studio Code",
+                                "friendlyName": "vscode",
+                                "level": 8,
+                                "icon": "devicon-visualstudio-plain"
+                            },
+                            {
+                                "name": "Visual Studio",
+                                "friendlyName": "vs",
+                                "level": 7,
+                                "icon": "devicon-visualstudio-plain colored"
+                            }
+                        ]
+                    },
+                    {
+                        "category": "serenv",
+                        "title": "Server Setup",
+                        "collection": [
+                            {
+                                "name": "Apache WebServer",
+                                "friendlyName": "apachewebserver",
+                                "level": 5,
+                                "icon": "devicon-apache-line-wordmark colored"
+                            },
+                            {
+                                "name": "Cloudflare CDN/DNS",
+                                "friendlyName": "cloudflare",
+                                "level": 8,
+                                "icon": "fas fa-cloud"
+                            },
+                            {
+                                "name": "Docker",
+                                "friendlyName": "docker",
+                                "level": 5,
+                                "icon": "devicon-docker-plain-wordmark colored"
+                            },
+                            {
+                                "name": "Nginx",
+                                "friendlyName": "nginx",
+                                "level": 7,
+                                "icon": "devicon-nginx-original colored"
+                            }
+                        ]
+                    }
+                ],
+                "ethic": "<p>I strongly believe that open-source is one of the most important cause on the IT world. Being able to contribute on any type of open-source project to make nicest software makes us programmers like a very big family.</p><p>An individual is not perfect, no one is able to do everything but if we share our projects makeing them open-source we will get the chance to get help from people that have more experience then us and continue our growth.</p><p>We live in a world that day after day depends more and more on Internet & Software. Nowadays it is unimaginable a scenario without these tools: <i>how many times our daily actions make use of Internet?</i></p><p>I strongly beleive that all the programmers around the world should think twice about the what are they coding and the usage that will be done. We must carry the responsibilities of our own code.</p><p><b>I will never write down code that aims to hurt someone or damage something.</b></p>"
+            },
+            "projects": {
+                "pageTitle": "Alessio Tudisco | Projects",
+                "detailTitle": "Alessio Tudisco | Viewing Project",
+                "title": "projects",
+                "subtitle": "Projects | Contributions",
+                "githubUserAPI": "https://api.github.com/users/LightDestory",
+                "githubProjectsAPI": "https://api.github.com/users/LightDestory/repos?sort=pushed",
+                "placeHolder": "assets/images/projects/placeholder.png",
+                "projectDetailTags": { // the element must be called 'collection'
+                    "type": "(`This is a <i>${collection.fork ? 'forked' : 'original'}</i> repository`)",
+                    "status": "(`It is <i>${collection.archived ? 'currently archived, no longer actively maintained' : 'still alive, an update can be released anytime'}</i>`)",
+                    "stars": "collection.stargazers_count > 0 ? `It has <i>${collection.stargazers_count}</i> stars. Give a star if you find it useful!` : 'No stars has been given to the repository. <i>Be the first!</i>'",
+                    "language": "collection.language != null ? `It is mainly programmed in <i>${collection.language}</i> <i class='devicon-${String(collection.language).replace('Processing', 'Java').replace('Kotlin', 'Java').replaceAll('+','Plus').replace('#', 'Sharp').toLowerCase()}-plain colored'></i>` : `The repository doesn't contain source code`",
+                    "license": "collection.license != null && collection.license.name !='Other' ? `The repository is under <a href='${collection.license.url}'><i>${collection.license.name}</i></a>` : '<i>Custom license or no license has been applied to this repository</i>'",
+                    "link": "(`<a href='${collection.html_url}' target='_blank' class='detail-button'>Visit GitHub Page for more details</a>`)"
+                }
+            },
+            "platforms": {
+                "pageTitle": "Alessio Tudisco | Platforms",
+                "title": "platforms",
+                "subtitle": "Socials | Contacts",
+                "splash": "assets/images/splashes/platforms.jpg",
+                "platformsInfo": "<p>You can find me on different social and gaming platforms. During my childhood I used <i>MeteoraPegaso</i> as username to play games but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p><br><p>Below a list of the main platforms where you can find me.</p>",
+                "links": [
+                    {
+                        "name": "YouTube",
+                        "icon": "fab fa-youtube",
+                        "note": "Look into my channel, maybe you can find something useful!",
+                        "link": "https://www.youtube.com/channel/UCxzI-f2yCW9RPAz_K3swS2Q"
+                    },
+                    {
+                        "name": "GitHub",
+                        "icon": "fab fa-github",
+                        "note": "Check my GitHub's profile!",
+                        "link": "https://github.com/LightDestory"
+                    },
+                    {
+                        "name": "Steam",
+                        "icon": "fab fa-steam",
+                        "note": "Want to play together? Check my Steam's profile!",
+                        "link": "https://steamcommunity.com/id/LightDestory"
+                    },
+                    {
+                        "name": "Discord",
+                        "icon": "fab fa-discord",
+                        "note": "LightDestory#3083",
+                        "link": ""
+                    },
+                    {
+                        "name": "Email",
+                        "icon": "fas fa-envelope",
+                        "note": "Send me an e-mail!",
+                        "link": "mailto:apb231@gmail.com"
+                    },
+                    {
+                        "name": "LinkedIn",
+                        "icon": "fab fa-linkedin-in",
+                        "note": "Let's discuss on LinkedIn!",
+                        "link": "https://www.linkedin.com/in/alessio-tudisco/"
+                    },
+                    {
+                        "name": "Telegram",
+                        "icon": "fab fa-telegram-plane",
+                        "note": "Chat with me via Telegram!",
+                        "link": "https://t.me/lightdestory"
+                    },
+                    {
+                        "name": "Twitter",
+                        "icon": "fab fa-twitter",
+                        "note": "Hmm... yeah, Twitter!",
+                        "link": "https://twitter.com/LightDestory"
+                    }
+                ]
+            },
+            "thanks": {
+                "pageTitle": "Alessio Tudisco | Thanks",
+                "title": "thanks",
+                "subtitle": "Powered By | Thanks"
+            }
+        }
     }
 }
 const Settings = APP.settings;
