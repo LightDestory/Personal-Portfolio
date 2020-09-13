@@ -972,7 +972,7 @@ APP = {
                 "title": "info",
                 "subtitle": "Biography | Skills | Ethics",
                 "splash": "assets/images/splashes/biography.jpg",
-                "biography": "<p>Hello !<br/>Pleasure to 'meet' you, I'm <i>Alessio Tudisco</i>, also known as <i>LightDestory</i> (why? read below for a funny story*). I was born in a little city called 'Piazza Armerina' in Sicily, extreme south of Italy. I have a huge passion for computer science, communications' technologies and anime&manga. I am working hard to realize my <b>dream</b>: make a job out of my passions.</p><p>On 2018 I graduated with '100/100 cum laude' from a Technical Industrial Institute (high school) called '<a href='https://en.wikipedia.org/wiki/Ettore_Majorana'>Ettore Majorana</a>' where I attended Computer Science and Telecommunications course, you can find my record on Italy's <a href='http://www.indire.it/eccellenze/ricerca/index.php?action=risultato_specifico&provincia=Enna&database_richiesto=eccellenze_2018'>National Register of Excellence</a> managed by MIUR (Ministry of Education, University and Research). Currently I am a Computer Science university student at <a href='https://www.unict.it/en'>University of Catania</a>, Department of Mathematics and Informatics (DMI), in Sicily (Italy).</p><p>My journey as developer started at 11 year old learning the basics of programming and the language Visual Basic .NET. After that I started experiencing other languages such as C/C++, Java, C#, PHP, Python, JavaScript , SQL for databases, and learning nice stuff like pattern design, useful algorithms, containers and so on. I like to develop desktop application, both console and GUI, but also web app using framework such as Laravel.</p><p>Moreover, recently I got more interested on the System Administrator role: I am managing by myself few production and dev servers, learning every now and then new stuff.</p><p><i>Right now, I consider myself as Junior developer/sysadmin, I am still learning cool stuff every day and stacking up experience but if you need help or something from me don't wait and contact me!</i></p><p>(*) Why <i>LightDestory</i>? During my childhood I used <i>MeteoraPegaso</i> as username to play videogames but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p>",
+                "biography": "<p>Hello!<br/>Pleasure to 'meet' you, I'm <i>Alessio Tudisco</i>, also known as <i>LightDestory</i> (why? read below for a funny story*). I was born in a little city called 'Piazza Armerina' in Sicily, extreme south of Italy. I have a huge passion for computer science, communications' technologies and anime&manga. I am working hard to realize my <b>dream</b>: make a job out of my passions.</p><p>On 2018 I graduated with '100/100 cum laude' from a Technical Industrial Institute (high school) called '<a href='https://en.wikipedia.org/wiki/Ettore_Majorana'>Ettore Majorana</a>' where I attended Computer Science and Telecommunications course, you can find my record on Italy's <a href='http://www.indire.it/eccellenze/ricerca/index.php?action=risultato_specifico&provincia=Enna&database_richiesto=eccellenze_2018'>National Register of Excellence</a> managed by MIUR (Ministry of Education, University and Research). Currently I am a Computer Science university student at <a href='https://www.unict.it/en'>University of Catania</a>, Department of Mathematics and Informatics (DMI), in Sicily (Italy).</p><p>My journey as developer started at 11 year old learning the basics of programming and the language Visual Basic .NET. After that I started experiencing other languages such as C/C++, Java, C#, PHP, Python, JavaScript , SQL for databases, and learning nice stuff like pattern design, useful algorithms, containers and so on. I like to develop desktop application, both console and GUI, but also web app using framework such as Laravel.</p><p>Moreover, recently I got more interested on the System Administrator role: I am managing by myself few production and dev servers, learning every now and then new stuff.</p><p><i>Right now, I consider myself as Junior developer/sysadmin, I am still learning cool stuff every day and stacking up experience but if you need help or something from me don't wait and contact me!</i></p><p>(*) Why <i>LightDestory</i>? During my childhood I used <i>MeteoraPegaso</i> as username to play videogames but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p>",
                 "skillInfo": "<p>My aim is to became a software engineer and a full-stack developer. <i>I am still young and I am continuously improving my skills learning new languages and new frameworks</i>.</p><p>I think that charts are unable to express fully the capabilities of a person but they can be used to provide a nice visual component that lists my skills and let you know how much confident I feel with a specific workload.</p>",
                 "skillSet": [
                     {
@@ -982,8 +982,8 @@ APP = {
                             {
                                 "name": "AutoIT",
                                 "friendlyName": "autoit",
-                                "level": 5,
-                                "note": "Mostly used to develop prototypes of automation such as bots or other stuff that requires a simple/medium interaction.",
+                                "level": 4,
+                                "note": "I have mostly used it to develop prototypes of automation such as bots or other stuff that requires a simple/medium interaction.",
                                 "icon": "fas fa-cogs"
                             },
                             {
@@ -1001,13 +1001,13 @@ APP = {
                             {
                                 "name": "CSS",
                                 "friendlyName": "css3",
-                                "level": 8,
+                                "level": 7,
                                 "icon": "devicon-css3-plain-wordmark colored"
                             },
                             {
                                 "name": "HTML5",
                                 "friendlyName": "html5",
-                                "level": 8,
+                                "level": 7,
                                 "icon": "devicon-html5-plain-wordmark colored"
                             },
                             {
@@ -1020,13 +1020,14 @@ APP = {
                                 "name": "Java",
                                 "friendlyName": "java",
                                 "level": 8,
-                                "icon": "devicon-java-plain colored"
+                                "icon": "devicon-java-plain colored",
+                                "note": "I started using Java 7-8 and I am now studying the new features of Java 9+"
                             },
                             {
                                 "name": "JavaScript",
                                 "friendlyName": "js",
-                                "level": 5,
-                                "note": "I am learning it!",
+                                "level": 6,
+                                "note": "For a long time I didn't care about improving my Javascript skill because web development wasn't on my scope but now I am studying Typescript and ES6!",
                                 "icon": "devicon-javascript-plain colored"
                             },
                             {
@@ -1038,8 +1039,8 @@ APP = {
                             {
                                 "name": "Python",
                                 "friendlyName": "py",
-                                "level": 5,
-                                "note": "I am learning it!",
+                                "level": 4,
+                                "note": "Python wasn't on my favourite list, I have always prefered languages such as C++ or Java for programming and PHP for casual scripting. Recently I have got interested in machine learning (read as 'Tensorflow') and AI, so I am learning Python!",
                                 "icon": "devicon-python-plain-wordmark colored"
                             },
                             {
@@ -1059,38 +1060,40 @@ APP = {
                                 "name": "Boostrap",
                                 "friendlyName": "bshtmlcss",
                                 "level": 7,
-                                "icon": "devicon-bootstrap-plain-wordmark colored"
+                                "icon": "devicon-bootstrap-plain-wordmark colored",
+                                "note": "I am not a designer but I can create a simple UI with responsive behaviour for my needs."
                             },
                             {
                                 "name": "jQuery",
                                 "friendlyName": "jquery",
-                                "level": 7,
-                                "icon": "devicon-jquery-plain-wordmark"
+                                "level": 5,
+                                "icon": "devicon-jquery-plain-wordmark",
+                                "note": "In the past jQuery was my saviour, it gave the chance to someone like me without much experience with JS to develop something without thinking about browser's compatibility. In the present fortunately almost every browser support ES5/ES6 so let's use Javascript vanilla!"
                             },
                             {
                                 "name": "Laravel",
                                 "friendlyName": "laravel",
                                 "level": 8,
-                                "note": "I think that it is a must-have when programming with PHP",
+                                "note": "I think that nowadays if you start a new PHP project the use of Laravel is a must.",
                                 "icon": "devicon-laravel-plain-wordmark colored"
                             },
                             {
                                 "name": "React",
                                 "friendlyName": "react",
-                                "level": 3,
+                                "level": 2,
                                 "icon": "devicon-react-original-wordmark colored"
                             },
                             {
                                 "name": "Vue.js",
                                 "friendlyName": "vuejs",
-                                "level": 3,
+                                "level": 2,
                                 "icon": "devicon-vuejs-plain-wordmark colored"
                             },
                             {
                                 "name": "Xamarin",
                                 "friendlyName": "xamarin",
                                 "level": 5,
-                                "note": "Mostly used for Android: a.k.a Xamarin.Android.",
+                                "note": "I have mostly used it for Android development: a.k.a Xamarin.Android.",
                                 "icon": "fas fa-mobile-alt"
                             }
                         ]
@@ -1102,7 +1105,7 @@ APP = {
                             {
                                 "name": "CouchDB",
                                 "friendlyName": "couchdb",
-                                "level": 5,
+                                "level": 4,
                                 "icon": "devicon-couchdb-plain colored"
                             },
                             {
@@ -1136,16 +1139,18 @@ APP = {
                         "title": "Operating Systems",
                         "collection": [
                             {
-                                "name": "Windows XP-10 (Pro feat.)",
-                                "friendlyName": "winclient",
-                                "level": 9,
-                                "icon": "devicon-windows8-original colored"
+                                "name": "Android",
+                                "friendlyName": "android",
+                                "level": 8,
+                                "icon": "devicon-android-plain-wordmark colored",
+                                "note": "Using Android devices since Android 4.2.2 with a great modding experience thanks to XDA community!"
                             },
                             {
-                                "name": "Windows Server 2008+",
-                                "friendlyName": "winserver",
-                                "level": 7,
-                                "icon": "devicon-windows8-original colored"
+                                "name": "iOS",
+                                "friendlyName": "ios",
+                                "level": 1,
+                                "note": "I don't own any Apple's Mac system and Apple doesn't care giving devtools to non-Mac users",
+                                "icon": "devicon-apple-original"
                             },
                             {
                                 "name": "Linux (Debian-based)",
@@ -1163,21 +1168,21 @@ APP = {
                                 "name": "MacOS",
                                 "friendlyName": "macos",
                                 "level": 1,
-                                "note": "I don't own any Apple device",
+                                "note": "I don't own any Apple's Mac system",
                                 "icon": "devicon-apple-original"
                             },
                             {
-                                "name": "Android",
-                                "friendlyName": "android",
+                                "name": "Windows XP-10 (Pro feat.)",
+                                "friendlyName": "winclient",
+                                "level": 9,
+                                "icon": "devicon-windows8-original colored",
+                                "note": "Using Windows operation system since Windows Me to latest Windows 10 Insider Preview!"
+                            },
+                            {
+                                "name": "Windows Server 2008+",
+                                "friendlyName": "winserver",
                                 "level": 7,
-                                "icon": "devicon-android-plain-wordmark colored"
-                            },
-                            {
-                                "name": "iOS",
-                                "friendlyName": "ios",
-                                "level": 1,
-                                "note": "I don't own any Apple device and Apple doesn't care giving devtools to non-Mac users",
-                                "icon": "devicon-apple-original"
+                                "icon": "devicon-windows8-original colored"
                             }
                         ]
                     },
@@ -1364,13 +1369,13 @@ APP = {
                     {
                         "name": "Vanilla Lazyload",
                         "friendlyName": "vanillalazyload",
-                        "text": "Don't waste your bandwidth, you load what you need!",
+                        "text": "Don't waste your bandwidth, just load what you need!",
                         "link": "https://github.com/verlok/vanilla-lazyload"
                     },
                     {
                         "name": "Three.js",
                         "friendlyName": "threejs",
-                        "text": "Do you like the amazing background animation? Well, Three.js makes webGL so easy!",
+                        "text": "Do you like the amazing background animation? Well, Three.js makes webGL easy!",
                         "link": "https://github.com/mrdoob/three.js/"
                     },
                     {
@@ -1382,13 +1387,13 @@ APP = {
                 ],
                 "thanksForLifeSaving": [
                     {
-                        "name": "Michael Vignola",
+                        "name": "Matteo Joliveau",
                         "friendlyName": "backgroundmusic",
-                        "text": "He composed the fantastic song on background, I hope you are listening to it!",
-                        "link": "https://www.youtube.com/watch?v=QS9bI-fjvhQ"
+                        "text": "Anytime I had a doubt regarding Javascript, he explained me new useful stuff!",
+                        "link": "https://matteojoliveau.com/"
                     },
                     {
-                        "name": "Matteo Joliveau",
+                        "name": "Michael Vignola",
                         "friendlyName": "backgroundmusic",
                         "text": "He composed the fantastic song on background, I hope you are listening to it!",
                         "link": "https://www.youtube.com/watch?v=QS9bI-fjvhQ"
@@ -1404,12 +1409,6 @@ APP = {
                         "friendlyName": "virmach",
                         "text": "The sponsor of the VPS where my personal portfolio is hosted, 'customer' since 2019~",
                         "link": "https://virmach.com/"
-                    },
-                    {
-                        "name": "Others",
-                        "friendlyName": "others",
-                        "text": "During the development of the portfolio I receive a massive help from StackOverflow's threads and an amazing developer, all my thanks to them",
-                        "link": ""
                     }
                 ]
             }
