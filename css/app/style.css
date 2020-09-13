@@ -119,39 +119,6 @@ html, body {
 body {
     overflow-x: hidden;
 }
-.top-bar {
-    width: 100vw;
-    height: 50vh;
-    background: var(--generic-background-color);
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    transition: 0.3s linear;
-}
-.top-bar.bar {
-    height: 10vh;
-}
-.top-bar.hide {
-    height: 0;
-    min-height: 0;
-}
-.bottom-bar {
-    width: 100vw;
-    height: 50vh;
-    background: var(--generic-background-color);
-    position: fixed;
-    z-index: 1000;
-    bottom: 0;
-    text-align: center;
-    transition: 0.3s linear;
-}
-.bottom-bar.bar {
-    height: 10vh;
-}
-.bottom-bar.hide {
-    height: 0;
-    min-height: 0;
-}
 a {
     color: var(--link-a-color);
 }
@@ -167,9 +134,8 @@ p {
 #webgl.show {
     opacity: 1;
 }
-/* page common */
 .page {
-    width: 100vw;
+    width: 100%;
     position: absolute;
     transform: translate3d(0, 20%, 0);
     top: 0;
@@ -197,7 +163,7 @@ p {
     text-transform: uppercase;
     pointer-events: none;
     margin: 0 auto;
-    width: 100vw;
+    width: 100%;
     text-align: center;
     color: var(--page-title-color);
     letter-spacing: 2vh;
@@ -238,6 +204,19 @@ p {
     font-size: 1.5vw;
     color: var(--section-title-color);
 }
+.data-container {
+    border: 3px solid var(--main-border-color);
+    border-left: none;
+    border-right: none;
+    border-radius: 25px;
+    background: var(--background-shade);
+}
+.data-detail-container {
+    border: 1px solid var(--container-border-color);
+    border-radius: 15px;
+    border-right: none;
+    border-left: none;
+}
 /* loader */
 .loader {
     opacity: 0;
@@ -260,7 +239,7 @@ p {
 .header {
     opacity: 0;
     position: fixed;
-    width: 100vw;
+    width: 100%;
     height: 12vh;
     top: -5vh;
     left: 0;
@@ -365,7 +344,7 @@ p {
 /* mobile-menu */
 .menu {
     opacity: 0;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     left: 50%;
     top: 50%;
@@ -398,7 +377,7 @@ p {
     text-transform: uppercase;
 }
 /* sound controls and animation*/
-.footer-sound {
+.sound-controls {
     text-align: center;
     width: 45px;
     position: fixed;
@@ -533,6 +512,27 @@ p {
     }
 }
 /* home */
+.home-bar {
+    width: 100%;
+    height: 50vh;
+    background: var(--generic-background-color);
+    position: fixed;
+    z-index: 1000;
+    transition: 0.3s linear;
+}
+.top-bar {
+    top: 0;
+}
+.bottom-bar {
+    bottom: 0;
+}
+.home-bar-show {
+    height: 10vh;
+}
+.home-bar-hide {
+    height: 0;
+    min-height: 0;
+}
 .home {
     overflow: hidden;
     height: 100%;
@@ -616,25 +616,21 @@ p {
     user-select: none;
 }
 /* info */
-.info .bio, .info .skill_intro, .info .ethic {
+.info .bio, .info .skill-intro, .info .ethic {
     margin-left: auto;
     margin-right: auto;
     width: 90vw;
     font-size: 1.4vw;
 }
+
 .skillset {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     position: relative;
-    border: 3px solid var(--main-border-color);
-    border-left: none;
-    border-right: none;
-    border-radius: 25px;
     width: 75%;
     margin-left: auto;
     margin-right: auto;
     padding: 1vw 4vw 1vw 4vw;
-    background: var(--background-shade);
 }
 .skillset .skill-container {
     grid-column: span 5;
@@ -709,11 +705,6 @@ p {
     margin-right: auto;
     margin-left: auto;
     text-align: center;
-    border-radius:25px;
-    border: 3px solid var(--main-border-color);
-    border-left: none;
-    border-right: none;
-    background: var(--background-shade);
     position: relative;
     font-size: 1.5vw;
 }
@@ -746,10 +737,6 @@ p {
     text-transform: uppercase;
     grid-column: span 1;
     padding:1vw;
-    border-radius: 15px;
-    border:1px solid var(--container-border-color);
-    border-left: none;
-    border-right: none;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -777,11 +764,6 @@ p {
     margin-bottom: 3vw;
     width: 30vw;
     height: 35vw;
-    border-radius:25px;
-    border: 3px solid var(--main-border-color);
-    border-left: none;
-    border-right: none;
-    background: var(--background-shade);
 }
 .list-item img {
     margin-top:2.5vw;
@@ -808,10 +790,6 @@ p {
     width: 40%;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid var(--container-border-color);
-    border-radius: 15px;
-    border-right: none;
-    border-left: none;
     padding: 1vw;
     transition:  background 0.3s linear 0s;
 }
@@ -843,7 +821,7 @@ p {
     height: 35vw;
     object-fit: contain;
 }
-.project-detail .content {
+.project-detail .description {
     margin-right: auto;
     margin-left: auto;
     width: 80%;
@@ -853,24 +831,15 @@ p {
 .details-container {
     margin-top: 5vh;
     position: relative;
-    border: 3px solid var(--main-border-color);
-    border-left: none;
-    border-right: none;
-    border-radius: 25px;
     width: 55%;
     margin-left: auto;
     margin-right: auto;
     padding: 1vw 4vw 1vw 4vw;
-    background: var(--background-shade);
 }
 .details-container .detail {
     margin: 2vw 0 2vw 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border: 1px solid var(--container-border-color);
-    border-radius: 15px;
-    border-right: none;
-    border-left: none;
     padding: 1vw;
     transition:  background 0.3s linear 0s;
     font-size: 1.1vw;
@@ -930,7 +899,7 @@ p {
     opacity: 1;
 }
 /* platforms*/
-.platforms .platforms_intro {
+.platforms .platforms-intro {
     margin-left: auto;
     margin-right: auto;
     width: 90vw;
@@ -949,11 +918,6 @@ p {
     margin-bottom: 3vw;
     width: 30vw;
     height: 25vw;
-    border-radius:25px;
-    border: 3px solid var(--main-border-color);
-    border-left: none;
-    border-right: none;
-    background: var(--background-shade);
 }
 .platforms-container .platform .platform-icon {
     font-size: 2vw;
@@ -974,10 +938,6 @@ p {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid var(--container-border-color);
-    border-radius: 15px;
-    border-right: none;
-    border-left: none;
     padding: 1vw;
     transition:  background 0.3s linear 0s;
 }
@@ -986,6 +946,61 @@ p {
 }
 .platforms-container .platform:hover .platform-link a {
     color: var(--important-text-hover-color);
+}
+
+/* thanks */
+.thanks-page-container {
+    margin-top: 5vh;
+    position: relative;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1vw 4vw 1vw 4vw;
+}
+.thanks-page-container .detail {
+    margin: 2vw 0 2vw 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1vw;
+    transition:  background 0.3s linear 0s;
+    font-size: 1.1vw;
+}
+.thanks-page-container .detail:hover {
+    background-color: var(--container-hover-color);
+}
+.thanks-page-container .detail-title {
+    text-transform: uppercase;
+    grid-column: span 1;
+    color: var(--main-title-color);
+    transition:  background 0.3s linear 0s;
+}
+.thanks-page-container .detail:hover .detail-title {
+    color: var(--important-text-hover-color);
+}
+.thanks-page-container .detail-data {
+    float: right;
+    grid-column: span 2;
+    text-align: center;
+}
+.thanks-page-container .detail-link {
+    width: 70%;
+    margin-left: 1vw;
+    float: right;
+    grid-column: span 1;
+    text-align: center;
+}
+.thanks-page-container .detail:hover .detail-link a {
+    color: var(--important-text-hover-color);
+}
+.thanks-page-container .detail-button {
+    background-color: var(--project-detail-visit-button-color);
+    border:2px solid var(--generic-border-color);
+    color:var(--generic-text-color);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 16px;
 }
 
 /* scrollbar settings -WebKit only */
@@ -1004,8 +1019,6 @@ p {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {}
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
 
 @media only screen and (max-width: 1080px) {
     .header-menu {
@@ -1189,7 +1202,7 @@ p {
     }
 
     .info .bio,
-    .info .skill_intro,
+    .info .skill-intro,
     .info .ethic {
         font-size: 2vh;
     }
@@ -1368,7 +1381,7 @@ p {
         top: 50vh;
     }
 
-    .footer-sound {
+    .sound-controls {
         left: 6vw;
         top: 3vh;
         right: unset;
@@ -1598,7 +1611,7 @@ p {
     }
 
     .info .bio,
-    .info .skill_intro,
+    .info .skill-intro,
     .info .ethic {
         font-size: 2vh;
     }
@@ -1779,7 +1792,7 @@ p {
         top: 50vh;
     }
 
-    .footer-sound {
+    .sound-controls {
         left: 6vw;
         top: 3vh;
         right: unset;

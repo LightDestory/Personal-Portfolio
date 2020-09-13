@@ -113,13 +113,8 @@
 </div>
 <!-- end header -->
 
-<!-- bars -->
-<div class="top-bar"></div>
-<div class="bottom-bar"></div>
-<!-- bars -->
-
 <!-- sound-controls -->
-<div class="footer-sound">
+<div class="sound-controls">
     <i id="sound-icon" class="fas fa-lg fa-volume-mute fa"></i>
     <span id="bar-1" class="sbar noAnim"></span>
     <span id="bar-2" class="sbar noAnim"></span>
@@ -129,6 +124,10 @@
 <!-- end sound-controls -->
 
 <!-- home -->
+<!-- bars -->
+<div class="home-bar top-bar"></div>
+<div class="home-bar bottom-bar"></div>
+<!-- bars -->
 <div class="home page hide">
     <div class="titles">
         <div class="page-title"></div>
@@ -158,9 +157,9 @@
     <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
          data-aos-delay='50' class="skillset-title section-title"></div>
     <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
-         data-aos-delay='50' class="skill_intro"></div>
+         data-aos-delay='50' class="skill-intro"></div>
     <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
-         data-aos-delay='50' class='skillset'></div>
+         data-aos-delay='50' class='data-container skillset'></div>
     <!-- Ethics -->
     <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
          data-aos-delay='50' class="ethic-title section-title"></div>
@@ -175,8 +174,9 @@
     <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
     <div class="feature">
         <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='5' data-aos-duration='1000'
-             data-aos-delay='5' class="github-card"></div>
+             data-aos-delay='5' class="data-container github-card"></div>
     </div>
+    <!-- element list -->
     <div class="titles-container">
         <!-- Projects -->
         <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='5' data-aos-duration='1000'
@@ -200,14 +200,13 @@
          data-aos-delay='50'>
         <img class="projectDetailImage lazy" src="" alt="Project Image"/>
     </div>
-    <div class="content-title section-title" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50'
+    <div class="detail-title section-title" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50'
          data-aos-duration='1000'
          data-aos-delay='50'></div>
     <!-- projectDetails data -->
-    <div class="content" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+    <div class="description" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
          data-aos-delay='50'></div>
-    <div class='details-container' data-aos='fade-in'>
-    </div>
+    <div class='data-container details-container' data-aos='fade-in'></div>
     <!-- projectDetails nav-controls -->
     <div class="bottom-nav">
         <div class="ctlbutton bottom-back">&#8672; prev</div>
@@ -229,7 +228,7 @@
     <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
          data-aos-delay='50' class="platforms-title section-title"></div>
     <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
-         data-aos-delay='50' class="platforms_intro"></div>
+         data-aos-delay='50' class="platforms-intro"></div>
     <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
          data-aos-delay='50' class="platforms-container"></div>
 </div>
@@ -243,6 +242,14 @@
          data-aos-delay='50' class="feature">
         <img alt="Thanks Image" class='lazy feature-image' src=""/>
     </div>
+    <!-- poweredBy list -->
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="poweredBy-title section-title"></div>
+    <div class='data-container thanks-page-container poweredBy-container' data-aos='fade-in'></div>
+    <!-- thanks list -->
+    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+         data-aos-delay='50' class="thanks-title section-title"></div>
+    <div class='data-container thanks-page-container thanks-container' data-aos='fade-in'></div>
 </div>
 <!-- end thanks -->
 <script>Core.init();</script>

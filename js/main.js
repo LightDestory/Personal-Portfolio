@@ -150,8 +150,8 @@ APP = {
                 }, 1000);
             }
             // update loaded icon default image
-            let rem = state === "home" ? "hide" : "bar";
-            let add = state === "home" ? "bar" : "hide";
+            let rem = state === "home" ? "home-bar-hide" : "home-bar-show";
+            let add = state === "home" ? "home-bar-show" : "home-bar-hide";
             const top_bar = document.querySelector(".top-bar").classList;
             const bot_bar = document.querySelector(".bottom-bar").classList;
             const header = document.querySelector(".header").classList;
@@ -201,7 +201,7 @@ APP = {
                 Settings.audio.soundOn = true;
                 SoundSystem.unMuteAll();
             }
-            document.querySelector(".footer-sound").addEventListener("click", () => {
+            document.querySelector(".sound-controls").addEventListener("click", () => {
                 Settings.audio.sounds['click'].play();
                 if (Settings.audio.soundOn) {
                     Settings.audio.soundOn = false;
@@ -215,7 +215,7 @@ APP = {
 
             });
             if (!Settings.general.isMobile) {
-                document.querySelector(".footer-sound").addEventListener("mouseover", () => {
+                document.querySelector(".sound-controls").addEventListener("mouseover", () => {
                     const icon = document.querySelector("#sound-icon").classList;
                     if (Settings.audio.soundOn) {
                         icon.remove("fa-volume-up");
@@ -225,7 +225,7 @@ APP = {
                         icon.remove("fa-volume-mute");
                     }
                 });
-                document.querySelector(".footer-sound").addEventListener("mouseout", () => {
+                document.querySelector(".sound-controls").addEventListener("mouseout", () => {
                     const icon = document.querySelector("#sound-icon").classList;
                     if (!Settings.audio.soundOn) {
                         icon.remove("fa-volume-up");
@@ -607,7 +607,7 @@ APP = {
                 document.querySelector(".info .bio").innerHTML = collection.biography;
                 //Skills
                 document.querySelector(".info .skillset-title").innerHTML = "[ Skills ]";
-                document.querySelector(".info .skill_intro").innerHTML = collection.skillInfo;
+                document.querySelector(".info .skill-intro").innerHTML = collection.skillInfo;
                 const skillSet = collection.skillSet;
                 const container = document.querySelector(".skillset");
                 skillSet.forEach(function (skill, i) {
@@ -699,14 +699,14 @@ APP = {
             loadData: function () {
                 // generating user-card
                 const user = Settings.projectsFetch.data.user;
-                document.querySelector(".github-card").innerHTML = `<img class="github-card-avatar lazy" src="" alt="Profile Image" data-src="${user.avatar_url}" alt="${user.name}"><div class="github-card-title">${user.name} (${user.login})</div><div class="github-card-content"><div class="github-card-element"><a href="https://github.com/${user.login}?tab=repositories"><strong>${user.public_repos}</strong><br/>Repos</a></div><div class="github-card-element"><a href="https://github.com/${user.login}?tab=following"><strong>${user.following}</strong><br/>Following</a></div><div class="github-card-element"><a href="https://github.com/${user.login}?tab=followers"><strong>${user.followers}</strong><br/>Followers</a></div></div>`;
+                document.querySelector(".github-card").innerHTML = `<img class="github-card-avatar lazy" src="" alt="Profile Image" data-src="${user.avatar_url}" alt="${user.name}"><div class="github-card-title">${user.name} (${user.login})</div><div class="github-card-content"><div class="data-detail-container github-card-element"><a href="https://github.com/${user.login}?tab=repositories"><strong>${user.public_repos}</strong><br/>Repos</a></div><div class="data-detail-container github-card-element"><a href="https://github.com/${user.login}?tab=following"><strong>${user.following}</strong><br/>Following</a></div><div class="data-detail-container github-card-element"><a href="https://github.com/${user.login}?tab=followers"><strong>${user.followers}</strong><br/>Followers</a></div></div>`;
                 // loading repositories
                 const projects = document.querySelector(".projects-content");
                 const forks = document.querySelector(".contributions-content");
                 Settings.projectsFetch.data.projects.forEach(function (element, i) {
                     const desc = `${String(element.description) === "null" ? "No description has been set for the repository" : String(element.description).substr(0, 64)}&hellip;`;
                     const name = `${String(element.name).replace(/-/g, " ").replace(/_/g, " ")}`;
-                    const str = `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class='list-item project-item'><img alt="Repository Image" class='lazy' data-src='assets/images/projects/${element.id}.jpg'/><div class="info"><div class='title'>${name}</div><div class='text'><p>${desc}<p></div></div><div class="links"><div class='detail' data-link='projects/${i + 1}'>More</div></div></div>`;
+                    const str = `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class='data-container list-item project-item'><img alt="Repository Image" class='lazy' data-src='assets/images/projects/${element.id}.jpg'/><div class="info"><div class='title'>${name}</div><div class='text'><p>${desc}<p></div></div><div class="links"><div class='data-detail-container detail' data-link='projects/${i + 1}'>More</div></div></div>`;
                     if (!element['fork']) {
                         projects.innerHTML += str;
                     } else {
@@ -763,13 +763,13 @@ APP = {
                 document.querySelector(".project-detail .page-title").innerHTML = `${name}`;
                 document.querySelector(".project-detail .page-subtitle").innerHTML = "Detail of";
                 document.querySelector(".project-detail img").setAttribute("src", `assets/images/projects/${collection.id}.jpg`);
-                document.querySelector(".project-detail .content-title").innerHTML = "[ Brief ]";
-                document.querySelector(".project-detail .content").innerHTML = `<p>${description}</p>`;
+                document.querySelector(".project-detail .detail-title").innerHTML = "[ Brief ]";
+                document.querySelector(".project-detail .description").innerHTML = `<p>${description}</p>`;
                 // getting useful data
                 const tags = Data.views.projects.projectDetailTags;
                 let component = "";
                 for (const [key, value] of Object.entries(tags)) {
-                    component += `<div class="detail detail-${key}"><span class="detail-title">${key}</span><span class="detail-data">${eval(value)}</span></div>`;
+                    component += `<div class="data-detail-container detail detail-${key}"><span class="detail-title">${key}</span><span class="detail-data">${eval(value)}</span></div>`;
                 }
                 document.querySelector(".project-detail .details-container").innerHTML = component;
             },
@@ -803,11 +803,11 @@ APP = {
                 document.querySelector(".platforms .page-subtitle").innerHTML = collection.subtitle;
                 document.querySelector(".platforms .feature .feature-image").setAttribute("data-src", collection.splash);
                 document.querySelector(".platforms .platforms-title").innerHTML = "[ Where you can find me ]";
-                document.querySelector(".platforms .platforms_intro").innerHTML = collection.platformsInfo;
+                document.querySelector(".platforms .platforms-intro").innerHTML = collection.platformsInfo;
                 const links = collection.links;
                 let component = "";
                 links.forEach(platform => {
-                    component += `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="platform platform-${String(platform.name).toLowerCase()}"><div class="platform-icon"><i class="${platform.icon} fa-4x"></i></div><div class="platform-title">${platform.name}</div><div class="platform-link"><a href="${platform.link}" target="_blank">${platform.note}</a></div></div>`;
+                    component += `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-container platform platform-${String(platform.name).toLowerCase()}"><div class="platform-icon"><i class="${platform.icon} fa-4x"></i></div><div class="platform-title">${platform.name}</div><div class="data-detail-container platform-link"><a href="${platform.link}" target="_blank">${platform.note}</a></div></div>`;
                 });
                 document.querySelector(".platforms .platforms-container").innerHTML = component;
             }
@@ -819,7 +819,25 @@ APP = {
                 const collection = Data.views.thanks;
                 document.querySelector(".thanks .page-title").innerHTML = collection.title;
                 document.querySelector(".thanks .page-subtitle").innerHTML = collection.subtitle;
-                //document.querySelector(".thanks .feature .feature-image").setAttribute("data-src", collection.thanksplash);
+                document.querySelector(".thanks .feature .feature-image").setAttribute("data-src", collection.splash);
+                document.querySelector(".thanks .poweredBy-title").innerHTML = "[ Powered by ]";
+                document.querySelector(".thanks .thanks-title").innerHTML = "[ Thanks to ]";
+                let component = "";
+                // importing poweredBy data
+                let isLeft = true;
+                collection.poweredBy.forEach(element => {
+                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail poweredby-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><span class="data-detail-container detail-link"><a href="${element.link}" target="_blank">Learn more...</a></span></div>`;
+                    isLeft= !isLeft;
+                });
+                document.querySelector(".thanks .poweredBy-container").innerHTML = component;
+                component = "";
+                isLeft = false;
+                // importing thanksLifeSaving data
+                collection.thanksForLifeSaving.forEach(element => {
+                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail thanks-to-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><span class="data-detail-container detail-link"><a href="${element.link}" target="_blank">Learn more...</a></span></div>`;
+                    isLeft= !isLeft;
+                });
+                document.querySelector(".thanks .thanks-container").innerHTML = component;
             }
         }
     },
@@ -1318,7 +1336,72 @@ APP = {
             "thanks": {
                 "pageTitle": "Alessio Tudisco | Thanks",
                 "title": "thanks",
-                "subtitle": "Powered By | Thanks"
+                "subtitle": "Powered By | Thanks",
+                "splash": "assets/images/splashes/thanks.jpg",
+                "poweredBy": [
+                    {
+                        "name": "Animate On Scroll (AOS)",
+                        "friendlyName": "aos",
+                        "text": "Stylish animations on scroll, I used a lot of these!",
+                        "link": "https://github.com/michalsnik/aos"
+                    },
+                    {
+                        "name": "GreenSock Animation Platform (GSAP)",
+                        "friendlyName": "gsap",
+                        "text": "A very helpful library to handle animations!",
+                        "link": "https://greensock.com/gsap/"
+                    },
+                    {
+                        "name": "Howler.js",
+                        "friendlyName": "howlerjs",
+                        "text": "Are you listening to the background music? Well, it's its doing!",
+                        "link": "https://github.com/goldfire/howler.js"
+                    },
+                    {
+                        "name": "Vanilla Lazyload",
+                        "friendlyName": "vanillalazyload",
+                        "text": "Don't waste your bandwidth, you load what you need!",
+                        "link": "https://github.com/verlok/vanilla-lazyload"
+                    },
+                    {
+                        "name": "Three.js",
+                        "friendlyName": "threejs",
+                        "text": "Do you like the amazing background animation? Well, Three.js makes webGL so easy!",
+                        "link": "https://github.com/mrdoob/three.js/"
+                    },
+                    {
+                        "name": "Toastify.js",
+                        "friendlyName": "toastifyjs",
+                        "text": "Who uses 'alert()' nowadays? You toast them all!",
+                        "link": "https://github.com/apvarun/toastify-js"
+                    }
+                ],
+                "thanksForLifeSaving": [
+                    {
+                        "name": "Michael Vignola",
+                        "friendlyName": "backgroundmusic",
+                        "text": "He composed the fantastic song on background, I hope you are listening to it!",
+                        "link": "https://www.youtube.com/watch?v=QS9bI-fjvhQ"
+                    },
+                    {
+                        "name": "Post4VPS",
+                        "friendlyName": "post4vps",
+                        "text": "This amazing community together with different Hosting providers gives you a chance to get a free VPS!",
+                        "link": "https://post4vps.com/"
+                    },
+                    {
+                        "name": "VirMach",
+                        "friendlyName": "virmach",
+                        "text": "The sponsor of the VPS where my personal portfolio is hosted, 'customer' since 2019~",
+                        "link": "https://virmach.com/"
+                    },
+                    {
+                        "name": "Others",
+                        "friendlyName": "others",
+                        "text": "During the development of the portfolio I receive a massive help from StackOverflow's threads and an amazing developer, all my thanks to them",
+                        "link": ""
+                    }
+                ]
             }
         }
     }
