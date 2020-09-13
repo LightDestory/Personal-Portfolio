@@ -46,7 +46,7 @@ APP = {
                 return;
             }
             // AOS init
-            AOS.init({offset: 60, duration: 1000});
+            AOS.init({offset: 60, duration: 1000, disable: 'mobile'});
             // init the webgl and views
             Views.init();
             WebGL.init();
@@ -321,7 +321,6 @@ APP = {
                 WebGL.backgroundUniforms.iResolution.value.x = width;
                 WebGL.backgroundUniforms.iResolution.value.y = height;
                 WebGL.backgroundUniforms.adj.value = .2 - height / width;
-                Utils.showToast("It is suggested to reload the page after a resize", 3000, Settings.toasts.info);
             }, true);
         },
         createBackgroundShader: function () {
