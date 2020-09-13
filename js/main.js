@@ -321,6 +321,7 @@ APP = {
                 WebGL.backgroundUniforms.iResolution.value.x = width;
                 WebGL.backgroundUniforms.iResolution.value.y = height;
                 WebGL.backgroundUniforms.adj.value = .2 - height / width;
+                Utils.showToast("It is suggested to reload the page after a resize", 3000, Settings.toasts.info);
             }, true);
         },
         createBackgroundShader: function () {
@@ -538,7 +539,7 @@ APP = {
                     if (m.link !== "home") {
                         str2 += `<li class="menu-item menu-${m.link}" data-link="${m.link}">${m.title}</li>`;
                     }
-                    str3 += `<li class="menu-item menu-${m.link}" data-link="${m.link}">${m.title}</li>`;
+                    str3 += `<li class="data-detail-container menu-item menu-${m.link}" data-link="${m.link}">${m.title}</li>`;
                 });
                 // loading into DOM
                 document.querySelector(".header-menu .menu-items").innerHTML = str;
@@ -807,7 +808,8 @@ APP = {
                 const links = collection.links;
                 let component = "";
                 links.forEach(platform => {
-                    component += `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-container platform platform-${String(platform.name).toLowerCase()}"><div class="platform-icon"><i class="${platform.icon} fa-4x"></i></div><div class="platform-title">${platform.name}</div><div class="data-detail-container platform-link"><a href="${platform.link}" target="_blank">${platform.note}</a></div></div>`;
+                    const link = platform.link ? `href='${platform.link}'` : "";
+                    component += `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-container platform platform-${String(platform.name).toLowerCase()}"><div class="platform-icon"><i class="${platform.icon} fa-4x"></i></div><div class="platform-title">${platform.name}</div><div class="data-detail-container platform-link"><a ${link} target="_blank">${platform.note}</a></div></div>`;
                 });
                 document.querySelector(".platforms .platforms-container").innerHTML = component;
             }
@@ -826,7 +828,8 @@ APP = {
                 // importing poweredBy data
                 let isLeft = true;
                 collection.poweredBy.forEach(element => {
-                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail poweredby-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><span class="data-detail-container detail-link"><a href="${element.link}" target="_blank">Learn more...</a></span></div>`;
+                    const link = element.link ? `href='${element.link}'` : "";
+                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail poweredby-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">Learn more...</a></div>`;
                     isLeft= !isLeft;
                 });
                 document.querySelector(".thanks .poweredBy-container").innerHTML = component;
@@ -834,7 +837,8 @@ APP = {
                 isLeft = false;
                 // importing thanksLifeSaving data
                 collection.thanksForLifeSaving.forEach(element => {
-                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail thanks-to-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><span class="data-detail-container detail-link"><a href="${element.link}" target="_blank">Learn more...</a></span></div>`;
+                    const link = element.link ? `href='${element.link}'` : "";
+                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail thanks-to-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">Learn more...</a></div>`;
                     isLeft= !isLeft;
                 });
                 document.querySelector(".thanks .thanks-container").innerHTML = component;
@@ -1061,7 +1065,7 @@ APP = {
                                 "name": "jQuery",
                                 "friendlyName": "jquery",
                                 "level": 7,
-                                "icon": "devicon-jquery-plain-wordmark colored"
+                                "icon": "devicon-jquery-plain-wordmark"
                             },
                             {
                                 "name": "Laravel",
@@ -1132,7 +1136,7 @@ APP = {
                         "title": "Operating Systems",
                         "collection": [
                             {
-                                "name": "Windows XP-10 (Pro features)",
+                                "name": "Windows XP-10 (Pro feat.)",
                                 "friendlyName": "winclient",
                                 "level": 9,
                                 "icon": "devicon-windows8-original colored"
@@ -1185,11 +1189,11 @@ APP = {
                                 "name": "Atom",
                                 "friendlyName": "atom",
                                 "level": 6,
-                                "icon": "devicon-atom-original colored"
+                                "icon": "devicon-atom-original"
                             },
                             {
                                 "name": "Gimp",
-                                "friendlyName": "gimp",
+                                "friendlyName": "gimp colored",
                                 "level": 6,
                                 "icon": "devicon-gimp-plain"
                             },
@@ -1234,7 +1238,7 @@ APP = {
                                 "name": "Apache WebServer",
                                 "friendlyName": "apachewebserver",
                                 "level": 5,
-                                "icon": "devicon-apache-line-wordmark colored"
+                                "icon": "devicon-apache-line-wordmark"
                             },
                             {
                                 "name": "Cloudflare CDN/DNS",
@@ -1273,7 +1277,7 @@ APP = {
                     "stars": "collection.stargazers_count > 0 ? `It has <i>${collection.stargazers_count}</i> stars. Give a star if you find it useful!` : 'No stars has been given to the repository. <i>Be the first!</i>'",
                     "language": "collection.language != null ? `It is mainly programmed in <i>${collection.language}</i> <i class='devicon-${String(collection.language).replace('Processing', 'Java').replace('Kotlin', 'Java').replaceAll('+','Plus').replace('#', 'Sharp').toLowerCase()}-plain colored'></i>` : `The repository doesn't contain source code`",
                     "license": "collection.license != null && collection.license.name !='Other' ? `The repository is under <a href='${collection.license.url}'><i>${collection.license.name}</i></a>` : '<i>Custom license or no license has been applied to this repository</i>'",
-                    "link": "(`<a href='${collection.html_url}' target='_blank' class='detail-button'>Visit GitHub Page for more details</a>`)"
+                    "link": "(`<a href='${collection.html_url}' target='_blank' class='data-detail-button detail-button'>Visit GitHub Page for more details</a>`)"
                 }
             },
             "platforms": {
@@ -1379,6 +1383,12 @@ APP = {
                 "thanksForLifeSaving": [
                     {
                         "name": "Michael Vignola",
+                        "friendlyName": "backgroundmusic",
+                        "text": "He composed the fantastic song on background, I hope you are listening to it!",
+                        "link": "https://www.youtube.com/watch?v=QS9bI-fjvhQ"
+                    },
+                    {
+                        "name": "Matteo Joliveau",
                         "friendlyName": "backgroundmusic",
                         "text": "He composed the fantastic song on background, I hope you are listening to it!",
                         "link": "https://www.youtube.com/watch?v=QS9bI-fjvhQ"
