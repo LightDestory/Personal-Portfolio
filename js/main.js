@@ -1279,7 +1279,7 @@ APP = {
                     "type": "(`This is a <i>${collection.fork ? 'forked' : 'original'}</i> repository`)",
                     "status": "(`It is <i>${collection.archived ? 'currently archived, no longer actively maintained' : 'still alive, an update can be released anytime'}</i>`)",
                     "stars": "collection.stargazers_count > 0 ? `It has <i>${collection.stargazers_count}</i> stars. Give a star if you find it useful!` : 'No stars has been given to the repository. <i>Be the first!</i>'",
-                    "language": "collection.language != null ? `It is mainly programmed in <i>${collection.language}</i> <i class='devicon-${String(collection.language).replace('Processing', 'Java').replace('Kotlin', 'Java').replaceAll('+','Plus').replace('#', 'Sharp').toLowerCase()}-plain colored'></i>` : `The repository doesn't contain source code`",
+                    "language": "collection.language != null ? `It is mainly programmed in <i>${collection.language}</i> <i class='devicon-${String(collection.language).replace('Processing', 'Java').replace('Kotlin', 'Java').replace('/+/g','Plus').replace('#', 'Sharp').toLowerCase()}-plain colored'></i>` : `The repository doesn't contain source code`",
                     "license": "collection.license != null && collection.license.name !='Other' ? `The repository is under <a href='${collection.license.url}'><i>${collection.license.name}</i></a>` : '<i>Custom license or no license has been applied to this repository</i>'",
                     "link": "(`<a href='${collection.html_url}' target='_blank' class='data-detail-button detail-button'>Visit GitHub Page for more details</a>`)"
                 }
