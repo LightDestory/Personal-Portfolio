@@ -46,7 +46,7 @@ APP = {
                 return;
             }
             // AOS init
-            AOS.init({offset: 60, duration: 1000, disable: 'mobile'});
+            AOS.init({offset: 60, duration: 1000});
             // init the webgl and views
             Views.init();
             WebGL.init();
