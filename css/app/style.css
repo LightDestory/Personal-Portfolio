@@ -768,7 +768,7 @@ p {
 .projects-content, .contributions-content {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    width: 95%;
+    width: 100%;
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
