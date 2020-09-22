@@ -769,7 +769,7 @@ APP = {
                 const tags = Data.views.projects.projectDetailTags;
                 let component = "";
                 for (const [key, value] of Object.entries(tags)) {
-                    component += `<div class="data-detail-container detail detail-${key}"><span class="detail-title">${key}</span><span class="detail-data">${eval(value)}</span></div>`;
+                    component += `<div class="data-detail-container detail detail-${key}"><span class="detail-title">${key}</span><span class="detail-data">${eval(String(value))}</span></div>`;
                 }
                 document.querySelector(".project-detail .details-container").innerHTML = component;
             },
@@ -825,20 +825,16 @@ APP = {
                 document.querySelector(".thanks .thanks-title").innerHTML = "[ Thanks to ]";
                 let component = "";
                 // importing poweredBy data
-                let isLeft = true;
                 collection.poweredBy.forEach(element => {
                     const link = element.link ? `href='${element.link}'` : "";
-                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail poweredby-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">Learn more...</a></div>`;
-                    isLeft= !isLeft;
+                    component += `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail poweredby-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">Learn more...</a></div>`;
                 });
                 document.querySelector(".thanks .poweredBy-container").innerHTML = component;
                 component = "";
-                isLeft = false;
                 // importing thanksLifeSaving data
                 collection.thanksForLifeSaving.forEach(element => {
                     const link = element.link ? `href='${element.link}'` : "";
-                    component += `<div data-aos='fade-${isLeft ? "left" : "right"}' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail thanks-to-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">Learn more...</a></div>`;
-                    isLeft= !isLeft;
+                    component += `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail thanks-to-${element.friendlyName}"><span class="detail-title">${element.name}</span><span class="detail-data">${element.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">Learn more...</a></div>`;
                 });
                 document.querySelector(".thanks .thanks-container").innerHTML = component;
             }

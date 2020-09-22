@@ -1006,8 +1006,54 @@ p {
 ::-webkit-scrollbar {
     width: 0;
 }
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1366px) {
+    .header .logo {
+        width: 60px;
+    }
+    .header .header-menu .menu-item {
+        font-size: 1vw;
+    }
+    /* info */
+    .info .bio, .info .skill-intro, .info .ethic {
+        font-size: 1.6vw;
+    }
+    /* projects */
+    .projects-content, .contributions-content {
+        grid-template-columns: repeat(8, 1fr);
+    }
+    .list-item {
+        width: 90%;
+    }
+    .list-item .info .title {
+        font-size: 1.8vw;
+    }
+    .list-item .info .text {
+        font-size: 1.6vw;
+    }
+    .list-item .links .detail {
+        font-size: 1.6vw;
+    }
+    /* project detail */
+    .project-detail .description {
+        font-size: 1.6vw;
+    }
+    .details-container .detail {
+        font-size: 1.6vw;
+    }
+    /* bottom nav */
+    .bottom-nav {
+        font-size: 1.4vw;
+    }
+    /* platforms*/
+    .platforms .platforms-intro {
+        font-size: 1.6vw;
+    }
+    /* thanks */
+    .thanks-page-container .detail {
+        font-size: 1.4vw;
+    }
+}
+@media only screen and (max-width: 1024px) {
     /* common */
     .home-bar{
         display: none;
