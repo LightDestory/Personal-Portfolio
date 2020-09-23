@@ -1,7 +1,5 @@
-  name: deploy
-
+name: deploy
 on: [push]
-
 jobs:
   deploy:
     runs-on: [ubuntu-latest]
