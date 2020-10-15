@@ -1400,10 +1400,10 @@ APP = {
                         "link": "https://post4vps.com/"
                     },
                     {
-                        "name": "VirMach",
-                        "friendlyName": "virmach",
-                        "text": "The sponsor of the VPS where my personal portfolio is hosted, 'customer' since 2019~",
-                        "link": "https://virmach.com/"
+                        "name": "Bladenode",
+                        "friendlyName": "bladenode",
+                        "text": "The sponsor of the VPS where my personal portfolio and my projects are hosted :)",
+                        "link": "https://bladenode.com/"
                     }
                 ]
             }
