@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import AppCore from "./core";
-import {viewInstance, Views} from "./views";
-import {Loader} from "./views/loader";
-import {DataWebGL} from "./dataset"
-import {navigationInstance} from "./navigation";
+import { viewInstance, Views } from "./views";
+import { Loader } from "./views/loader";
+import { DataWebGL } from "./dataset"
+import { navigationInstance } from "./navigation";
 import { TweenMax, Circ, Quad } from 'gsap';
 
 class webGL {
@@ -14,7 +14,7 @@ class webGL {
     private renderer = null;
     private target = null;
     private manager = null;
-    private textures: { [name: string] : object } = {};
+    private textures: { [name: string]: object } = {};
     private mouse = new THREE.Vector2(0, 0);
     private BackgroundVertexShader = null;
     private BackgroundFragmentShader = null;
@@ -35,7 +35,7 @@ class webGL {
         this.camera.position.set(0, 0, 50);
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x00ff00);
-        this.renderer = new THREE.WebGLRenderer({canvas: this.canvas});
+        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.target = new THREE.Object3D();
         this.target.position.set(0, 0, 0);
@@ -51,8 +51,8 @@ class webGL {
             });
         });
         this.manager.onLoad = function () {
-            _self.initObjects();
             _self.createBackgroundShader();
+            _self.initObjects();
         };
         window.addEventListener("resize", function () {
             console.log("resize");
@@ -69,19 +69,20 @@ class webGL {
             _self.backgroundUniforms.adj.value = .2 - height / width;
         }, true);
     }
-    private createBackgroundShader(): void{
+    private createBackgroundShader(): void {
+        const _self = this;
         console.log("background shader loading");
         this.BackgroundVertexShader = DataWebGL.backgroundVertShader;
         this.BackgroundFragmentShader = DataWebGL.backgroundFragShader;
         this.backgroundUniforms = {
-            iTime: {type: "f", value: 100.0},
-            iResolution: {type: "v2", value: new THREE.Vector2()},
-            iMouse: {type: "v2", value: new THREE.Vector2()},
-            audio1: {type: "f", value: 0.0},
-            adj: {type: "f", value: 0.0},
-            orbOpacity: {type: "f", value: 1.0},
-            intensity: {type: "f", value: 1.0},
-            iChannel0: {type: 't', value: this.textures['tex1']}
+            iTime: { type: "f", value: 100.0 },
+            iResolution: { type: "v2", value: new THREE.Vector2() },
+            iMouse: { type: "v2", value: new THREE.Vector2() },
+            audio1: { type: "f", value: 0.0 },
+            adj: { type: "f", value: 0.0 },
+            orbOpacity: { type: "f", value: 1.0 },
+            intensity: { type: "f", value: 1.0 },
+            iChannel0: { type: 't', value: this.textures['tex1'] }
         };
         this.backgroundUniforms.iResolution.value.x = window.innerWidth;
         this.backgroundUniforms.iResolution.value.y = window.innerHeight;
@@ -121,7 +122,7 @@ class webGL {
             }
             this.renderer.render(this.scene, this.camera);
         }
-        requestAnimationFrame(() => this.render);
+        requestAnimationFrame(this.render.bind(this));
     }
     private initObjects(): void {
         console.log("init webgl objects");
@@ -143,8 +144,8 @@ class webGL {
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
         for (let i = 0; i < parameters.length; i++) {
             const color = parameters[i][0];
-            const sprite = parameters[i][1];
-            const size = parameters[i][2];
+            const sprite: any = parameters[i][1];
+            const size: any = parameters[i][2];
             materials[i] = new THREE.PointsMaterial({
                 size: size,
                 map: sprite,
@@ -171,7 +172,7 @@ class webGL {
         });
     }
     // handle the state specific animations in the 3D scene
-    go(state: string): void{
+    go(state: string): void {
         //show the webgl canvas
         this.canvas.classList.add("show");
         // navigation animation
