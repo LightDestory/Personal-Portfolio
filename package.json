@@ -1,14 +1,14 @@
 {
   "name": "Personal-Portfolio",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "My new personal portfolio based on webGL!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["lightdestory", "portfolio", "personal", "website", "alessio", "tudisco"],
+  "author": "Alessio Tudisco (LightDestory)",
+  "license": "MIT",
   "devDependencies": {
     "cssnano": "^4.1.10",
     "parcel-plugin-static-files-copy": "^2.5.0",
