@@ -1,2 +1,5 @@
 # IDEA config files
 .idea/
+dist/
+.cache/
+node_modules/
