@@ -14,4 +14,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
-          script: ${{ secrets.DEPLOY_SCRIPT }}
+          script: |
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh
+          ${{ secrets.DEPLOY_SCRIPT }}
