@@ -14,4 +14,4 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           port: ${{ secrets.SERVER_PORT }}
-          script: cd ${{ secrets.PROJECT_PATH }} && git pull && npm install && rm -R ./dist && npx parcel build index.html && sudo /usr/sbin/service nginx restart
+          script: ${{ secrets.DEPLOY_SCRIPT }}
