@@ -18,7 +18,7 @@
     "aos": "^3.0.0-beta.6",
     "gsap": "^3.6.1",
     "howler": "^2.2.1",
-    "three": "^0.127.0",
+    "three": "^0.128.0",
     "toastify-js": "^1.10.0",
     "vanilla-lazyload": "^17.3.1"
   }
