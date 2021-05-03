@@ -19,7 +19,7 @@
     "gsap": "^3.6.1",
     "howler": "^2.2.1",
     "three": "^0.128.0",
-    "toastify-js": "^1.10.0",
+    "toastify-js": "^1.11.0",
     "vanilla-lazyload": "^17.3.1"
   }
 }
