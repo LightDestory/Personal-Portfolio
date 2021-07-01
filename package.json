@@ -17,7 +17,7 @@
   "dependencies": {
     "aos": "^3.0.0-beta.6",
     "gsap": "^3.7.0",
-    "howler": "^2.2.1",
+    "howler": "^2.2.3",
     "three": "^0.129.0",
     "toastify-js": "^1.11.0",
     "vanilla-lazyload": "^17.4.0"
