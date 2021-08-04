@@ -26,11 +26,11 @@ const dataset: any = {
     },
     "views": {
         "menu": [
-            {"title": "home", "link": "home"},
-            {"title": "about me", "link": "info"},
-            {"title": "projects", "link": "projects"},
-            {"title": "Socials & Contacts", "link": "platforms"},
-            {"title": "Special Thanks", "link": "thanks"}
+            { "title": "home", "link": "home" },
+            { "title": "about me", "link": "info" },
+            { "title": "projects", "link": "projects" },
+            { "title": "Socials & Contacts", "link": "platforms" },
+            { "title": "Special Thanks", "link": "thanks" }
         ],
         "home": {
             "pageTitle": "Alessio Tudisco | Portfolio",
@@ -78,7 +78,7 @@ const dataset: any = {
                         {
                             "name": "HTML5",
                             "friendlyName": "html5",
-                            "level": 7,
+                            "level": 8,
                             "icon": "devicon-html5-plain-wordmark colored"
                         },
                         {
@@ -88,6 +88,12 @@ const dataset: any = {
                             "icon": "devicon-haskell-plain colored"
                         },
                         {
+                            "name": "Kotlin",
+                            "friendlyName": "kotlin",
+                            "level": 8,
+                            "icon": "devicon-kotlin-plain colored"
+                        },
+                        {
                             "name": "Java",
                             "friendlyName": "java",
                             "level": 8,
@@ -95,9 +101,9 @@ const dataset: any = {
                             "note": "I started using Java 7-8 and I am now studying the new features of Java 9+"
                         },
                         {
-                            "name": "JavaScript",
+                            "name": "JavaScript/TypeScript",
                             "friendlyName": "js",
-                            "level": 6,
+                            "level": 8,
                             "note": "For a long time I didn't care about improving my Javascript skill because web development wasn't on my scope but now I am studying Typescript and ES6!",
                             "icon": "devicon-javascript-plain colored"
                         },
@@ -110,7 +116,7 @@ const dataset: any = {
                         {
                             "name": "Python",
                             "friendlyName": "py",
-                            "level": 4,
+                            "level": 5,
                             "note": "Python wasn't on my favourite list, I have always prefered languages such as C++ or Java for programming and PHP for casual scripting. Recently I have got interested in machine learning (read as 'Tensorflow') and AI, so I am learning Python!",
                             "icon": "devicon-python-plain-wordmark colored"
                         },
@@ -127,6 +133,13 @@ const dataset: any = {
                     "category": "frameworks",
                     "title": "Frameworks",
                     "collection": [
+                        {
+                            "name": "Angular",
+                            "friendlyName": "angular",
+                            "level": 7,
+                            "icon": "devicon-angularjs-plain colored",
+                            "note": "Experimenting with Angular :)"
+                        },
                         {
                             "name": "Boostrap",
                             "friendlyName": "bshtmlcss",
@@ -184,6 +197,12 @@ const dataset: any = {
                             "friendlyName": "mysql",
                             "level": 8,
                             "icon": "devicon-mysql-plain-wordmark"
+                        },
+                        {
+                            "name": "MongoDB",
+                            "friendlyName": "mongodb",
+                            "level": 7,
+                            "icon": "devicon-mongodb-plain-wordmark colored"
                         },
                         {
                             "name": "SQLite",
@@ -315,6 +334,12 @@ const dataset: any = {
                             "friendlyName": "apachewebserver",
                             "level": 5,
                             "icon": "devicon-apache-line-wordmark"
+                        },
+                        {
+                            "name": "Caddy WebServer",
+                            "friendlyName": "caddy",
+                            "level": 5,
+                            "icon": "fas fa-lock"
                         },
                         {
                             "name": "Cloudflare CDN/DNS",
@@ -505,4 +530,4 @@ const DataInfo = dataset.information;
 const DataSound = dataset.sounds;
 const DataWebGL = dataset.webGL;
 const DataView = dataset.views;
-export {DataInfo, DataSound, DataWebGL, DataView};
+export { DataInfo, DataSound, DataWebGL, DataView };
