@@ -493,18 +493,6 @@ const dataset: any = {
                     "friendlyName": "backgroundmusic",
                     "text": "He composed the fantastic song on background, I hope you are listening to it!",
                     "link": "https://www.youtube.com/watch?v=QS9bI-fjvhQ"
-                },
-                {
-                    "name": "Post4VPS",
-                    "friendlyName": "post4vps",
-                    "text": "This amazing community together with different Hosting providers gives you a chance to get a free VPS!",
-                    "link": "https://post4vps.com/"
-                },
-                {
-                    "name": "Bladenode",
-                    "friendlyName": "bladenode",
-                    "text": "The sponsor of the VPS where my personal portfolio and my projects are hosted :)",
-                    "link": "https://bladenode.com/"
                 }
             ]
         }

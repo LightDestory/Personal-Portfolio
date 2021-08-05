@@ -377,7 +377,7 @@ p {
 }
 
 .menu-button.active span:nth-child(1) {
-    top: 3vw;
+    top: 2vh;
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -o-transform: rotate(135deg);
@@ -390,7 +390,7 @@ p {
 }
 
 .menu-button.active span:nth-child(3) {
-    top: 3vw;
+    top: 2vh;
     -webkit-transform: rotate(-135deg);
     -moz-transform: rotate(-135deg);
     -o-transform: rotate(-135deg);
@@ -432,9 +432,9 @@ p {
     list-style: none;
     opacity: 0.5;
     text-align: center;
-    font-size: 6vw;
-    margin-top: 6vw;
-    padding: 1vw;
+    font-size: 2em;
+    margin-top: 5vh;
+    padding: 10px;
     text-transform: uppercase;
 }
 
@@ -485,7 +485,7 @@ p {
 #sound-icon {
     position: relative;
     left: 0;
-    top: 0.3vw;
+    top: 0.1vh;
     float: left;
 }
 
@@ -715,18 +715,18 @@ p {
 .info .bio, .info .skill-intro, .info .ethic {
     margin-left: auto;
     margin-right: auto;
-    width: 90vw;
-    font-size: 1.4vw;
+    width: 90%;
+    font-size: 1.5em;
 }
 
 .skillset {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     position: relative;
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
-    padding: 1vw 4vw 1vw 4vw;
+    padding: 1vh 4vw 1vh 4vw;
 }
 
 .skillset .skill-container {
@@ -741,11 +741,11 @@ p {
     grid-column: span 11;
     text-align: center;
     pointer-events: none;
-    margin-top: 4vh;
+    margin-top: 5vh;
     margin-bottom: 4vh;
     text-transform: uppercase;
     letter-spacing: 0.5vw;
-    font-size: 1vw;
+    font-size: 1.1em;
     color: var(--main-title-color);
     text-shadow: 0 2px 4px var(--blue-title-shadow-color);
 }
@@ -759,7 +759,7 @@ p {
     border: 1px solid var(--generic-border-color);
     background-color: var(--skillbar-background);
     border-radius: 50px;
-    margin-bottom: 1.5vw;
+    margin-bottom: 3vh;
     transition: all 0.05s;
     cursor: pointer;
     animation: all 0.3 linear 0s;
@@ -772,22 +772,22 @@ p {
 
 .skillbar-container i {
     float: left;
-    font-size: 1.2vw;
+    font-size: 1em;
     left: 1vw;
     position: relative;
-    top: 0.3vw;
+    top: 0.5vh;
 }
 
 .skillbar-container .skill-name {
     letter-spacing: 0.2vw;
-    font-size: 1.2vw;
+    font-size: 1.5em;
     text-shadow: 2px 2px 5px var(--white-title-shadow-color);
     text-indent: 2vw;
     position: fixed;
 }
 
 .skillbar-container .skillbar {
-    height: 2vw;
+    height: 35px;
     border-radius: 50px 0px 0px 50px;
     background-color: var(--skillbar-fill-color);
 }
@@ -801,30 +801,31 @@ p {
     padding: 10px;
     background-color: var(--more-skill-background-color);
     text-align: center;
-    margin: -1.5vw auto 1.5vw;
-    font-size: 1vw;
+    margin: -28px auto 2vh;
+    font-size: 1.2em;
 }
 
 /* projects */
 .github-card {
     width: 40vw;
-    height: 22vw;
+    height: auto;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
     position: relative;
-    font-size: 1.5vw;
+    font-size: 1.5em;
+    padding: 20px;
 }
 
 .github-card-avatar {
-    margin-top: 2vw;
     border: 2px solid var(--generic-border-color);
     display: inline-block;
     overflow: hidden;
     border-radius: 100%;
     box-shadow: 0 1px 1px var(--blue-shadow-color);
-    animation: all .2s linear;
-    width: 7vw;
+    animation: all .5s linear;
+    width: 120px;
+    height: auto;
 }
 
 .github-card-avatar:hover {
@@ -834,13 +835,13 @@ p {
 }
 
 .github-card-title {
-    font-size: 2vw;
+    font-size: 1.5em;
     letter-spacing: 0.15vw;
     color: var(--main-title-color);
 }
 
 .github-card-content {
-    margin-top: 2vw;
+    margin-top: 2vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
@@ -848,7 +849,7 @@ p {
 .github-card-element {
     text-transform: uppercase;
     grid-column: span 1;
-    padding: 1vw;
+    padding: 20px;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -870,7 +871,7 @@ p {
 .projects-content, .contributions-content {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    width: 100%;
+    width: 95%;
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
@@ -878,42 +879,43 @@ p {
 
 .list-item {
     grid-column: span 4;
-    margin-bottom: 3vw;
+    margin-bottom: 5vh;
     width: 95%;
-    height: 35vw;
+    height: auto;
+    padding-bottom: 20px;
     margin-right: auto;
     margin-left: auto;
 }
 
 .list-item img {
-    margin-top: 2.5vw;
+    margin-top: 30px;
     width: 100%;
-    height: 20vw;
+    height: 350px;
     transition: 0.5s opacity;
     opacity: 0.6;
-    object-fit: fill;
+    object-fit: scale-down;
 }
 
 .list-item .info .title {
     color: var(--main-title-color);
     text-align: center;
-    font-size: 1.4vw;
+    font-size: 1.5em;
 }
 
 .list-item .info .text {
-    padding: 0 1vw 0 1vw;
-    font-size: 1vw;
+    padding: 0 20px 0 20px;
+    font-size: 1em;
 }
 
 .list-item .links .detail {
     cursor: pointer;
-    font-size: 1.4vw;
+    font-size: 1.5em;
     color: var(--main-title-color);
     text-align: center;
     width: 40%;
     margin-left: auto;
     margin-right: auto;
-    padding: 1vw;
+    padding: 15px;
     transition: background 0.3s linear 0s;
 }
 
@@ -928,9 +930,9 @@ p {
 
 /* project detail */
 .project-detail .page-title {
-    font-size: 3vw;
-    letter-spacing: 0.5vw;
-    top: 28vh;
+    font-size: 4em;
+    letter-spacing: 0.8vw;
+    top: 30vh;
     color: var(--section-title-color);
 }
 
@@ -939,15 +941,15 @@ p {
 }
 
 .project-detail .feature {
-    margin-top: 25vw;
+    margin-top: 45vh;
 }
 
 .project-detail .feature img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50vw;
-    height: 35vw;
+    width: 60vw;
+    height: auto;
     object-fit: contain;
 }
 
@@ -955,7 +957,7 @@ p {
     margin-right: auto;
     margin-left: auto;
     width: 80%;
-    font-size: 1.2vw;
+    font-size: 1.5em;
     text-align: center;
 }
 
@@ -965,16 +967,17 @@ p {
     width: 55%;
     margin-left: auto;
     margin-right: auto;
-    padding: 1vw 4vw 1vw 4vw;
+    padding: 1vh 4vw 1vh 4vw;
 }
 
 .details-container .detail {
-    margin: 2vw 0 2vw 0;
+    margin: 2vh 0 2vh 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 1vw;
+    padding: 20px;
     transition: background 0.3s linear 0s;
-    font-size: 1.1vw;
+    font-size: 1.2em
+;
 }
 
 .details-container .detail:hover {
@@ -1011,11 +1014,11 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color: var(--project-detail-nav-background-color);
-    height: 4vw;
+    height: 6vh;
     width: 100%;
     position: absolute;
     bottom: 0;
-    font-size: 1.1vw;
+    font-size: 1.3em;
 }
 
 .bottom-nav .ctlbutton {
@@ -1038,7 +1041,8 @@ p {
     margin-left: auto;
     margin-right: auto;
     width: 90vw;
-    font-size: 1.4vw;
+    height: auto;
+    font-size: 1.5em;
 }
 
 .platforms .platforms-container {
@@ -1052,35 +1056,35 @@ p {
 
 .platforms-container .platform {
     grid-column: span 1;
-    margin-bottom: 3vw;
+    margin-bottom: 3vh;
     width: 95%;
-    height: 25vw;
+    height: 400px;
     margin-right: auto;
     margin-left: auto;
 }
 
 .platforms-container .platform .platform-icon {
-    font-size: 2vw;
+    font-size: 2em;
     text-align: center;
-    margin: 2vw 0 2vw 0;
+    margin: 2vh 0 2vh 0;
 }
 
 .platforms-container .platform .platform-title {
     color: var(--main-title-color);
     text-align: center;
-    font-size: 1.6vw;
-    margin-bottom: 1vw;
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
 .platforms-container .platform .platform-link {
     cursor: pointer;
-    font-size: 1.3vw;
+    font-size:1.5em;
     color: var(--main-title-color);
     text-align: center;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    padding: 1vw;
+    padding: 10px;
     transition: background 0.3s linear 0s;
 }
 
@@ -1097,18 +1101,19 @@ p {
     margin-top: 5vh;
     position: relative;
     width: 75%;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
-    padding: 1vw 4vw 1vw 4vw;
+    padding: 1vh 4vw 1vh 4vw;
 }
 
 .thanks-page-container .detail {
-    margin: 2vw 0 2vw 0;
+    margin: 2vh 0 2vh 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 1vw;
+    padding: 10px;
     transition: background 0.3s linear 0s;
-    font-size: 1.1vw;
+    font-size:1.3em;
 }
 
 .thanks-page-container .detail:hover {
@@ -1134,7 +1139,7 @@ p {
 
 .thanks-page-container .detail-link {
     width: 70%;
-    height: 2vw;
+    height: 30px;
     margin: auto 0 auto 2vw;
     float: right;
     grid-column: span 1;
@@ -1152,12 +1157,12 @@ p {
 @media only screen and (max-width: 1366px) {
 
     .header .header-menu .menu-item {
-        font-size: 1vw;
+        font-size: 1.3em;
     }
 
     /* info */
     .info .bio, .info .skill-intro, .info .ethic {
-        font-size: 1.6vw;
+        font-size:1.5em;
     }
 
     /* projects */
@@ -1170,39 +1175,39 @@ p {
     }
 
     .list-item .info .title {
-        font-size: 1.8vw;
+        font-size: 2em;
     }
 
     .list-item .info .text {
-        font-size: 1.6vw;
+        font-size: 1.5em;
     }
 
     .list-item .links .detail {
-        font-size: 1.6vw;
+        font-size: 1.5em;
     }
 
     /* project detail */
     .project-detail .description {
-        font-size: 1.6vw;
+        font-size: 1.5em;
     }
 
     .details-container .detail {
-        font-size: 1.6vw;
+        font-size: 1.3em;
     }
 
     /* bottom nav */
     .bottom-nav {
-        font-size: 1.4vw;
+        font-size: 1.3em;
     }
 
     /* platforms*/
     .platforms .platforms-intro {
-        font-size: 1.6vw;
+        font-size: 1.5em;
     }
 
     /* thanks */
     .thanks-page-container .detail {
-        font-size: 1.4vw;
+        font-size: 1.3em;
     }
 }
 
@@ -1226,9 +1231,9 @@ p {
     }
 
     .footer-menu .menu-item {
-        font-size: 3vw;
-        padding-left: 2vw;
-        padding-right: 2vw;
+        font-size: 1.5em;
+        padding-left: 40px;
+        padding-right: 40px;
     }
 
     .logo {
@@ -1236,54 +1241,52 @@ p {
     }
 
     .page-title {
-        font-size: 15vw;
+        font-size: 5em;
     }
 
     .page-subtitle {
-        top: 18vh;
-        font-size: 3vw;
+        top: 17vh;
+        font-size: 1em;
     }
 
     .page .feature {
-        margin-top: 40vw;
+        margin-top: 25vh;
     }
 
     .section-title {
         margin-top: 5vh;
         margin-bottom: 3vh;
-        font-size: 4vw;
+        font-size: 1.5em;
     }
 
     /* sound controls */
     .sound-controls {
-        left: 6vw;
+        left: 3vh;
         top: 3vh;
         right: unset;
     }
 
     /* home */
     .home .page-title {
-        font-size: 8vw;
-        text-indent: 4vw;
+        font-size: 2em;
     }
 
     .home .page-akatitle {
-        font-size: 4vw;
-        text-indent: 2vw;
+        font-size: 1.3em;
     }
 
     .home .page-subtitle {
-        font-size: 2.2vw;
-        letter-spacing: 1vw;
+        font-size: 1em;
+        letter-spacing: 0.5vw;
     }
 
     /* info*/
     .info .bio, .info .skill-intro, .info .ethic {
-        font-size: 3.5vw;
+        font-size: 1.2em;
     }
 
     .skillset {
-        padding: 0 4vw 4vw 4vw;
+        padding: 0 4vw 4vh 4vw;
     }
 
     .skillset .skill-container {
@@ -1297,117 +1300,111 @@ p {
     .skill-container .skill-title {
         margin-bottom: 0;
         letter-spacing: 0.5vw;
-        font-size: 3vw;
+        font-size: 1.3em;
     }
 
     .skillbar-container i {
-        font-size: 4vw;
-        left: 2vw;
-        top: 1vw;
+        font-size: 1em;
+        left: 4vw;
+        top: 0.7vh;
     }
 
     .skillbar-container .skill-name {
         letter-spacing: 0.5vw;
-        font-size: 4vw;
+        font-size: 1.2em;
         text-indent: 6vw;
     }
 
     .skillbar-container .skillbar {
-        height: 6vw;
+        height: 30px;
     }
 
     .more-skill-container {
         width: 80%;
-        font-size: 3vw;
+        font-size: 1.2em;
     }
 
     /* projects */
     .projects .feature {
-        margin-top: 50vw;
+        margin-top: 30vh;
     }
 
     .github-card {
-        width: 90vw;
-        height: 105vw;
-        font-size: 5vw;
-    }
-
-    .github-card-avatar {
-        margin-top: 4vw;
-        width: 15vw;
+        width: 80%;
+        height: auto;
+        font-size: 1.5em;
     }
 
     .github-card-title {
-        font-size: 5vw;
+        font-size: 1.5em;
     }
 
     .github-card-element {
-        margin-top: 5vw;
+        margin-top: 20px;
         grid-column: span 3;
     }
 
     .list-item {
         grid-column: span 12;
-        margin-bottom: 6vw;
+        margin-bottom: 20px;
         width: 90%;
         margin-left: auto;
         margin-right: auto;
-        height: 85vw;
+        height: auto;
     }
 
     .list-item img {
-        margin-top: 6vw;
-        height: 40vw;
+        height: 250px;
     }
 
     .list-item .info .title {
-        font-size: 4vw;
+        font-size: 1.5em;
     }
 
     .list-item .info .text {
-        padding: 0 2vw 0 2vw;
-        font-size: 3.5vw;
+        padding: 0 20px 0 20px;
+        font-size: 1.3em;
     }
 
     .list-item .links .detail {
-        padding: 2vw;
-        font-size: 3.5vw;
+        padding: 10px;
+        font-size: 1.3em;
     }
 
     /* projectDetail */
     .project-detail .page-title {
-        font-size: 3.5vw;
-        letter-spacing: 0.4vw;
+        font-size: 3em;
+        letter-spacing: 0.8vw;
         top: 18vh;
     }
 
     .project-detail .page-subtitle {
         top: 15vh;
-        font-size: 3vw;
+        font-size: 1.5em;
     }
 
     .project-detail .feature {
-        margin-top: 35vw;
+        margin-top: 25vh;
     }
 
     .project-detail .feature img {
-        width: 80vw;
-        height: 65vw;
+        width: 80%;
+        height: auto;
     }
 
     .details-container {
-        margin-bottom: 20vw;
-        width: 85%;
+        margin-bottom: 10vh;
+        width: 80%;
     }
 
     .project-detail .description {
-        font-size: 3.5vw;
+        font-size: 1.3em;
     }
 
     .details-container .detail {
-        margin: 4vw 0 4vw 0;
-        padding: 3vw;
-        font-size: 3.5vw;
+        margin: 20px 0 20px 0;
+        padding: 10px;
+        font-size: 1.3em;
     }
 
     .details-container .detail-title {
@@ -1432,20 +1429,20 @@ p {
 
     /* bottom nav */
     .bottom-nav {
-        margin-top: 4vw;
-        height: 20vw;
-        font-size: 3vw;
+        margin-top: 20px;
+        height: auto;
+        font-size: 1.5em;
     }
 
     .bottom-nav .ctlbutton {
-        margin-top: 1vw;
-        margin-bottom: 1vw;
+        margin-top: 5px;
+        margin-bottom: 5px;
         grid-column: span 3;
     }
 
     /* platforms*/
     .platforms .page-title {
-        font-size: 12vw;
+        font-size: 4em;
     }
 
     .platforms .page-subtitle {
@@ -1453,52 +1450,54 @@ p {
     }
 
     .platforms .platforms-intro {
-        font-size: 3.5vw;
+        font-size: 1.3em;
     }
 
     .platforms-container .platform {
+        width: 90%;
         grid-column: span 3;
-        margin-bottom: 6vw;
-        height: 55vw;
+        margin-bottom: 20px;
+        height: auto;
+        padding: 20px;
     }
 
     .platforms-container .platform .platform-icon {
-        font-size: 4vw;
-        margin: 4vw 0 4vw 0;
+        font-size: 1.5em;
+        margin: 20px 0 20px 0;
     }
 
     .platforms-container .platform .platform-title {
-        font-size: 5vw;
-        margin-bottom: 2vw;
+        font-size: 2em;
+        margin-bottom: 10px;
     }
 
     .platforms-container .platform .platform-link {
-        font-size: 4vw;
+        font-size: 1.3em;
         width: 80%;
-        padding: 2vw;
+        padding: 10px;
     }
 
     /* thanks */
     .thanks-page-container .detail {
-        margin: 4vw 0 4vw 0;
-        padding: 1vw;
-        font-size: 3.5vw;
+        margin: 20px 0 20px 0;
+        padding: 10px;
+        font-size: 1.3em;
     }
 
     .thanks-page-container .detail-title {
-        margin-top: 2vw;
+        margin-top: 20px;
         text-align: center;
         grid-column: span 4;
     }
 
     .thanks-page-container .detail-data {
-        margin-top: 4vw;
+        margin-top: 20px;
         grid-column: span 4;
     }
 
     .thanks-page-container .detail-link {
-        height: 5vw;
-        margin: 4vw auto 4vw auto;
+        height: 30px;
+        margin: 20px auto 20px auto;
         width: 50%;
         grid-column: span 4;
     }
