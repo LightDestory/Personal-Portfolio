@@ -1246,7 +1246,7 @@ p {
 
     .page-subtitle {
         top: 17vh;
-        font-size: 1em;
+        font-size: 0.8em;
     }
 
     .page .feature {
@@ -1276,8 +1276,8 @@ p {
     }
 
     .home .page-subtitle {
-        font-size: 1em;
-        letter-spacing: 0.5vw;
+        font-size: 0.7em;
+        letter-spacing: 0.2vw;
     }
 
     /* info*/
