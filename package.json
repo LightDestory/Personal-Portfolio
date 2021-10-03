@@ -28,6 +28,6 @@
     "howler": "^2.2.3",
     "three": "^0.132.2",
     "toastify-js": "^1.11.1",
-    "vanilla-lazyload": "^17.4.0"
+    "vanilla-lazyload": "^17.5.0"
   }
 }
