@@ -49,7 +49,7 @@ my website.
 I am using ParcelJS to bundle my website. With a simple command you can
 get a production ready site to put on your servers!
 
-###### Prerequisites
+#### Prerequisites
 
 - NodeJS
 
@@ -59,10 +59,10 @@ The following instruction will help you getting your own copy working:
 2. Install the dependencies using the following command inside the
    repository folder: `npm install`
 3. Make your chances
-4. Use the following command to run a testing web-server: `parcel
+4. Use the following command to run a testing web-server: `npx parcel
    index.html`
 5. Get your production-ready, inside the *dist* folder, using the
-   following command: `parcel build index.html`
+   following command: `npx parcel build index.html`
 
 
 ### :large_blue_diamond: License :copyright:

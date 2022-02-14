@@ -1,5 +1,5 @@
 # IDEA config files
 .idea/
 dist/
-.cache/
+.parcel-cache/
 node_modules/
