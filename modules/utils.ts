@@ -16,7 +16,9 @@ class Utils {
             duration: duration,
             gravity: "top",
             position: 'center',
-            backgroundColor: this.toastTypes[type]
+            style: {
+                background: this.toastTypes[type]
+            }
         }).showToast();
     }
     /* detection of mobile device based on user-agent */
