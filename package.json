@@ -2,7 +2,10 @@
   "name": "personal-portfolio",
   "version": "0.0.1",
   "description": "My new personal portfolio based on webGL!",
-  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "browserslist": [
+    "last 2 versions",
+    "not dead"
+  ],
   "main": "index.js",
   "targets": {
     "main": false
@@ -22,20 +25,17 @@
   "author": "Alessio Tudisco (LightDestory)",
   "license": "MIT",
   "devDependencies": {
-    "@parcel/optimizer-cssnano": "^2.10.0",
-    "cssnano": "^6.0.1",
-    "parcel": "2.3.2",
+    "parcel": "^2.13.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
-    "typescript": "^5.2.2"
+    "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.4.2",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "aos": "^3.0.0-beta.6",
-    "devicon": "^2.15.1",
-    "gsap": "^3.12.2",
+    "gsap": "^3.12.7",
     "howler": "^2.2.4",
-    "three": "^0.157.0",
+    "three": "^0.173.0",
     "toastify-js": "^1.12.0",
-    "vanilla-lazyload": "^17.8.5"
+    "vanilla-lazyload": "^19.1.3"
   }
 }
