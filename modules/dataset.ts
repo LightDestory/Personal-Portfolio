@@ -506,7 +506,7 @@ const dataset: any = {
             "volume": 0.0
         },
         {
-            "file": "assets/sounds/Beep.mp3",
+            "file": "assets/sounds/Beep.ogg",
             "name": "click",
             "loop": false,
             "autoplay": false,
