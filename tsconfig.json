@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "NodeNext",
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "ES2018",
     "sourceMap": false,
-    "lib": ["dom", "es2015", "es2017.object","es2018.promise"]
+    "lib": ["dom", "es2018"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true
   },
-  "include": [ "./src/**/*.ts"],
-  "exclude": [
-    "node_modules"
-  ]
 }
