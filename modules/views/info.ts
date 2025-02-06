@@ -1,6 +1,7 @@
 import modelView from "./modelView";
 import {DataView} from "../dataset";
-class Info extends modelView{
+
+class Info extends modelView {
     hide(): void {
         console.log("not implemented");
     }
@@ -12,21 +13,21 @@ class Info extends modelView{
     init(): void {
         console.log("init info");
         const collection = DataView.info;
-        document.querySelector(".info .page-title").innerHTML = collection.title;
-        document.querySelector(".info .page-subtitle").innerHTML = collection.subtitle;
-        document.querySelector(".info .feature .feature-image").setAttribute("data-src", collection.splash);
+        document.querySelector(".info .page-title")!!.innerHTML = collection.title;
+        document.querySelector(".info .page-subtitle")!!.innerHTML = collection.subtitle;
+        document.querySelector(".info .feature .feature-image")!!.setAttribute("data-src", collection.splash);
         // longer bio
-        document.querySelector(".info .bio-title").innerHTML = "[ Biography ]";
-        document.querySelector(".info .bio").innerHTML = collection.biography;
+        document.querySelector(".info .bio-title")!!.innerHTML = "[ Biography ]";
+        document.querySelector(".info .bio")!!.innerHTML = collection.biography;
         //Skills
-        document.querySelector(".info .skillset-title").innerHTML = "[ Skills ]";
-        document.querySelector(".info .skill-intro").innerHTML = collection.skillInfo;
+        document.querySelector(".info .skillset-title")!!.innerHTML = "[ Skills ]";
+        document.querySelector(".info .skill-intro")!!.innerHTML = collection.skillInfo;
         const skillSet = collection.skillSet;
-        const container = document.querySelector(".skillset");
-        skillSet.forEach(function (skill, i) {
+        const container = document.querySelector(".skillset")!!;
+        skillSet.forEach(function (skill: any, i: number) {
             const group = skill.collection;
             let component = `<div class="skill-container"><div class="skill-title">${skill.title}</div><ul class=${skill.category}>`;
-            group.forEach(function (element) {
+            group.forEach(function (element: any) {
                 const percent = element.level * 10;
                 const strStyle = element.level === 10 ? `width:${percent}%;border-radius:50px;` : `width:${percent}%;`;
                 const noteIcon = element.note ? `<i id="icon-more-${element.friendlyName}" class="fas fa-chevron-right"></i>` : "";
@@ -45,8 +46,8 @@ class Info extends modelView{
                 if (item.querySelector(`#icon-more-${skill}`) == null) {
                     return;
                 }
-                const icon = document.querySelector(`#icon-more-${skill}`).classList;
-                const content = document.querySelector(`.more-${skill}`);
+                const icon = document.querySelector(`#icon-more-${skill}`)!!.classList;
+                const content = document.querySelector(`.more-${skill}`) as HTMLElement;
                 const hidden = icon.contains('fa-chevron-right');
                 if (hidden) {
                     icon.remove('fa-chevron-right');
@@ -60,10 +61,9 @@ class Info extends modelView{
             })
         });
         //Ethic
-        document.querySelector(".info .ethic-title").innerHTML = "[ Ethics ]";
-        document.querySelector(".info .ethic").innerHTML = collection.ethic;
+        document.querySelector(".info .ethic-title")!!.innerHTML = "[ Ethics ]";
+        document.querySelector(".info .ethic")!!.innerHTML = collection.ethic;
     }
-
 
 
 }

@@ -1,29 +1,32 @@
 import ModelView from "./modelView";
 import {soundSystemInstance} from "../soundsystem";
 import {navigationInstance} from "../navigation";
+import {Views} from "../views";
+
 class Header extends ModelView {
+
+    private header_classes = document.querySelector(".header")!!.classList;
     hide(): void {
         console.log("hide header");
-        const header = document.querySelector(".header").classList;
-        header.remove("show");
-        header.remove("shade");
+        this.header_classes.remove("show");
+        this.header_classes.remove("shade");
     }
 
     init(): void {
         console.log("init header");
-        document.querySelector(".logo").addEventListener("click", () => {
+        document.querySelector(".logo")!!.addEventListener("click", () => {
             console.log('logo clicked');
             soundSystemInstance.playClick();
-            navigationInstance.go("home");
+            navigationInstance.go(Views.HOME_VIEW);
         });
     }
 
     show(): void {
         console.log("show header");
-        const header = document.querySelector(".header").classList;
-        header.add("show");
-        header.add("shade");
+        this.header_classes.add("show");
+        this.header_classes.add("shade");
     }
 }
-const headerInstance : Header= new Header();
+
+const headerInstance: Header = new Header();
 export default headerInstance;

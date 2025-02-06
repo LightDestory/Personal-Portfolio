@@ -2,6 +2,15 @@ import {Howl, Howler} from 'howler';
 import {utilsInstance} from "./utils";
 import {DataSound} from "./dataset";
 
+/**
+ * Type for sound file
+ * @interface soundFile
+ * @property {string} file - The file path
+ * @property {string} name - The name of the sound to be used in the system
+ * @property {boolean} loop - True if the sound should loop
+ * @property {boolean} autoplay - True if the sound should autoplay
+ * @property {number} volume - The volume of the sound between 0 and 1
+ */
 interface soundFile {
     readonly file: string,
     readonly name: string,
@@ -9,20 +18,27 @@ interface soundFile {
     readonly autoplay: boolean,
     readonly volume: number
 }
+
 class soundSystem {
-    /* Settings */
-    private soundSystemData: soundFile[];
-    private loadedSounds: { [name: string] : Howl } = {};
-    private muteDelay: ReturnType<typeof setTimeout> = null;
+    private loadedSounds: { [name: string]: Howl } = {};
+    private muteDelay: ReturnType<typeof setTimeout> = -1;
     private soundOn: boolean = false;
-    constructor() {
-        this.soundSystemData = DataSound;
-    }
-    /* init system */
+    private soundIcon: HTMLElement | null = null
+    private soundControls: HTMLElement | null = null;
+
+    constructor() {}
+
+    /**
+     * Initialize the sound system
+     * @param mutedCookie The value of the muted cookie
+     * @param isMobile True if the device is mobile
+     */
     init(mutedCookie: string, isMobile: boolean): void {
         console.log("init sound system");
+        this.soundIcon = document.querySelector("#sound-icon");
+        this.soundControls = document.querySelector(".sound-controls");
         Howler.mute(true);
-        this.loadSounds();
+        this.loadSoundData();
         if (mutedCookie === "0") {
             this.soundOn = true;
             this.unMuteAll();
@@ -32,20 +48,25 @@ class soundSystem {
             this.enableMouseOverAnimation();
         }
     }
-    /* load sounds */
-    private loadSounds(): void {
-        this.soundSystemData.forEach(s => {
+
+    /**
+     * Load all sounds into the system
+     */
+    private loadSoundData(): void {
+        (DataSound as soundFile[]).forEach(s => {
             this.loadedSounds[s.name] = new Howl({
                 src: s.file,
                 loop: s.loop,
                 volume: s.volume,
-                name: s.name,
                 autoplay: s.autoplay
             });
         });
     }
-    /* mute control */
-    muteAll(): void{
+
+    /**
+     * Disable all sound sources. It fades out the ambient sound and then mutes all sounds
+     */
+    muteAll(): void {
         console.log("mute all");
         this.toggleAnimation();
         this.loadedSounds['ambient'].fade(1, 0, 1000);
@@ -53,7 +74,10 @@ class soundSystem {
             Howler.mute(true);
         }, 1500);
     }
-    /* unmute control */
+
+    /**
+     * Unmute all sounds sources. It fades in the ambient sound and then unmutes all sounds
+     */
     unMuteAll(): void {
         console.log("unMute all");
         this.toggleAnimation();
@@ -61,62 +85,80 @@ class soundSystem {
         Howler.mute(false);
         this.loadedSounds['ambient'].fade(0, 1, 1000);
     }
-    /* toggle the sound-bars animation */
+
+    /**
+     * Toggle the animation of the sound system
+     */
     private toggleAnimation(): void {
         document.querySelectorAll(".sbar").forEach(element => element.classList.toggle("noAnim"));
-        const icon = document.querySelector("#sound-icon").classList;
+        const icon_classes = this.soundIcon!!.classList;
         if (this.soundOn) {
-            icon.add("fa-volume-up");
-            icon.remove("fa-volume-mute");
+            icon_classes.add("fa-volume-up");
+            icon_classes.remove("fa-volume-mute");
         } else {
-            icon.remove("fa-volume-up");
-            icon.add("fa-volume-mute");
+            icon_classes.remove("fa-volume-up");
+            icon_classes.add("fa-volume-mute");
         }
     }
+
+    /**
+     * Check if the sound is currently on
+     * @returns {boolean} True if the sound is on
+     */
     isSoundOn(): boolean {
         return this.soundOn;
     }
-    /* enable Mouse on Over animation on the controls icon*/
+
+    /**
+     * Enable the mouse over animation for the sound controls, only for desktop
+     */
     private enableMouseOverAnimation(): void {
-        document.querySelector(".sound-controls").addEventListener("mouseover", () => {
-            const icon = document.querySelector("#sound-icon").classList;
+        this.soundControls!!.addEventListener("mouseover", () => {
+            const icon_classes = this.soundIcon!!.classList;
             if (this.soundOn) {
-                icon.remove("fa-volume-up");
-                icon.add("fa-volume-mute");
+                icon_classes.remove("fa-volume-up");
+                icon_classes.add("fa-volume-mute");
             } else {
-                icon.add("fa-volume-up");
-                icon.remove("fa-volume-mute");
+                icon_classes.add("fa-volume-up");
+                icon_classes.remove("fa-volume-mute");
             }
         });
-        document.querySelector(".sound-controls").addEventListener("mouseout", () => {
-            const icon = document.querySelector("#sound-icon").classList;
+        this.soundControls!!.addEventListener("mouseout", () => {
+            const icon_classes = this.soundIcon!!.classList;
             if (!this.soundOn) {
-                icon.remove("fa-volume-up");
-                icon.add("fa-volume-mute");
+                icon_classes.remove("fa-volume-up");
+                icon_classes.add("fa-volume-mute");
             } else {
-                icon.add("fa-volume-up");
-                icon.remove("fa-volume-mute");
+                icon_classes.add("fa-volume-up");
+                icon_classes.remove("fa-volume-mute");
             }
         });
     }
-    /* enable sound controls such as mute and unmute */
+
+    /**
+     * Set the event listener for the sound controls
+     */
     private enableSoundControls(): void {
-        document.querySelector(".sound-controls").addEventListener("click", () => {
+        this.soundControls!!.addEventListener("click", () => {
             this.playClick();
             if (this.soundOn) {
-                this.soundOn = false;
                 this.muteAll();
-                utilsInstance.setCookie("muted", 1, 1);
+                utilsInstance.setCookie("muted", 1, 7);
             } else {
-                this.soundOn = true;
                 this.unMuteAll();
-                utilsInstance.setCookie("muted", 0, 1);
+                utilsInstance.setCookie("muted", 0, 7);
             }
+            this.soundOn = !this.soundOn;
         });
     }
+
+    /**
+     * Play the click sound
+     */
     public playClick(): void {
         this.loadedSounds['click'].play();
     }
 }
+
 const soundSystemInstance: soundSystem = new soundSystem();
 export {soundFile, soundSystemInstance}

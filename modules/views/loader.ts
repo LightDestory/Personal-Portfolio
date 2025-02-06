@@ -1,8 +1,11 @@
 import ModelView from "./modelView";
+
 class Loader extends ModelView {
+    private loader_reference = document.querySelector(".loader")!! as HTMLElement;
+
     hide(): void {
         console.log("hide loader");
-        document.querySelector(".loader").classList.remove("show");
+        this.loader_reference.classList.remove("show");
     }
 
     init(): void {
@@ -11,14 +14,19 @@ class Loader extends ModelView {
 
     show(): void {
         console.log("show loader");
-        document.querySelector(".loader").classList.add("show");
+        this.loader_reference.classList.add("show");
     }
 
-    update(v: number): void {
-        const value = Math.round(v * 100) / 100;
+    /**
+     * Update the loader progress
+     * @param value The progress value
+     */
+    update(value: number): void {
+        value = Math.round(value * 100) / 100;
         console.log("loader progress: ", value * 100 + "%");
-        document.querySelector(".loader")['style'].width = `${value * 100}%`;
+        this.loader_reference.style.width = `${value * 100}%`;
     }
 }
-const loaderInstance: Loader= new Loader();
+
+const loaderInstance: Loader = new Loader();
 export {Loader, loaderInstance}

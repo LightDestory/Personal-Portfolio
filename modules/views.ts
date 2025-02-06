@@ -11,6 +11,7 @@ import {infoInstance} from "./views/info";
 import {platformsInstance} from "./views/platforms";
 import {thanksInstance} from "./views/thanks";
 import {projectDetailInstance} from "./views/projectDetail";
+
 class Views {
     static LOADER_VIEW: string = "loader";
     static HEADER_VIEW: string = "header";
@@ -18,21 +19,24 @@ class Views {
     static HOME_VIEW: string = "home";
     static INFO_VIEW: string = "info";
     static PRJ_VIEW: string = "projects";
-    static PRJD_VIEW: string = "project-Detail";
+    static PRJD_VIEW: string = "project-detail";
     static PLAT_VIEW: string = "platforms";
     static THK_VIEW: string = "thanks";
-    private collection: {[key: string] : ModelView} = {
+    private collection: { [key: string]: ModelView } = {
         "loader": loaderInstance,
         "header": headerInstance,
         "menu": menuInstance,
         "home": homeInstance,
         "info": infoInstance,
         "projects": projectsInstance,
-        "project-Detail": projectDetailInstance,
+        "project-detail": projectDetailInstance,
         "platforms": platformsInstance,
         "thanks": thanksInstance
     }
 
+    /**
+     * Initialize all views in the collection
+     */
     init(): void {
         Object.keys(this.collection).forEach(element => {
             if(element!=="loader"){
@@ -40,16 +44,21 @@ class Views {
             }
         });
     }
+
+    /**
+     * Show the page by altering the DOM classes and refreshing AOS
+     * @param page The page to show
+     */
     showPage(page: string): void {
         console.log(`show ${page}`);
-        const p = document.querySelector(`.${page}`).classList;
-        p.remove("hide");
+        const page_classes = document.querySelector(`.${page}`)!!.classList;
+        page_classes.remove("hide");
         setTimeout(function () {
-            p.add("show");
+            page_classes.add("show");
             AOS.refresh();
         }, 100);
-        const title = document.querySelector(`.${page} .page-title`).classList;
-        const subtitle = document.querySelector(`.${page} .page-subtitle`).classList;
+        const title = document.querySelector(`.${page} .page-title`)!!.classList;
+        const subtitle = document.querySelector(`.${page} .page-subtitle`)!!.classList;
         title.remove("aos-animate");
         subtitle.remove("aos-animate");
         setTimeout(function () {
@@ -66,56 +75,45 @@ class Views {
             }
         }
     }
+
+    /**
+     * Hide the page by altering the DOM classes and content
+     * @param page The page to hide
+     */
     hidePage(page: string): void {
         console.log(`hide ${page}`);
-        const p = document.querySelector(`.${page}`).classList;
-        p.remove("show");
-        document.querySelector(`.${page} .page-title`).classList.remove("aos-animate");
-        document.querySelector(`.${page} .page-subtitle`).classList.remove("aos-animate");
+        const page_classes = document.querySelector(`.${page}`)!!.classList;
+        page_classes.remove("show");
+        document.querySelector(`.${page} .page-title`)!!.classList.remove("aos-animate");
+        document.querySelector(`.${page} .page-subtitle`)!!.classList.remove("aos-animate");
         if (page === "project-detail") {
             setTimeout(function () {
-                document.querySelector(`.${page} .details-container`).innerHTML = "";
+                document.querySelector(`.${page} .details-container`)!!.innerHTML = "";
             }, 500);
             // if we are going from a detail page to the same detail page, dont hide it from DOM
-            if (AppCore.state === "projects") {
-                return null;
+            if (AppCore.state === Views.PRJD_VIEW) {
+                return;
             }
         }
         // hide page from DOM
         setTimeout(function () {
-            p.add("hide");
+            page_classes.add("hide");
         }, 1000);
     }
 
+    /**
+     * Retrieve the view instance by name
+     * @param name The name of the view
+     * @returns The view instance
+     */
     getView(name: string): ModelView {
-        let view: ModelView;
-        if(name===Views.LOADER_VIEW){
-            view = this.collection[Views.LOADER_VIEW];
-        } else if(name===Views.HEADER_VIEW) {
-            view = this.collection[Views.HEADER_VIEW];
-        } else if(name===Views.MENU_VIEW) {
-            view = this.collection[Views.MENU_VIEW];
-        }
-        else if(name===Views.HOME_VIEW) {
-            view = this.collection[Views.HOME_VIEW];
-        }
-        else if(name===Views.INFO_VIEW) {
-            view = this.collection[Views.INFO_VIEW];
-        }
-        else if(name===Views.PRJ_VIEW) {
-            view = this.collection[Views.PRJ_VIEW];
-        }
-        else if(name===Views.PRJD_VIEW) {
-            view = this.collection[Views.PRJD_VIEW];
-        }
-        else if(name===Views.PLAT_VIEW) {
-            view = this.collection[Views.PLAT_VIEW];
-        }
-        else if(name===Views.THK_VIEW) {
-            view = this.collection[Views.THK_VIEW];
-        }
-        return view;
+        /**
+         * Replacing switch statement with direct return.
+         * I know it is unsafe, but it is just a simple project.
+         */
+        return this.collection[name];
     }
 }
+
 const viewInstance: Views = new Views();
 export {Views, viewInstance}

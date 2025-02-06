@@ -2,7 +2,7 @@
 const dataset: any = {
     "information": {
         "title": "LightDestory's Personal Portfolio",
-        "version": "0.1"
+        "version": "0.2"
     },
     "webGL": {
         "upgradeMessage": "It appears you are on an older device or browser. Please retry using a WebGL enabled device.",
@@ -26,11 +26,11 @@ const dataset: any = {
     },
     "views": {
         "menu": [
-            { "title": "home", "link": "home" },
-            { "title": "about me", "link": "info" },
-            { "title": "projects", "link": "projects" },
-            { "title": "Socials & Contacts", "link": "platforms" },
-            { "title": "Special Thanks", "link": "thanks" }
+            {"title": "home", "link": "home"},
+            {"title": "about me", "link": "info"},
+            {"title": "projects", "link": "projects"},
+            {"title": "Socials & Contacts", "link": "platforms"},
+            {"title": "Special Thanks", "link": "thanks"}
         ],
         "home": {
             "pageTitle": "Alessio Tudisco | Portfolio",
@@ -446,37 +446,31 @@ const dataset: any = {
             "poweredBy": [
                 {
                     "name": "Animate On Scroll (AOS)",
-                    "friendlyName": "aos",
                     "text": "Stylish animations on scroll, I used a lot of these!",
                     "link": "https://github.com/michalsnik/aos"
                 },
                 {
                     "name": "GreenSock Animation Platform (GSAP)",
-                    "friendlyName": "gsap",
                     "text": "A very helpful library to handle animations!",
                     "link": "https://greensock.com/gsap/"
                 },
                 {
                     "name": "Howler.js",
-                    "friendlyName": "howlerjs",
                     "text": "Are you listening to the background music? Well, it's its doing!",
                     "link": "https://github.com/goldfire/howler.js"
                 },
                 {
                     "name": "Vanilla Lazyload",
-                    "friendlyName": "vanillalazyload",
                     "text": "Don't waste your bandwidth, just load what you need!",
                     "link": "https://github.com/verlok/vanilla-lazyload"
                 },
                 {
                     "name": "Three.js",
-                    "friendlyName": "threejs",
                     "text": "Do you like the amazing background animation? Well, Three.js makes webGL easy!",
                     "link": "https://github.com/mrdoob/three.js/"
                 },
                 {
                     "name": "Toastify.js",
-                    "friendlyName": "toastifyjs",
                     "text": "Who uses 'alert()' nowadays? You toast them all!",
                     "link": "https://github.com/apvarun/toastify-js"
                 }
@@ -484,13 +478,11 @@ const dataset: any = {
             "thanksForLifeSaving": [
                 {
                     "name": "Matteo Joliveau",
-                    "friendlyName": "backgroundmusic",
                     "text": "Anytime I had a doubt regarding Javascript, he explained me new useful stuff!",
                     "link": "https://matteojoliveau.com/"
                 },
                 {
                     "name": "Michael Vignola",
-                    "friendlyName": "backgroundmusic",
                     "text": "He composed the fantastic song on background, I hope you are listening to it!",
                     "link": "https://www.youtube.com/watch?v=QS9bI-fjvhQ"
                 }
@@ -518,4 +510,4 @@ const DataInfo = dataset.information;
 const DataSound = dataset.sounds;
 const DataWebGL = dataset.webGL;
 const DataView = dataset.views;
-export { DataInfo, DataSound, DataWebGL, DataView };
+export {DataInfo, DataSound, DataWebGL, DataView};

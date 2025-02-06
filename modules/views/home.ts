@@ -1,5 +1,6 @@
 import modelView from "./modelView";
 import {DataView} from "../dataset";
+
 class Home extends modelView {
     hide(): void {
         console.log("not implemented");
@@ -7,10 +8,10 @@ class Home extends modelView {
 
     init(): void {
         console.log("init home");
-        const collection = DataView.home;
-        document.querySelector(".home .page-title").innerHTML = collection.title;
-        document.querySelector(".home .page-akatitle").innerHTML = collection.subtitle;
-        document.querySelector(".home .page-subtitle").innerHTML = collection.subtitle2;
+        const data_view = DataView.home;
+        document.querySelector(".home .page-title")!!.innerHTML = data_view.title;
+        document.querySelector(".home .page-akatitle")!!.innerHTML = data_view.subtitle;
+        document.querySelector(".home .page-subtitle")!!.innerHTML = data_view.subtitle2;
     }
 
     show(): void {
@@ -18,5 +19,6 @@ class Home extends modelView {
     }
 
 }
+
 const homeInstance: Home = new Home();
 export {Home, homeInstance}
