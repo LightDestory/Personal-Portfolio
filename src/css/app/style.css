@@ -32,7 +32,7 @@
 /* fonts */
 @font-face {
     font-family: "Jost";
-    src: url("./fonts/Jost-200-Thin.woff2") format("woff2");
+    src: url("fonts/Jost-200-Thin.woff2") format("woff2");
     font-weight: 200;
     font-style: normal;
     font-display: swap;
@@ -40,7 +40,7 @@
 
 @font-face {
     font-family: "Jost";
-    src: url("./fonts/Jost-300-Light.woff2") format("woff2");
+    src: url("fonts/Jost-300-Light.woff2") format("woff2");
     font-weight: 300;
     font-style: normal;
     font-display: swap;

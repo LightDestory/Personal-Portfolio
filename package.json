@@ -6,14 +6,11 @@
     "last 2 versions",
     "not dead"
   ],
-  "main": "index.js",
-  "targets": {
-    "main": false
-  },
   "scripts": {
-    "serve": "parcel serve index.html",
-    "watch": "parcel watch --public-url ./ index.html",
-    "build": "parcel build --public-url ./ index.html"
+    "serve": "parcel serve ./src/index.html",
+    "watch": "parcel watch --public-url ./ ./src/index.html",
+    "build": "parcel build --public-url ./ ./src/index.html",
+    "clean": "del-cli --force ./dist ./.parcel-cache"
   },
   "keywords": [
     "lightdestory",
@@ -31,6 +28,7 @@
     "@types/howler": "^2.2.12",
     "@types/three": "^0.173.0",
     "@types/toastify-js": "^1.12.3",
+    "del-cli": "^6.0.0",
     "parcel": "^2.13.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "typescript": "^5.7.3"
@@ -46,5 +44,8 @@
   },
   "trustedDependencies": [
     "@swc/core"
-  ]
+  ],
+  "staticFiles": {
+    "staticPath": "./src/static"
+  }
 }
