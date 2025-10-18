@@ -1,16 +1,16 @@
 import ModelView from "./views/modelView";
-import {loaderInstance} from "./views/loader";
+import { loaderInstance } from "./views/loader";
 import headerInstance from "./views/header";
-import {menuInstance} from "./views/menu";
+import { menuInstance } from "./views/menu";
 import AppCore from "./core";
 import AOS from 'aos';
-import {Utils, utilsInstance} from "./utils";
-import {projectsInstance} from "./views/projects";
-import {homeInstance} from "./views/home";
-import {infoInstance} from "./views/info";
-import {platformsInstance} from "./views/platforms";
-import {thanksInstance} from "./views/thanks";
-import {projectDetailInstance} from "./views/projectDetail";
+import { Utils, utilsInstance } from "./utils";
+import { projectsInstance } from "./views/projects";
+import { homeInstance } from "./views/home";
+import { infoInstance } from "./views/info";
+import { platformsInstance } from "./views/platforms";
+import { thanksInstance } from "./views/thanks";
+import { projectDetailInstance } from "./views/projectDetail";
 
 class Views {
     static LOADER_VIEW: string = "loader";
@@ -22,16 +22,66 @@ class Views {
     static PRJD_VIEW: string = "project-detail";
     static PLAT_VIEW: string = "platforms";
     static THK_VIEW: string = "thanks";
-    private collection: { [key: string]: ModelView } = {
-        "loader": loaderInstance,
-        "header": headerInstance,
-        "menu": menuInstance,
-        "home": homeInstance,
-        "info": infoInstance,
-        "projects": projectsInstance,
-        "project-detail": projectDetailInstance,
-        "platforms": platformsInstance,
-        "thanks": thanksInstance
+    private collection: { [key: string]: ModelView } = {};
+    private viewsContainer: HTMLElement | null = null;
+
+    /**
+     * Register a view in the collection
+     * @param name The name/key of the view
+     * @param view The view instance
+     */
+    registerView(name: string, view: ModelView): void {
+        this.collection[name] = view;
+        console.log(`View registered: ${name}`);
+    }
+
+    /**
+     * Initialize the views system and inject HTML templates
+     */
+    setupViews(): void {
+        // Get or create the main container for views
+        this.viewsContainer = document.querySelector("#views-container");
+        if (!this.viewsContainer) {
+            this.viewsContainer = document.createElement("div");
+            this.viewsContainer.id = "views-container";
+            document.body.appendChild(this.viewsContainer);
+        }
+
+        // Register all views
+        this.registerView("loader", loaderInstance);
+        this.registerView("header", headerInstance);
+        this.registerView("menu", menuInstance);
+        this.registerView("home", homeInstance);
+        this.registerView("info", infoInstance);
+        this.registerView("projects", projectsInstance);
+        this.registerView("project-detail", projectDetailInstance);
+        this.registerView("platforms", platformsInstance);
+        this.registerView("thanks", thanksInstance);
+
+        // Inject HTML templates into the DOM
+        Object.keys(this.collection).forEach(key => {
+            const view = this.collection[key];
+            const config = view.getConfig();
+
+            // Check if element already exists (for backward compatibility)
+            let element = document.querySelector(`.${config.id}`);
+            if (!element && config.template) {
+                // Create and inject the template
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = config.template.trim();
+
+                // Handle multiple root elements in template
+                const children = Array.from(tempDiv.children);
+                children.forEach(child => {
+                    // Append to appropriate container
+                    if (config.isPage && this.viewsContainer) {
+                        this.viewsContainer.appendChild(child);
+                    } else {
+                        document.body.appendChild(child);
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -39,7 +89,7 @@ class Views {
      */
     init(): void {
         Object.keys(this.collection).forEach(element => {
-            if(element!=="loader"){
+            if (element !== "loader") {
                 this.collection[element].init();
             }
         });
@@ -116,4 +166,4 @@ class Views {
 }
 
 const viewInstance: Views = new Views();
-export {Views, viewInstance}
+export { Views, viewInstance }

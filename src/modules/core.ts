@@ -1,10 +1,10 @@
-import {DataInfo, DataWebGL} from "./dataset";
-import {Utils, utilsInstance, WEBGL_SUPPORT} from "./utils";
-import {soundSystemInstance} from "./soundsystem";
-import {viewInstance, Views} from "./views";
+import { DataInfo, DataWebGL } from "./dataset";
+import { Utils, utilsInstance, WEBGL_SUPPORT } from "./utils";
+import { soundSystemInstance } from "./soundsystem";
+import { viewInstance, Views } from "./views";
 import webGLInstance from "./webgl";
 import AOS from 'aos';
-import LazyLoad, {ILazyLoadInstance} from "vanilla-lazyload";
+import LazyLoad, { ILazyLoadInstance } from "vanilla-lazyload";
 
 export default class AppCore {
     static state: string;
@@ -24,6 +24,8 @@ export default class AppCore {
     sayHello(): void {
         console.log(`${DataInfo.title} v${DataInfo.version}`);
         AppCore.state = "loading";
+        // Setup views and inject HTML templates
+        viewInstance.setupViews();
         viewInstance.getView(Views.LOADER_VIEW).show();
         // Check if WebGL is supported
         if (this.webGLSupport === WEBGL_SUPPORT.WEBGL_NOT_SUPPORTED) {
@@ -34,7 +36,7 @@ export default class AppCore {
             return;
         }
         // AOS init
-        AOS.init({offset: 60, duration: 1000});
+        AOS.init({ offset: 60, duration: 1000 });
         // init views
         viewInstance.init();
         // init webgl and go to home

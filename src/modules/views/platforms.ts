@@ -1,5 +1,5 @@
-import modelView from "./modelView";
-import {DataView} from "../dataset";
+import modelView, { ViewConfig } from "./modelView";
+import { DataView } from "../dataset";
 
 /**
  * Type for Platform
@@ -17,6 +17,30 @@ interface Platform {
 }
 
 class Platforms extends modelView {
+    constructor() {
+        const config: ViewConfig = {
+            id: "platforms",
+            template: `
+                <div class="platforms page hide">
+                    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+                    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+                    <div data-aos='zoom-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+                         data-aos-delay='50' class="feature">
+                        <img alt="Platforms Image" class='lazy feature-image'/>
+                    </div>
+                    <!-- where-I-am -->
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+                         data-aos-delay='50' class="platforms-title section-title"></div>
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+                         data-aos-delay='50' class="platforms-intro"></div>
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
+                         data-aos-delay='50' class="platforms-container"></div>
+                </div>
+            `,
+            isPage: true
+        };
+        super(config);
+    }
 
     hide(): void {
         console.log("not implemented");
@@ -25,17 +49,32 @@ class Platforms extends modelView {
     init(): void {
         console.log("init platforms");
         const data_view = DataView.platforms;
-        document.querySelector(".platforms .page-title")!!.innerHTML = data_view.title;
-        document.querySelector(".platforms .page-subtitle")!!.innerHTML = data_view.subtitle;
-        document.querySelector(".platforms .feature .feature-image")!!.setAttribute("data-src", data_view.splash);
-        document.querySelector(".platforms .platforms-title")!!.innerHTML = "[ Where you can find me ]";
-        document.querySelector(".platforms .platforms-intro")!!.innerHTML = data_view.platformsInfo;
+        const element = this.getElement();
+
+        if (!element) return;
+
+        const pageTitle = element.querySelector(".page-title");
+        const pageSubtitle = element.querySelector(".page-subtitle");
+        const featureImage = element.querySelector(".feature .feature-image");
+        const platformsTitle = element.querySelector(".platforms-title");
+        const platformsIntro = element.querySelector(".platforms-intro");
+
+        if (pageTitle) pageTitle.innerHTML = data_view.title;
+        if (pageSubtitle) pageSubtitle.innerHTML = data_view.subtitle;
+        if (featureImage) featureImage.setAttribute("data-src", data_view.splash);
+        if (platformsTitle) platformsTitle.innerHTML = "[ Where you can find me ]";
+        if (platformsIntro) platformsIntro.innerHTML = data_view.platformsInfo;
+
         const links: Platform[] = data_view.links;
         let component = "";
         links.forEach(platform => {
             component += this.generatePlatformComponent(platform);
         });
-        document.querySelector(".platforms .platforms-container")!!.innerHTML = component;
+
+        const platformsContainer = element.querySelector(".platforms-container");
+        if (platformsContainer) {
+            platformsContainer.innerHTML = component;
+        }
     }
 
     show(): void {
@@ -55,4 +94,4 @@ class Platforms extends modelView {
 }
 
 const platformsInstance: Platforms = new Platforms();
-export {Platforms, platformsInstance}
+export { Platforms, platformsInstance }
