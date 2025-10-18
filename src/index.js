@@ -1,2 +1,2 @@
-import AppCore from "./modules/core";
+import AppCore from "./modules/core/AppCore";
 new AppCore().sayHello();

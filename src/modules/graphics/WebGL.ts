@@ -1,10 +1,10 @@
 import * as THREE from 'three'
-import AppCore from "./core";
-import {viewInstance, Views} from "./views";
-import {Loader} from "./views/loader";
-import {DataWebGL} from "./dataset"
-import {navigationInstance} from "./navigation";
-import {Circ, gsap, Quad} from 'gsap';
+import AppCore from "../core/AppCore";
+import { viewInstance, Views } from "../ui/ViewsManager";
+import { Loader } from "../ui/views/loader";
+import { DataWebGL } from "../data/Dataset"
+import { navigationInstance } from "../core/Navigation";
+import { Circ, gsap, Quad } from 'gsap';
 
 interface WebGLTexture {
     name: string;
@@ -43,7 +43,7 @@ class webGL {
         this.camera.position.set(0, 0, 50);
         this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x00ff00);
-        this.renderer = new THREE.WebGLRenderer({canvas: this.canvas!!});
+        this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas!! });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.target = new THREE.Object3D();
         this.target.position.set(0, 0, 0);
@@ -81,14 +81,14 @@ class webGL {
         this.BackgroundVertexShader = DataWebGL.backgroundVertShader;
         this.BackgroundFragmentShader = DataWebGL.backgroundFragShader;
         this.backgroundUniforms = {
-            iTime: {value: 100.0},
-            iResolution: {value: new THREE.Vector2()},
-            iMouse: {value: new THREE.Vector2()},
-            audio1: {value: 0.0},
-            adj: {value: 0.0},
-            orbOpacity: {value: 1.0},
-            intensity: {value: 1.0},
-            iChannel0: {value: this.textures['tex1']}
+            iTime: { value: 100.0 },
+            iResolution: { value: new THREE.Vector2() },
+            iMouse: { value: new THREE.Vector2() },
+            audio1: { value: 0.0 },
+            adj: { value: 0.0 },
+            orbOpacity: { value: 1.0 },
+            intensity: { value: 1.0 },
+            iChannel0: { value: this.textures['tex1'] }
         };
         this.backgroundUniforms!!.iResolution.value.x = window.innerWidth;
         this.backgroundUniforms!!.iResolution.value.y = window.innerHeight;
@@ -140,8 +140,8 @@ class webGL {
         let vertices = [];
         let materials = [];
         let parameters: ObjectRenderingParameter[] = [
-            {colorRGB: [1, 0.1, 0.1], texture: this.textures['sprite1']!!, size: 0.85},
-            {colorRGB: [0.3, 0.3, 0.3], texture: this.textures['sprite2']!!, size: 0.95}
+            { colorRGB: [1, 0.1, 0.1], texture: this.textures['sprite1']!!, size: 0.85 },
+            { colorRGB: [0.3, 0.3, 0.3], texture: this.textures['sprite2']!!, size: 0.95 }
         ];
         for (let i = 0; i < particleQta; i++) {
             const x = Math.random() * 60 - 30;

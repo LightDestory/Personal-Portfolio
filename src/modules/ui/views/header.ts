@@ -1,7 +1,7 @@
 import ModelView, { ViewConfig } from "./modelView";
-import { soundSystemInstance } from "../soundsystem";
-import { navigationInstance } from "../navigation";
-import { Views } from "../views";
+import { soundSystemInstance } from "../../services/SoundSystem";
+import { navigationInstance } from "../../core/Navigation";
+import { Views } from "../ViewsManager";
 
 class Header extends ModelView {
     private header_classes: DOMTokenList | null = null;

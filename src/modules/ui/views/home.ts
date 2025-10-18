@@ -1,5 +1,5 @@
 import modelView, { ViewConfig } from "./modelView";
-import { DataView } from "../dataset";
+import { DataView } from "../../data/Dataset";
 
 class Home extends modelView {
     constructor() {

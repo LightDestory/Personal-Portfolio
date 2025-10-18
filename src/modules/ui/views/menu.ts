@@ -1,7 +1,7 @@
 import modelView, { ViewConfig } from "./modelView";
-import { DataView } from "../dataset";
-import { soundSystemInstance } from "../soundsystem";
-import { navigationInstance } from "../navigation";
+import { DataView } from "../../data/Dataset";
+import { soundSystemInstance } from "../../services/SoundSystem";
+import { navigationInstance } from "../../core/Navigation";
 
 /**
  * Menu Interface

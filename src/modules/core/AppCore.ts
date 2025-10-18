@@ -1,8 +1,8 @@
-import { DataInfo, DataWebGL } from "./dataset";
-import { Utils, utilsInstance, WEBGL_SUPPORT } from "./utils";
-import { soundSystemInstance } from "./soundsystem";
-import { viewInstance, Views } from "./views";
-import webGLInstance from "./webgl";
+import { DataInfo, DataWebGL } from "../data/Dataset";
+import { Utils, utilsInstance, WEBGL_SUPPORT } from "../services/Utils";
+import { soundSystemInstance } from "../services/SoundSystem";
+import { viewInstance, Views } from "../ui/ViewsManager";
+import webGLInstance from "../graphics/WebGL";
 import AOS from 'aos';
 import LazyLoad, { ILazyLoadInstance } from "vanilla-lazyload";
 

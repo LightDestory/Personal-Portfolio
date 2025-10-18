@@ -1,6 +1,6 @@
-import {Howl, Howler} from 'howler';
-import {utilsInstance} from "./utils";
-import {DataSound} from "./dataset";
+import { Howl, Howler } from 'howler';
+import { utilsInstance } from "./Utils";
+import { DataSound } from "../data/Dataset";
 
 /**
  * Type for sound file
@@ -26,7 +26,7 @@ class soundSystem {
     private soundIcon: HTMLElement | null = null
     private soundControls: HTMLElement | null = null;
 
-    constructor() {}
+    constructor() { }
 
     /**
      * Initialize the sound system
@@ -161,4 +161,4 @@ class soundSystem {
 }
 
 const soundSystemInstance: soundSystem = new soundSystem();
-export {soundFile, soundSystemInstance}
+export { soundFile, soundSystemInstance }

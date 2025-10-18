@@ -1,9 +1,9 @@
-import {viewInstance, Views} from "./views";
-import AppCore from "./core";
-import webGLInstance from "./webgl";
-import {Loader} from "./views/loader";
-import {ProjectDetail} from "./views/projectDetail";
-import {DataView} from "./dataset";
+import { viewInstance, Views } from "../ui/ViewsManager";
+import AppCore from "./AppCore";
+import webGLInstance from "../graphics/WebGL";
+import { Loader } from "../ui/views/loader";
+import { ProjectDetail } from "../ui/views/projectDetail";
+import { DataView } from "../data/Dataset";
 
 class Navigation {
     static currentProjectID: number = 0;
@@ -25,7 +25,7 @@ class Navigation {
             viewInstance.hidePage(Views.PRJD_VIEW);
         }
         else {
-            if (source_path !== "loading"){
+            if (source_path !== "loading") {
                 viewInstance.hidePage(source_path);
             }
         }
@@ -94,4 +94,4 @@ class Navigation {
 }
 
 const navigationInstance: Navigation = new Navigation();
-export {Navigation, navigationInstance};
+export { Navigation, navigationInstance };

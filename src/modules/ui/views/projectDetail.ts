@@ -1,8 +1,8 @@
 import modelView, { ViewConfig } from "./modelView";
-import { soundSystemInstance } from "../soundsystem";
-import { Navigation, navigationInstance } from "../navigation";
+import { soundSystemInstance } from "../../services/SoundSystem";
+import { Navigation, navigationInstance } from "../../core/Navigation";
 import { projectsInstance } from "./projects";
-import { DataView } from "../dataset";
+import { DataView } from "../../data/Dataset";
 
 class ProjectDetail extends modelView {
     constructor() {
