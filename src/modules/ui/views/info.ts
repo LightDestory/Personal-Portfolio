@@ -13,21 +13,21 @@ class Info extends modelView {
                         <img alt="Bio Image" class='lazy feature-image'/>
                     </div>
                     <!-- biography -->
-                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='400' data-aos-duration='1000'
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='350' data-aos-duration='1000'
                          data-aos-delay='50' class="bio-title section-title"></div>
-                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='400' data-aos-duration='1000'
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='350' data-aos-duration='1000'
                          data-aos-delay='50' class="bio"></div>
                     <!-- skills -->
-                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='300' data-aos-duration='1000'
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='350' data-aos-duration='1000'
                          data-aos-delay='50' class="skillset-title section-title"></div>
-                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='300' data-aos-duration='1000'
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='350' data-aos-duration='1000'
                          data-aos-delay='50' class="skill-intro"></div>
-                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='300' data-aos-duration='1000'
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='350' data-aos-duration='1000'
                          data-aos-delay='50' class='data-container skillset'></div>
                     <!-- Ethics -->
-                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='300' data-aos-duration='1000'
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='350' data-aos-duration='1000'
                          data-aos-delay='50' class="ethic-title section-title"></div>
-                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='300' data-aos-duration='1000'
+                    <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='350' data-aos-duration='1000'
                          data-aos-delay='50' class="ethic"></div>
                 </div>
             `,

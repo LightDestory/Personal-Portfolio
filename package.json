@@ -8,7 +8,6 @@
   ],
   "scripts": {
     "serve": "parcel serve ./src/index.html",
-    "watch": "parcel watch --public-url ./ ./src/index.html",
     "build": "npm run clean && parcel build --public-url ./ ./src/index.html",
     "clean": "del-cli --force ./dist ./.parcel-cache"
   },
