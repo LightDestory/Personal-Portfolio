@@ -2,7 +2,7 @@
 const dataset: any = {
     "information": {
         "title": "LightDestory's Personal Portfolio",
-        "version": "0.2"
+        "version": "0.3"
     },
     "webGL": {
         "upgradeMessage": "It appears you are on an older device or browser. Please retry using a WebGL enabled device.",
@@ -26,11 +26,11 @@ const dataset: any = {
     },
     "views": {
         "menu": [
-            {"title": "home", "link": "home"},
-            {"title": "about me", "link": "info"},
-            {"title": "projects", "link": "projects"},
-            {"title": "Socials & Contacts", "link": "platforms"},
-            {"title": "Special Thanks", "link": "thanks"}
+            { "title": "home", "link": "home" },
+            { "title": "about me", "link": "info" },
+            { "title": "projects", "link": "projects" },
+            { "title": "Socials & Contacts", "link": "platforms" },
+            { "title": "Special Thanks", "link": "thanks" }
         ],
         "home": {
             "pageTitle": "Alessio Tudisco | Portfolio",
@@ -40,15 +40,15 @@ const dataset: any = {
         },
         "info": {
             "pageTitle": "Alessio Tudisco | Info",
-            "title": "info",
+            "title": "About Me",
             "subtitle": "Biography | Skills | Ethics",
             "splash": "assets/images/splashes/biography.jpg",
-            "biography": "<p>Hello!<br/>Pleasure to 'meet' you, I'm <i>Alessio Tudisco</i>, also known as <i>LightDestory</i> (why? read below for a funny story*). I was born in a little city called 'Piazza Armerina' in Sicily, extreme south of Italy. I have a huge passion for computer science, communications' technologies and anime&manga. I am working hard to realize my <b>dream</b>: make a job out of my passions.</p><p>On 2018 I graduated with '100/100 cum laude' from a Technical Industrial Institute (high school) called '<a href='https://en.wikipedia.org/wiki/Ettore_Majorana'>Ettore Majorana</a>' where I attended Computer Science and Telecommunications course, you can find my record on Italy's <a href='http://www.indire.it/eccellenze/ricerca/index.php?action=risultato_specifico&provincia=Enna&database_richiesto=eccellenze_2018'>National Register of Excellence</a> managed by MIUR (Ministry of Education, University and Research). Currently I am a Computer Science university student at <a href='https://www.unict.it/en'>University of Catania</a>, Department of Mathematics and Informatics (DMI), in Sicily (Italy).</p><p>My journey as developer started at 11 year old learning the basics of programming and the language Visual Basic .NET. After that I started experiencing other languages such as C/C++, Java, C#, PHP, Python, JavaScript , SQL for databases, and learning nice stuff like pattern design, useful algorithms, containers and so on. I like to develop desktop application, both console and GUI, but also web app using framework such as Laravel.</p><p>Moreover, recently I got more interested on the System Administrator role: I am managing by myself few production and dev servers, learning every now and then new stuff.</p><p><i>Right now, I consider myself as Junior developer/sysadmin, I am still learning cool stuff every day and stacking up experience but if you need help or something from me don't wait and contact me!</i></p><p>(*) Why <i>LightDestory</i>? During my childhood I used <i>MeteoraPegaso</i> as username to play videogames but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p>",
-            "skillInfo": "<p>My aim is to became a software engineer and a full-stack developer. <i>I am still young and I am continuously improving my skills learning new languages and new frameworks</i>.</p><p>I think that charts are unable to express fully the capabilities of a person but they can be used to provide a nice visual component that lists my skills and let you know how much confident I feel with a specific workload.</p>",
+            "biography": "<p>Hello!<br/>It's a pleasure to 'meet' you. I'm <i>Alessio Tudisco</i>, also known as <i>LightDestory</i> (why? read below for a funny story*). I was born in a small city called 'Piazza Armerina' in Sicily, in the far south of Italy. I have a huge passion for computer science, communication technologies, and anime & manga. I am working hard to turn my passions into a career.</p><p>In 2018, I graduated with top marks (100/100 cum laude) from a Technical Industrial Institute (high school) called '<a href='https://en.wikipedia.org/wiki/Ettore_Majorana'>Ettore Majorana</a>', where I attended Computer Science and Telecommunications course, you can find my record on Italy's <a href='http://www.indire.it/eccellenze/ricerca/index.php?action=risultato_specifico&amp;provincia=Enna&amp;database_richiesto=eccellenze_2018'>National Register of Excellence</a>, managed by MIUR (Ministry of Education, University and Research). After obtaining my high school diploma, I earned a Bachelor's degree in Computer Science on March 1, 2023, graduating with top honors (110/110 cum laude) at the <a href='https://www.unict.it/en'>University of Catania</a>, Department of Mathematics and Informatics (DMI), Italy. At the same university, I later completed a Master's degree in Computer Science on September 25, 2025, with a specialization in Robotics, IoT, Data Science, Machine Learning, and Software Engineering, again graduating with top honors (110/110 cum laude).</p><p>My journey as a developer started when I was 11 years old, learning the basics of programming with Visual Basic .NET. After that, I began exploring other languages such as C/C++, Java, C#, PHP, Python, JavaScript, and SQL for databases, while also learning useful concepts like design patterns, algorithms, containers, and more. I enjoy developing desktop applications, both console and GUI, as well as web apps using frameworks such as Laravel.</p><p>More recently, I have become increasingly interested in the System Administrator role: I currently manage a few production and development servers on my own, continuously learning new things along the way.</p><p><i>Right now, I consider myself a junior developer/sysadmin. I am still learning cool stuff every day and building up experience, but if you need help or would like to collaborate, don't hesitate to contact me!</i></p><p>(*) Why <i>LightDestory</i>? During my childhood, I used <i>MeteoraPegaso</i> as a username to play video games, but once, when creating a secondary character in World of Warcraft, I made a typo and wrote <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However, I ended up liking this misspelled username, so I decided to keep it as my official one.</p>",
+            "skillInfo": "<p>My objective is to become an amazing software engineer and full-stack developer.<i>I am still young and continuously working to enhance my skills by learning new programming languages and frameworks.</i></p><p>While I believe that charts cannot fully represent a person's capabilities, they can serve as a useful visual tool to showcase my skill set and indicate the level of confidence I have in handling specific tasks.</p>",
             "skillSet": [
                 {
                     "category": "languages",
-                    "title": "Programming/Scripting Languages",
+                    "title": "Dev. Languages",
                     "collection": [
                         {
                             "name": "AutoIT",
@@ -91,13 +91,14 @@ const dataset: any = {
                             "name": "Kotlin",
                             "friendlyName": "kotlin",
                             "level": 8,
+                            "note": "This is what you get when you give steroids to Java. Nothing more to say.",
                             "icon": "devicon-kotlin-plain colored"
                         },
                         {
                             "name": "Java",
                             "friendlyName": "java",
                             "level": 8,
-                            "icon": "devicon-java-plain colored",
+                            "icon": "devicon-java-plain-wordmark colored",
                             "note": "I started using Java 7-8 and I am now studying the new features of Java 9+"
                         },
                         {
@@ -116,7 +117,7 @@ const dataset: any = {
                         {
                             "name": "Python",
                             "friendlyName": "py",
-                            "level": 5,
+                            "level": 8,
                             "note": "Python wasn't on my favourite list, I have always prefered languages such as C++ or Java for programming and PHP for casual scripting. Recently I have got interested in machine learning (read as 'Tensorflow') and AI, so I am learning Python!",
                             "icon": "devicon-python-plain-wordmark colored"
                         },
@@ -126,6 +127,13 @@ const dataset: any = {
                             "level": 5,
                             "note": "Nowadays I don't use it anymore but I have still some knowledge of the language.",
                             "icon": "devicon-dot-net-plain-wordmark colored"
+                        },
+                        {
+                            "name": "Go",
+                            "friendlyName": "go",
+                            "level": 7,
+                            "note": "I have recently started learning Go and I am enjoying its simplicity and efficiency.",
+                            "icon": "devicon-go-plain colored"
                         }
                     ]
                 },
@@ -133,6 +141,18 @@ const dataset: any = {
                     "category": "frameworks",
                     "title": "Frameworks",
                     "collection": [
+                        {
+                            "name": "Express.js",
+                            "friendlyName": "express",
+                            "level": 8,
+                            "icon": "devicon-express-original colored"
+                        },
+                        {
+                            "name": "FastAPI",
+                            "friendlyName": "fastapi",
+                            "level": 8,
+                            "icon": "devicon-fastapi-plain colored"
+                        },
                         {
                             "name": "Angular",
                             "friendlyName": "angular",
@@ -151,7 +171,7 @@ const dataset: any = {
                             "name": "jQuery",
                             "friendlyName": "jquery",
                             "level": 5,
-                            "icon": "devicon-jquery-plain-wordmark",
+                            "icon": "devicon-jquery-plain",
                             "note": "In the past jQuery was my saviour, it gave the chance to someone like me without much experience with JS to develop something without thinking about browser's compatibility. In the present fortunately almost every browser support ES5/ES6 so let's use Javascript vanilla!"
                         },
                         {
@@ -159,7 +179,7 @@ const dataset: any = {
                             "friendlyName": "laravel",
                             "level": 8,
                             "note": "I think that nowadays if you start a new PHP project the use of Laravel is a must.",
-                            "icon": "devicon-laravel-plain-wordmark colored"
+                            "icon": "devicon-laravel-original colored"
                         },
                         {
                             "name": "React",
@@ -179,6 +199,18 @@ const dataset: any = {
                             "level": 5,
                             "note": "I have mostly used it for Android development: a.k.a Xamarin.Android.",
                             "icon": "fas fa-mobile-alt"
+                        },
+                        {
+                            "name": "PyTorch",
+                            "friendlyName": "pytorch",
+                            "level": 7,
+                            "icon": "devicon-pytorch-plain colored"
+                        },
+                        {
+                            "name": "PyTorch Lightning",
+                            "friendlyName": "pytorchlightning",
+                            "level": 7,
+                            "icon": "devicon-pytorch-plain colored"
                         }
                     ]
                 },
@@ -196,13 +228,13 @@ const dataset: any = {
                             "name": "MariaDB/MySQL",
                             "friendlyName": "mysql",
                             "level": 8,
-                            "icon": "devicon-mysql-plain-wordmark"
+                            "icon": "devicon-mariadb-plain"
                         },
                         {
                             "name": "MongoDB",
                             "friendlyName": "mongodb",
                             "level": 7,
-                            "icon": "devicon-mongodb-plain-wordmark colored"
+                            "icon": "devicon-mongodb-plain colored"
                         },
                         {
                             "name": "SQLite",
@@ -214,13 +246,13 @@ const dataset: any = {
                             "name": "PostgreSQL",
                             "friendlyName": "postgresql",
                             "level": 5,
-                            "icon": "devicon-postgresql-plain-wordmark colored"
+                            "icon": "devicon-postgresql-plain colored"
                         },
                         {
                             "name": "Redis",
                             "friendlyName": "redis",
                             "level": 4,
-                            "icon": "devicon-redis-plain-wordmark colored"
+                            "icon": "devicon-redis-plain colored"
                         }
                     ]
                 },
@@ -231,8 +263,8 @@ const dataset: any = {
                         {
                             "name": "Android",
                             "friendlyName": "android",
-                            "level": 8,
-                            "icon": "devicon-android-plain-wordmark colored",
+                            "level": 9,
+                            "icon": "devicon-android-plain colored",
                             "note": "Using Android devices since Android 4.2.2 with a great modding experience thanks to XDA community!"
                         },
                         {
@@ -246,13 +278,13 @@ const dataset: any = {
                             "name": "Linux (Debian-based)",
                             "friendlyName": "linuxdebian",
                             "level": 8,
-                            "icon": "devicon-debian-plain-wordmark colored"
+                            "icon": "devicon-debian-plain colored"
                         },
                         {
                             "name": "Linux (RHEL-based)",
                             "friendlyName": "linuxrhel",
                             "level": 7,
-                            "icon": "devicon-redhat-plain-wordmark colored"
+                            "icon": "devicon-redhat-plain colored"
                         },
                         {
                             "name": "MacOS",
@@ -262,17 +294,17 @@ const dataset: any = {
                             "icon": "devicon-apple-original"
                         },
                         {
-                            "name": "Windows XP-10 (Pro feat.)",
+                            "name": "Windows XP-11 (Pro feat.)",
                             "friendlyName": "winclient",
                             "level": 9,
-                            "icon": "devicon-windows8-original colored",
-                            "note": "Using Windows operation system since Windows Me to latest Windows 10 Insider Preview!"
+                            "icon": "devicon-windows11-original colored",
+                            "note": "Using Windows operation system since Windows Me to latest Windows 11 Insider Preview!"
                         },
                         {
                             "name": "Windows Server 2008+",
                             "friendlyName": "winserver",
                             "level": 7,
-                            "icon": "devicon-windows8-original colored"
+                            "icon": "devicon-windows11-original colored"
                         }
                     ]
                 },
@@ -280,12 +312,6 @@ const dataset: any = {
                     "category": "devtools",
                     "title": "Dev Tools",
                     "collection": [
-                        {
-                            "name": "Atom",
-                            "friendlyName": "atom",
-                            "level": 6,
-                            "icon": "devicon-atom-original"
-                        },
                         {
                             "name": "Gimp",
                             "friendlyName": "gimp colored",
@@ -302,7 +328,7 @@ const dataset: any = {
                             "name": "JetBrains IDE",
                             "friendlyName": "jetbrains",
                             "level": 8,
-                            "icon": "devicon-jetbrains-plain colored",
+                            "icon": "devicon-jetbrains-plain",
                             "note": "I use mainly IntelliJ, CLion, PyCharm and Datagrip"
                         },
                         {
@@ -322,47 +348,95 @@ const dataset: any = {
                             "friendlyName": "vs",
                             "level": 7,
                             "icon": "devicon-visualstudio-plain colored"
+                        },
+                        {
+                            "name": "PlatformIO",
+                            "friendlyName": "platformio",
+                            "level": 8,
+                            "icon": "fa-solid fa-microchip"
+                        },
+                        {
+                            "name": "GitKraken",
+                            "friendlyName": "gitkraken",
+                            "level": 8,
+                            "icon": "devicon-gitkraken-plain colored"
+                        },
+                        {
+                            "name": "Postman/Insomnia",
+                            "friendlyName": "postmaninsomnia",
+                            "level": 8,
+                            "icon": "devicon-insomnia-plain colored"
                         }
                     ]
                 },
                 {
                     "category": "serenv",
-                    "title": "Server Setup",
+                    "title": "Server Stuff",
                     "collection": [
                         {
                             "name": "Apache WebServer",
                             "friendlyName": "apachewebserver",
                             "level": 5,
-                            "icon": "devicon-apache-line-wordmark"
+                            "icon": "devicon-apache-plain"
                         },
                         {
                             "name": "Caddy WebServer",
                             "friendlyName": "caddy",
-                            "level": 5,
+                            "level": 8,
                             "icon": "fas fa-lock"
                         },
                         {
                             "name": "Cloudflare CDN/DNS",
                             "friendlyName": "cloudflare",
                             "level": 8,
-                            "icon": "fas fa-cloud"
+                            "icon": "devicon-cloudflare-plain colored"
                         },
                         {
                             "name": "Docker",
                             "friendlyName": "docker",
-                            "level": 5,
-                            "icon": "devicon-docker-plain-wordmark colored"
+                            "level": 7,
+                            "icon": "devicon-docker-plain colored"
                         },
                         {
                             "name": "Nginx",
                             "friendlyName": "nginx",
                             "level": 7,
                             "icon": "devicon-nginx-original colored"
+                        },
+                        {
+                            "name": "Portainer",
+                            "friendlyName": "portainer",
+                            "level": 7,
+                            "icon": "devicon-portainer-original colored"
+                        }
+                    ]
+                },
+                {
+                    "category": "misc",
+                    "title": "Misc.",
+                    "collection": [
+                        {
+                            "name": "3D Modeling (Fusion360)",
+                            "friendlyName": "fusion360",
+                            "level": 5,
+                            "icon": "devicon-fusion-plain colored"
+                        },
+                        {
+                            "name": "3D Printing",
+                            "friendlyName": "3dprinting",
+                            "level": 6,
+                            "icon": "fa-solid fa-cube"
+                        },
+                        {
+                            "name": "Gamer",
+                            "friendlyName": "gamer",
+                            "level": 9,
+                            "icon": "fa-solid fa-gamepad"
                         }
                     ]
                 }
             ],
-            "ethic": "<p>I strongly believe that open-source is one of the most important cause on the IT world. Being able to contribute on any type of open-source project to make nicest software makes us programmers like a very big family.</p><p>An individual is not perfect, no one is able to do everything but if we share our projects makeing them open-source we will get the chance to get help from people that have more experience then us and continue our growth.</p><p>We live in a world that day after day depends more and more on Internet & Software. Nowadays it is unimaginable a scenario without these tools: <i>how many times our daily actions make use of Internet?</i></p><p>I strongly beleive that all the programmers around the world should think twice about the what are they coding and the usage that will be done. We must carry the responsibilities of our own code.</p><p><b>I will never write down code that aims to hurt someone or damage something.</b></p>"
+            "ethic": "<p>I strongly believe that open source is one of the most important causes in the IT world. Being able to contribute to any type of open-source project to create better software makes us programmers feel like part of a very large family.<p>No individual is perfect, and no one can do everything alone. However, by sharing our projects and making them open source, we gain the opportunity to receive help from people with more experience than us and continue to grow.<p>We live in a world that depends more and more on the Internet and software every day. Nowadays, it is unimaginable to think of a scenario without these tools: <i>how often do our daily actions rely on the Internet?</i><p>I strongly believe that programmers around the world should carefully consider what they are coding and how it will be used. We must take responsibility for the code we write.<p><b>I will never write code intended to harm someone or damage something.</b>"
         },
         "projects": {
             "pageTitle": "Alessio Tudisco | Projects",
@@ -386,7 +460,7 @@ const dataset: any = {
             "title": "platforms",
             "subtitle": "Socials | Contacts",
             "splash": "assets/images/splashes/platforms.jpg",
-            "platformsInfo": "<p>You can find me on different social and gaming platforms. During my childhood I used <i>MeteoraPegaso</i> as username to play games but once, when I was creating a secondary character on World of Warcraft, I did a typo writing <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. However I ended up liking this typo-ed username so I am now using it as my official one.</p><br><p>Below a list of the main platforms where you can find me.</p>",
+            "platformsInfo": "<p>You can find me on various social and gaming platforms. During my childhood, I used <i>MeteoraPegaso</i> as my username to play games. However, one day, while creating a secondary character in World of Warcraft, I made a typo and wrote <i><b>LightDestory</b></i> instead of <i>LightDestroy</i>. Surprisingly, I ended up liking this misspelled username, and it has since become my official one.</p><br><p>Below is a list of the main platforms where you can find me. Feel free to reach out or connect with me on any of these platforms!</p>",
             "links": [
                 {
                     "name": "YouTube",
@@ -431,8 +505,8 @@ const dataset: any = {
                     "link": "https://t.me/lightdestory"
                 },
                 {
-                    "name": "Twitter",
-                    "icon": "fab fa-twitter",
+                    "name": "X",
+                    "icon": "devicon-twitter-original",
                     "note": "Hmm... yeah, Twitter!",
                     "link": "https://twitter.com/LightDestory"
                 }
@@ -510,4 +584,4 @@ const DataInfo = dataset.information;
 const DataSound = dataset.sounds;
 const DataWebGL = dataset.webGL;
 const DataView = dataset.views;
-export {DataInfo, DataSound, DataWebGL, DataView};
+export { DataInfo, DataSound, DataWebGL, DataView };
