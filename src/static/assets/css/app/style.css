@@ -1071,8 +1071,8 @@ p {
     }
 
     .page-subtitle {
-        font-size: 1em;
-        top: 11.5em;
+        font-size: 1.5em;
+        top: 7.5em;
     }
 
     .page .feature {
@@ -1192,15 +1192,15 @@ p {
     }
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 800px) {
     .page-title {
-        font-size: 4em;
-        top: 2em;
+        font-size: 11vw;
+        top: 6rem;
     }
 
     .page-subtitle {
-        font-size: 1em;
-        top: 10em;
+        font-size: 3vw;
+        top: 8rem;
     }
 
     .page .feature {
@@ -1213,16 +1213,16 @@ p {
 
     /* home */
     .home .page-title {
-        font-size: 1.5em;
+        font-size: 5.5vw;
     }
 
     .home .page-akatitle {
-        margin-top: 1em;
-        font-size: 0.9em;
+        margin-top: 2em;
+        font-size: 2.3vw;
     }
 
     .home .page-subtitle {
-        font-size: 0.55em;
+        font-size: 2.2vw;
     }
 
     /* info*/
