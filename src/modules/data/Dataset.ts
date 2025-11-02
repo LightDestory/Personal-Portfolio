@@ -27,9 +27,10 @@ const dataset: any = {
     "views": {
         "menu": [
             { "title": "home", "link": "home" },
-            { "title": "about me", "link": "info" },
+            { "title": "about", "link": "info" },
+            { "title": "work", "link": "work" },
             { "title": "projects", "link": "projects" },
-            { "title": "Socials & Contacts", "link": "platforms" },
+            { "title": "Contact", "link": "platforms" },
             { "title": "Special Thanks", "link": "thanks" }
         ],
         "home": {
@@ -437,6 +438,11 @@ const dataset: any = {
                 }
             ],
             "ethic": "<p>I strongly believe that open source is one of the most important causes in the IT world. Being able to contribute to any type of open-source project to create better software makes us programmers feel like part of a very large family.<p>No individual is perfect, and no one can do everything alone. However, by sharing our projects and making them open source, we gain the opportunity to receive help from people with more experience than us and continue to grow.<p>We live in a world that depends more and more on the Internet and software every day. Nowadays, it is unimaginable to think of a scenario without these tools: <i>how often do our daily actions rely on the Internet?</i><p>I strongly believe that programmers around the world should carefully consider what they are coding and how it will be used. We must take responsibility for the code we write.<p><b>I will never write code intended to harm someone or damage something.</b>"
+        },
+        "work": {
+            "pageTitle": "Alessio Tudisco | Work",
+            "title": "work",
+            "subtitle": "Work | Experience",
         },
         "projects": {
             "pageTitle": "Alessio Tudisco | Projects",

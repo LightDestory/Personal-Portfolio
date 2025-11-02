@@ -8,6 +8,7 @@ import { Utils, utilsInstance } from "../services/Utils";
 import { projectsInstance } from "./views/projects";
 import { homeInstance } from "./views/home";
 import { infoInstance } from "./views/info";
+import { workInstance } from "./views/work";
 import { platformsInstance } from "./views/platforms";
 import { thanksInstance } from "./views/thanks";
 import { projectDetailInstance } from "./views/projectDetail";
@@ -18,6 +19,7 @@ class Views {
     static MENU_VIEW: string = "menu";
     static HOME_VIEW: string = "home";
     static INFO_VIEW: string = "info";
+    static WORK_VIEW: string = "work";
     static PRJ_VIEW: string = "projects";
     static PRJD_VIEW: string = "project-detail";
     static PLAT_VIEW: string = "platforms";
@@ -53,6 +55,7 @@ class Views {
         this.registerView("menu", menuInstance);
         this.registerView("home", homeInstance);
         this.registerView("info", infoInstance);
+        this.registerView("work", workInstance);
         this.registerView("projects", projectsInstance);
         this.registerView("project-detail", projectDetailInstance);
         this.registerView("platforms", platformsInstance);
