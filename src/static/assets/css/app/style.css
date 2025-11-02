@@ -185,6 +185,53 @@ p {
     object-fit: contain;
 }
 
+/* Search Container */
+.search-container {
+    margin-block: var(--spacing-md);
+    padding-inline: var(--spacing-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 40em;
+    margin-inline: auto;
+}
+
+.search-icon {
+    position: absolute;
+    left: calc(var(--spacing-md) + 1em);
+    color: var(--color-blue-light);
+    pointer-events: none;
+    transition: color var(--transition-normal);
+    z-index: 1;
+}
+
+.search-container:focus-within .search-icon {
+    color: var(--color-cyan-bright);
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 3em;
+    font-size: 1em;
+    font-family: "Jost", sans-serif;
+    color: var(--generic-text-color);
+    background: var(--background-shade);
+    border: 0.125rem solid var(--main-border-color);
+    border-radius: 1.5625rem;
+    outline: none;
+    transition: all var(--transition-normal);
+}
+
+.search-input::placeholder {
+    color: var(--page-subtitle-color);
+}
+
+.search-input:focus {
+    border-color: var(--color-blue-light);
+    box-shadow: 0 0 0.625rem var(--color-blue-dark);
+}
+
 .section-title {
     text-align: center;
     margin-block: var(--spacing-md);
