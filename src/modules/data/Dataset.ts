@@ -2,7 +2,7 @@
 const dataset: any = {
     "information": {
         "title": "LightDestory's Personal Portfolio",
-        "version": "0.3"
+        "version": "0.4"
     },
     "webGL": {
         "upgradeMessage": "It appears you are on an older device or browser. Please retry using a WebGL enabled device.",

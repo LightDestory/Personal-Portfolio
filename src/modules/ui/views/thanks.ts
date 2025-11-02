@@ -100,7 +100,7 @@ class Thanks extends modelView {
      */
     private generateAckComponent(ack: Acknowledgement): string {
         const link = ack.link ? `href='${ack.link}'` : "";
-        return `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail"><span class="detail-title">${ack.name}</span><span class="detail-data">${ack.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">Learn more...</a></div>`;
+        return `<div data-aos='fade-up' data-aos-easing='ease-in-out' data-aos-offset='0' data-aos-duration='1000' data-aos-delay='0' class="data-detail-container detail"><span class="detail-title">${ack.name}</span><span class="detail-data">${ack.text}</span><a class="data-detail-button detail-link" ${link} target="_blank">More...</a></div>`;
     }
 
 }
