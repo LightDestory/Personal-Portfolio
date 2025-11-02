@@ -150,11 +150,11 @@ p {
 
 .page-title {
     position: absolute;
-    inset-block-start: 0.65em;
+    inset-block-start: 1.3em;
     inset-inline: 0;
     margin: 0 auto;
     white-space: nowrap;
-    font-size: clamp(4em, 12vw, 12em);
+    font-size: clamp(4em, 12vw, 8em);
     text-align: center;
     color: var(--page-title-color);
     letter-spacing: 0.35em;
@@ -1111,8 +1111,12 @@ p {
     }
 
     .page-title {
-        inset-block-start: 1.6em;
+        inset-block-start: 10rem;
         font-size: 7em;
+    }
+
+    .page-subtitle {
+        inset-block-start: 14rem;
     }
 
     .projects-content,
@@ -1130,7 +1134,6 @@ p {
 
 }
 
-/* Tablets (1024px and below) */
 @media only screen and (max-width: 1024px) {
 
     .home-bar,
@@ -1285,16 +1288,15 @@ p {
     }
 }
 
-/* Mobile (800px and below) */
 @media only screen and (max-width: 800px) {
     .page-title {
         font-size: 11vw;
-        inset-block-start: 6rem;
+        inset-block-start: 8rem;
     }
 
     .page-subtitle {
         font-size: 3vw;
-        inset-block-start: 8rem;
+        inset-block-start: 10.7rem;
     }
 
     .page .feature {
@@ -1377,7 +1379,7 @@ p {
     }
 
     .list-item .info .title {
-        font-size: 1.4em;
+        font-size: 1.8em;
         letter-spacing: 0;
         overflow: hidden;
     }
@@ -1402,5 +1404,29 @@ p {
 
     .thanks-page-container {
         width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .page-title {
+        font-size: 11vw;
+        inset-block-start: 9rem;
+    }
+
+    .page-subtitle {
+        font-size: 3vw;
+        inset-block-start: 10.8rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .skillbar-container .skill-name {
+        font-size: 1em;
+        line-height: 2.5em;
+        letter-spacing: 0;
+    }
+
+    .github-card .github-card-title {
+        font-size: 1.2em;
     }
 }
