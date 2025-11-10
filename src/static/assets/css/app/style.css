@@ -59,6 +59,7 @@
     --transition-ultra-slow: 1s;
 }
 
+
 /* Fonts */
 @font-face {
     font-family: "Jost";
@@ -75,6 +76,10 @@
     font-style: normal;
     font-display: swap;
 }
+
+/* ================================================
+   MAIN STYLE (screens 360+px)
+   ================================================ */
 
 /* Reset & Base */
 *,
@@ -106,6 +111,7 @@ p {
     opacity: 0.8;
 }
 
+
 /* WebGL Canvas */
 #webgl {
     position: fixed;
@@ -119,11 +125,10 @@ p {
     opacity: 1;
 }
 
-/* Page Base Styles */
+/* Common */
 .page {
     width: 100%;
     position: absolute;
-    inset: 0;
     background: none;
     padding-block-end: 5em;
     transform: translate3d(0, 20%, 0);
@@ -139,7 +144,6 @@ p {
     display: none;
 }
 
-/* Typography */
 .page-title,
 .page-subtitle,
 .section-title {
@@ -150,86 +154,39 @@ p {
 
 .page-title {
     position: absolute;
-    inset-block-start: 1.3em;
+    inset-block-start: clamp(8rem, 25vh, 12rem);
     inset-inline: 0;
     margin: 0 auto;
     white-space: nowrap;
-    font-size: clamp(4em, 12vw, 8em);
+    font-size: 11.5vw;
     text-align: center;
     color: var(--page-title-color);
     letter-spacing: 0.35em;
-    font-weight: 300;
+    font-weight: 00;
 }
 
 .page-subtitle {
     position: relative;
-    inset-block-start: 7.5em;
+    inset-block-start: clamp(8rem, 24vh, 13.5rem);
     margin: 0 auto;
     white-space: nowrap;
     color: var(--page-subtitle-color);
-    letter-spacing: 0.4em;
-    font-size: clamp(1.2em, 2vw, 2em);
+    letter-spacing: 0.35em;
+    font-size: 3.5vw;
     text-align: center;
 }
 
 .page .feature {
     user-select: none;
-    margin-block-start: 22em;
+    margin-block-start: 18em;
 }
 
 .page .feature .feature-image {
-    width: 65%;
+    width: 90%;
     height: auto;
     display: block;
     margin-inline: auto;
     object-fit: contain;
-}
-
-/* Search Container */
-.search-container {
-    margin-block: var(--spacing-md);
-    padding-inline: var(--spacing-md);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    max-width: 40em;
-    margin-inline: auto;
-}
-
-.search-icon {
-    position: absolute;
-    left: calc(var(--spacing-md) + 1em);
-    color: var(--color-blue-light);
-    pointer-events: none;
-    transition: color var(--transition-normal);
-    z-index: 1;
-}
-
-.search-container:focus-within .search-icon {
-    color: var(--color-cyan-bright);
-}
-
-.search-input {
-    width: 100%;
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 3em;
-    font-size: 1em;
-    font-family: "Jost", sans-serif;
-    color: var(--generic-text-color);
-    background: var(--background-shade);
-    border: 0.125rem solid var(--main-border-color);
-    border-radius: 1.5625rem;
-    outline: none;
-    transition: all var(--transition-normal);
-}
-
-.search-input::placeholder {
-    color: var(--page-subtitle-color);
-}
-
-.search-input:focus {
-    border-color: var(--color-blue-light);
-    box-shadow: 0 0 0.625rem var(--color-blue-dark);
 }
 
 .section-title {
@@ -237,11 +194,10 @@ p {
     margin-block: var(--spacing-md);
     text-shadow: 0 0.1875rem 0.825rem var(--title-shadow-color);
     letter-spacing: 0.3em;
-    font-size: clamp(1.5em, 2vw, 2em);
+    font-size: 1.4em;
     color: var(--section-title-color);
 }
 
-/* Feature Sections */
 .data-container {
     border-block: 0.1875rem solid var(--main-border-color);
     border-inline: none;
@@ -262,8 +218,10 @@ p {
     text-align: center;
     display: inline-block;
     border-radius: 0.9375rem;
-    padding: 0.9375rem 2rem;
+    padding: 0.9375rem 1.5rem;
+    font-size: 0.9em;
 }
+
 
 /* Loader */
 .loader {
@@ -289,7 +247,7 @@ p {
     inset-inline: 0;
     inset-block-start: 0;
     width: 100%;
-    height: 7em;
+    height: 4em;
     transition: var(--transition-ultra-slow) all linear;
     display: none;
 }
@@ -306,20 +264,17 @@ p {
 .header .logo {
     cursor: pointer;
     position: absolute;
-    inset-block-start: 1em;
-    inset-inline-start: 2em;
+    inset-block-start: 0.5em;
+    inset-inline-start: 1em;
     z-index: 100;
     width: auto;
-    height: 5em;
+    height: 3.5em;
+    display: none;
 }
 
-/* Desktop Menu */
+/* Desktop Menu - Hidden on Mobile */
 .header .header-menu {
-    z-index: 0;
-    position: relative;
-    text-align: end;
-    inset-block-start: 2.8em;
-    inset-inline-end: 4em;
+    display: none;
 }
 
 .header .header-menu .menu-item {
@@ -340,16 +295,17 @@ p {
 
 /* Mobile Menu Button */
 .menu-button {
-    display: none;
+    display: block;
     width: 3.125rem;
     height: 2em;
     position: relative;
     float: inline-end;
     inset-block-start: 1em;
-    inset-inline-end: 3em;
+    inset-inline-end: 1em;
     transform: rotate(0deg);
     transition: var(--transition-slow) linear;
     cursor: pointer;
+    opacity: 0.5;
 }
 
 .menu-button span {
@@ -417,7 +373,7 @@ p {
     inset-block-start: 50%;
     transform: translate(-50%, -50%);
     padding-inline-start: 0;
-    width: 80%;
+    width: 90%;
 }
 
 .menu .menu-item {
@@ -426,7 +382,7 @@ p {
     list-style: none;
     opacity: 0.5;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.8em;
     margin-block-start: 0.5em;
     padding: 0.625rem;
     text-transform: uppercase;
@@ -438,14 +394,15 @@ p {
     opacity: 1;
 }
 
+
 /* Sound Controls */
 .sound-controls {
     text-align: center;
     width: 2.8125rem;
     height: 1.125rem;
     position: fixed;
-    inset-inline-end: 1.5em;
-    inset-block-start: 1.5em;
+    inset-inline-start: 1em;
+    inset-block-start: 2em;
     margin-inline-start: auto;
     cursor: pointer;
     z-index: 10000;
@@ -545,6 +502,7 @@ p {
     position: fixed;
     z-index: 1000;
     transition: var(--transition-normal) linear;
+    display: none;
 }
 
 .top-bar {
@@ -586,11 +544,11 @@ p {
 }
 
 .home .page-title {
-    font-size: clamp(2.5em, 5vw, 5em);
+    font-size: 6vw;
     letter-spacing: 0.5em;
     color: var(--main-title-color);
     text-shadow: 0 0.375rem 0.625rem var(--title-shadow-color);
-    font-weight: 400;
+    font-weight: 600;
     position: relative;
     inset-block-start: 0;
     inset-inline-start: auto;
@@ -598,38 +556,36 @@ p {
 }
 
 .home .page-akatitle {
-    font-size: clamp(1em, 1.7vw, 1.7em);
+    font-size: 2.5vw;
     letter-spacing: 0.6em;
     color: var(--main-title-color);
     text-shadow: 0 0.375rem 0.625rem var(--title-shadow-color);
-    font-weight: 400;
+    font-weight: 600;
     position: relative;
-    inset-block-start: -1vh;
     inset-inline-start: auto;
     transform: none;
     user-select: none;
 }
 
 .home .page-subtitle {
-    font-size: clamp(0.8em, 1.3vw, 1.3em);
-    letter-spacing: 0.8em;
-    font-weight: 400;
+    font-size: 2.2vw;
+    letter-spacing: 0.45em;
+    font-weight: 600;
     position: relative;
-    inset-block-start: 0;
+    inset-block-start: 1em;
     inset-inline-start: auto;
     transform: none;
 }
 
+/* Footer Menu */
 .footer-menu {
+    display: none;
     z-index: 100;
-    padding: 0;
-    margin: 0;
     position: fixed;
-    inset-block-end: 10em;
+    inset-block-end: 3em;
     width: 100%;
     text-align: center;
     transition: 0.4s all linear;
-    display: none;
 }
 
 .footer-menu.show {
@@ -646,9 +602,9 @@ p {
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    font-size: 1.3em;
+    font-size: 1.2em;
     opacity: 0.5;
-    padding-inline: 2em;
+    padding-inline: 1.5rem;
     user-select: none;
     transition: opacity var(--transition-fast);
 }
@@ -657,41 +613,44 @@ p {
     opacity: 1;
 }
 
+
 /* Info Page */
 .info .bio,
 .info .skill-intro,
 .info .ethic {
     margin-inline: auto;
-    width: 80%;
-    font-size: 1.5em;
+    width: 90%;
+    font-size: 1.3em;
 }
 
 .skillset {
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     gap: var(--spacing-md);
     position: relative;
-    width: 80%;
+    width: 90%;
     margin-block: var(--spacing-lg);
     margin-inline: auto;
-    padding-inline: var(--spacing-lg);
+    padding-inline: 0.5em;
 }
 
 .skillset .skill-container {
-    grid-column: span 5;
+    grid-column: span 12;
+    width: 100%;
+    margin-inline: auto;
 }
 
 .skillset .padder {
-    grid-column: span 1;
+    display: none;
 }
 
 .skill-container .skill-title {
-    grid-column: span 11;
+    grid-column: span 12;
     text-align: center;
     pointer-events: none;
     margin-block: var(--spacing-md);
     text-transform: uppercase;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.1em;
     font-size: 1.4em;
     color: var(--main-title-color);
     text-shadow: 0 0.2rem 0.25rem var(--title-shadow-color);
@@ -706,9 +665,10 @@ p {
 .skillbar-container {
     background-color: var(--skillbar-background);
     border-radius: 3.125rem;
-    margin-block-end: 1.5em;
+    margin: 0 auto 1.8em auto;
     transition: all var(--transition-normal) linear;
     cursor: pointer;
+    width: 95%;
 }
 
 .skillbar-container:hover {
@@ -716,6 +676,7 @@ p {
     box-shadow: 0 0 0.75rem 0.375rem var(--skillbar-hover-effect-color);
 }
 
+/* Expander icon > */
 .skillbar-container>i {
     float: inline-start;
     font-size: 1em;
@@ -724,21 +685,24 @@ p {
     inset-block-start: 0.7em;
 }
 
+/* Language Icon */
 .skillbar-container .skill-name i {
     float: inline-start;
     font-size: 1em;
     position: relative;
-    inset-block-start: 0.45em;
-    margin-inline-start: 0.5em;
-    margin-inline-end: 0.5em;
+    inset-block-start: 0.5rem;
+    margin-inline-start: 0.25rem;
+    margin-inline-end: 0.5rem;
 }
 
 .skillbar-container .skill-name {
-    letter-spacing: 0.1em;
-    font-size: 1.35em;
+    letter-spacing: 0;
+    font-size: 1.3em;
     text-shadow: 0.2rem 0.2rem 0.3125rem var(--color-black);
     padding-inline-start: 2em;
     position: fixed;
+    line-height: 2em;
+    letter-spacing: 0.1rem;
 }
 
 .skillbar-container .skillbar {
@@ -763,13 +727,13 @@ p {
 
 /* Projects Page */
 .github-card {
-    width: fit-content;
-    margin-block: 18em 4em;
+    width: 90%;
+    margin-block: 13em 4em;
     margin-inline: auto;
     text-align: center;
     position: relative;
     font-size: 1.5em;
-    padding: 1em 2em 2em;
+    padding: 1em 1.5em 2em;
 }
 
 .github-card-avatar {
@@ -788,8 +752,8 @@ p {
 }
 
 .github-card-title {
-    font-size: 1.5em;
-    letter-spacing: 0.15em;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
     color: var(--main-title-color);
 }
 
@@ -801,11 +765,12 @@ p {
 
 .github-card-element {
     text-transform: uppercase;
-    grid-column: span 1;
+    grid-column: span 3;
     padding: 1.25rem;
     margin-inline: auto;
+    margin-block-start: 1.5em;
     transition: all var(--transition-fast) linear;
-    width: 80%;
+    width: 90%;
 }
 
 .github-card-element a {
@@ -825,13 +790,11 @@ p {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: var(--spacing-md);
-    width: 90%;
-    overflow: hidden;
     margin-inline: auto;
 }
 
 .list-item {
-    grid-column: span 4;
+    grid-column: span 12;
     width: 90%;
     padding-block-end: 2rem;
     margin-block-end: 3rem;
@@ -850,13 +813,15 @@ p {
 .list-item .info .title {
     color: var(--main-title-color);
     text-align: center;
-    font-size: 1.8em;
-    letter-spacing: 0.08em;
+    font-size: 1.6em;
+    letter-spacing: 0;
+    overflow: hidden;
+    margin: 0 1.2rem;
 }
 
 .list-item .info .text {
     padding-inline: 1.25rem;
-    font-size: 1.3em;
+    font-size: 1.1em;
     text-align: center;
 }
 
@@ -865,7 +830,7 @@ p {
     font-size: 1.5em;
     color: var(--main-title-color);
     text-align: center;
-    width: 40%;
+    width: 60%;
     margin-inline: auto;
     padding: 0.9375rem;
     transition: all var(--transition-normal) linear;
@@ -880,51 +845,106 @@ p {
     opacity: 1;
 }
 
+.search-container {
+    margin-block: var(--spacing-md);
+    padding-inline: var(--spacing-sm);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    margin-inline: auto;
+}
+
+.search-icon {
+    position: absolute;
+    left: calc(var(--spacing-sm) + 1em);
+    color: var(--color-blue-light);
+    pointer-events: none;
+    transition: color var(--transition-normal);
+    z-index: 1;
+}
+
+.search-container:focus-within .search-icon {
+    color: var(--color-cyan-bright);
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) 2.5em;
+    font-size: 1.3em;
+    font-family: "Jost", sans-serif;
+    color: var(--generic-text-color);
+    background: var(--background-shade);
+    border: 0.125rem solid var(--main-border-color);
+    border-radius: 1.5625rem;
+    outline: none;
+    transition: all var(--transition-normal);
+}
+
+.search-input::placeholder {
+    color: var(--page-subtitle-color);
+}
+
+.search-input:focus {
+    border-color: var(--color-blue-light);
+    box-shadow: 0 0 0.625rem var(--color-blue-dark);
+}
+
+
 /* Project Detail Page */
+
+.project-detail {
+    inset: 0;
+}
+
 .project-detail .page-title {
-    font-size: clamp(2em, 4vw, 4em);
+    font-size: 1.5em;
     letter-spacing: 0.055em;
-    inset-block-start: 18rem;
+    inset-block-start: 8em;
     color: var(--section-title-color);
 }
 
 .project-detail .page-subtitle {
-    inset-block-start: 15rem;
+    inset-block-start: 8em;
+    font-size: 1.2em;
 }
 
 .project-detail .feature img {
     display: block;
     margin-inline: auto;
-    inset-block-start: 2em;
     position: relative;
-    width: 65%;
+    width: 90%;
     object-fit: contain;
 }
 
 .project-detail .description {
     margin-inline: auto;
-    width: 80%;
-    font-size: 1.5em;
+    width: 90%;
+    font-size: 1.3em;
     text-align: center;
 }
+
+/* Details and Thanks Page */
 
 .details-container,
 .thanks-page-container {
     margin-block-start: var(--spacing-lg);
     position: relative;
-    padding: 1em 2em;
+    padding: 1em 1em;
 }
 
 .details-container {
-    width: 55%;
+    width: 90%;
     margin-inline: auto;
+    margin-block-end: 6em;
 }
 
 .details-container .detail,
 .thanks-page-container .detail {
-    margin-block: 1em;
+    margin-block: 1.25rem;
     display: grid;
-    padding: 1.25rem;
+    padding: 0.625rem;
     transition: all var(--transition-normal) linear;
     font-size: 1.3em;
 }
@@ -949,15 +969,14 @@ p {
     color: var(--main-title-color);
     transition: all var(--transition-normal) linear;
     font-weight: 600;
-}
-
-.details-container .detail-title {
-    grid-column: span 1;
+    text-align: center;
+    grid-column: span 3;
 }
 
 .thanks-page-container .detail-title {
-    grid-column: span 1;
+    grid-column: span 4;
     letter-spacing: 0.05em;
+    margin-block-start: 1.25rem;
 }
 
 .details-container .detail:hover .detail-title,
@@ -968,8 +987,13 @@ p {
 .details-container .detail-data,
 .thanks-page-container .detail-data {
     float: inline-end;
-    grid-column: span 2;
+    grid-column: span 3;
     text-align: center;
+}
+
+.thanks-page-container .detail-data {
+    grid-column: span 4;
+    margin-block-start: 1.25rem;
 }
 
 .details-container .detail:hover .detail-data a,
@@ -978,18 +1002,20 @@ p {
 }
 
 .thanks-page-container {
-    width: 75%;
+    width: 90%;
     margin-inline: auto;
 }
 
 .thanks-page-container .detail-link {
-    width: 70%;
-    height: 1.875rem;
-    margin-block: auto;
-    margin-inline-start: 2em;
+    width: 50%;
+    height: 3rem;
+    margin-block: 1.25rem;
+    margin-inline: auto;
     float: inline-end;
-    grid-column: span 1;
-    line-height: 0em;
+    grid-column: span 4;
+    line-height: 3rem;
+    text-align: center;
+    padding: 0;
 }
 
 /* Bottom Navigation */
@@ -997,7 +1023,7 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color: var(--project-detail-nav-background-color);
-    height: 2.5em;
+    height: auto;
     width: 100%;
     margin-block-start: 2em;
     inset-block-end: 0;
@@ -1008,8 +1034,8 @@ p {
 .bottom-nav .ctlbutton {
     text-transform: uppercase;
     text-align: center;
-    margin-block: auto;
-    grid-column: span 1;
+    margin-block: 0.3125rem;
+    grid-column: span 3;
     opacity: 0.6;
     cursor: pointer;
     transition: var(--transition-normal) all linear;
@@ -1019,25 +1045,25 @@ p {
     opacity: 1;
 }
 
+
 /* Platforms Page */
 .platforms .platforms-intro {
     margin-inline: auto;
-    width: 80%;
-    font-size: 1.5em;
+    width: 90%;
+    font-size: 1.3em;
 }
 
 .platforms .platforms-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-lg);
-    width: 90%;
     overflow: hidden;
     margin-block: var(--spacing-lg);
     margin-inline: auto;
 }
 
 .platforms-container .platform {
-    grid-column: span 1;
+    grid-column: span 3;
     width: 90%;
     padding-block-end: 2rem;
     margin-block-end: 3rem;
@@ -1053,7 +1079,7 @@ p {
 .platforms-container .platform .platform-title {
     color: var(--main-title-color);
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
     letter-spacing: 0.05em;
     margin-block-end: 1.25rem;
 }
@@ -1082,213 +1108,35 @@ p {
     width: 0;
 }
 
-/* Media Queries */
-
-/* Large Screens (1366px and below) */
-@media only screen and (max-width: 1366px) {
-    .header .header-menu .menu-item {
-        font-size: 1.1em;
-    }
-
-    .footer-menu {
-        inset-block-end: 8em;
-    }
-
-    .page .feature .feature-image {
-        width: 85%;
-    }
-
-    .home .page-title {
-        font-size: 3.5em;
-    }
-
-    .home .page-akatitle {
-        font-size: 1.4em;
-    }
-
-    .home .page-subtitle {
-        font-size: 0.9em;
-    }
+/* Small Phones (480px+) */
+@media only screen and (min-width: 480px) {
 
     .page-title {
-        inset-block-start: 10rem;
-        font-size: 7em;
+        inset-block-start: 9rem;
     }
 
     .page-subtitle {
-        inset-block-start: 14rem;
+        inset-block-start: 10.8rem;
     }
-
-    .projects-content,
-    .contributions-content {
-        grid-template-columns: repeat(8, 1fr);
-    }
-
-    .skillbar-container .skill-name {
-        line-height: 2em;
-    }
-
-    .platforms .platforms-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
 }
 
-@media only screen and (max-width: 1024px) {
-
-    .home-bar,
-    .header-menu,
-    .logo,
-    .skillset .padder {
-        display: none;
-    }
-
-    .menu-button {
-        display: block;
-        opacity: 0.5;
-    }
-
-    .footer-menu {
-        inset-block-end: 3em;
-    }
-
-    .footer-menu .menu-item {
-        font-size: 1.2em;
-        padding-inline: 1.5rem;
-    }
-
-    .header {
-        height: 4em;
-    }
-
-    .page-title {
-        inset-block-start: 1em;
-    }
+/* Tablets and Large Phones (600px+) */
+@media only screen and (min-width: 600px) {
 
     .page-subtitle {
-        font-size: 1.5em;
-        inset-block-start: 7.5em;
+        inset-block-start: 11.55rem;
     }
 
-    .page .feature {
-        margin-block-start: 18em;
-    }
-
-    .section-title {
-        font-size: 1.6em;
-    }
-
-    .sound-controls {
-        inset-inline-start: 1em;
-        inset-inline-end: unset;
-        inset-block-start: 2em;
-    }
-
-    .home .page-title {
-        font-size: 2.6em;
-    }
-
-    .home .page-subtitle {
-        letter-spacing: 0.45em;
-    }
-
-    .info .bio,
-    .info .skill-intro,
-    .info .ethic,
-    .platforms .platforms-intro {
-        font-size: 1.3em;
-    }
-
-    .skill-container {
-        width: 85%;
-        margin-inline: auto;
-    }
-
-    .skillset .skill-container {
-        grid-column: span 11;
-    }
-
-    .github-card {
-        margin-block: 13em 4em;
+    .github-card,
+    .list-item,
+    .search-container,
+    .platforms-container .platform {
         width: 70%;
     }
-
-    .list-item {
-        grid-column: span 12;
-    }
-
-    .project-detail .page-title {
-        font-size: 3em;
-        inset-block-start: 4em;
-    }
-
-    .project-detail .page-subtitle {
-        inset-block-start: 6em;
-        font-size: 1.5em;
-    }
-
-    .project-detail .feature img {
-        width: 80%;
-    }
-
-    .details-container {
-        margin-block-end: 6em;
-        width: 80%;
-    }
-
-    .project-detail .description {
-        font-size: 1.3em;
-    }
-
-    .details-container .detail {
-        margin-block: 1.25rem;
-        padding: 0.625rem;
-        font-size: 1.3em;
-    }
-
-    .details-container .detail-title,
-    .details-container .detail-data {
-        text-align: center;
-        grid-column: span 3;
-    }
-
-    .bottom-nav {
-        height: auto;
-    }
-
-    .bottom-nav .ctlbutton {
-        margin-block: 0.3125rem;
-        grid-column: span 3;
-    }
-
-    .platforms-container .platform {
-        grid-column: span 3;
-    }
-
-    .platforms-container .platform .platform-title {
-        font-size: 2em;
-    }
-
-    .thanks-page-container .detail-title,
-    .thanks-page-container .detail-data {
-        margin-block-start: 1.25rem;
-        text-align: center;
-        grid-column: span 4;
-    }
-
-    .thanks-page-container .detail-link {
-        height: 3rem;
-        text-align: center;
-        line-height: 3rem;
-        margin-block: 1.25rem;
-        margin-inline: auto;
-        width: 50%;
-        grid-column: span 4;
-        padding: 0;
-    }
 }
 
-@media only screen and (max-width: 800px) {
+/* Tablets (800px+) */
+@media only screen and (min-width: 800px) {
     .page-title {
         font-size: 11vw;
         inset-block-start: 8rem;
@@ -1296,47 +1144,27 @@ p {
 
     .page-subtitle {
         font-size: 3vw;
-        inset-block-start: 10.7rem;
-    }
-
-    .page .feature {
-        margin-block-start: 18em;
-    }
-
-    .section-title {
-        font-size: 1.4em;
+        inset-block-start: 11.45rem;
     }
 
     .home .page-title {
         font-size: 5.5vw;
+        font-weight: 400;
     }
 
     .home .page-akatitle {
-        margin-block-start: 2em;
         font-size: 2.3vw;
+        font-weight: 400;
+        inset-block-start: -0.8vh;
     }
 
     .home .page-subtitle {
         font-size: 2.2vw;
+        font-weight: 400;
     }
 
-    .info .bio,
-    .info .skill-intro,
-    .info .ethic {
-        font-size: 1.3em;
-    }
-
-    .skillset {
-        padding-inline: 0.5em;
-    }
-
-    .skillset .skill-container,
-    .skillset .padder {
-        grid-column: span 11;
-    }
-
-    .skillset .padder {
-        display: none;
+    .skillset .skill-container {
+        grid-column: span 6;
     }
 
     .skillbar-container .skill-name i {
@@ -1344,38 +1172,30 @@ p {
     }
 
     .skill-container .skill-title {
-        font-size: 1.2em;
-        letter-spacing: 0.1em;
-    }
-
-    .skillbar-container .skill-name {
-        font-size: 1.1em;
-        line-height: 2.3em;
+        letter-spacing: 0.2em;
     }
 
     .github-card {
-        margin-block: 13em 4em;
-        width: 80%;
+        width: 60%;
     }
 
     .github-card-title {
         font-size: 1.5em;
-        letter-spacing: 0.1em;
-    }
-
-    .github-card-content {
-        grid-template-columns: 1fr;
     }
 
     .github-card-element {
         grid-column: span 1;
-        padding: 1.25rem;
-        width: 90%;
-        margin-block-start: 1.5em;
+    }
+
+    .list-item,
+    .search-container,
+    .platforms-container .platform {
+        width: 80%;
     }
 
     .list-item {
         grid-column: span 12;
+        width: 80%;
     }
 
     .list-item .info .title {
@@ -1385,17 +1205,17 @@ p {
     }
 
     .list-item .info .text {
-        font-size: 1.1em;
+        font-size: 1.5em;
     }
 
     .project-detail .page-title {
-        font-size: 1.5em;
-        inset-block-start: 8em;
+        font-size: 3em;
+        inset-block-start: 11rem;
     }
 
     .project-detail .page-subtitle {
-        inset-block-start: 8em;
-        font-size: 1.2em;
+        inset-block-start: 8rem;
+        font-size: 1.5em;
     }
 
     .project-detail .feature img {
@@ -1407,26 +1227,286 @@ p {
     }
 }
 
-@media only screen and (max-width: 600px) {
+/* Large Tablets and Small Laptops (1024px+) */
+@media only screen and (min-width: 1024px) {
+
+    p {
+        font-size: 1.4em;
+    }
+
+    .home-bar {
+        display: block;
+    }
+
+    .header .header-menu {
+        display: block;
+        z-index: 0;
+        position: relative;
+        text-align: end;
+        inset-block-start: 1.3em;
+        inset-inline-end: 4em;
+    }
+
+    .header .logo {
+        display: block;
+    }
+
+    .menu-button {
+        display: none;
+    }
+
+    .footer-menu {
+        inset-block-end: 8em;
+    }
+
+    .footer-menu .menu-item {
+        font-size: 1.2em;
+    }
+
+    .header {
+        height: 5em;
+    }
+
     .page-title {
-        font-size: 11vw;
-        inset-block-start: 9rem;
+        font-size: 10vw;
+        inset-block-start: 7rem;
     }
 
     .page-subtitle {
-        font-size: 3vw;
-        inset-block-start: 10.8rem;
+        font-size: 2vw;
+        inset-block-start: 11rem;
+    }
+
+    .section-title {
+        font-size: 1.6em;
+    }
+
+    .sound-controls {
+        inset-inline-start: unset;
+        inset-inline-end: 1.5em;
+        inset-block-start: 1.5em;
+    }
+
+    .home .page-title {
+        font-size: 4.8vw;
+    }
+
+    .home .page-akatitle {
+        font-size: 1.6vw;
+    }
+
+    .home .page-subtitle {
+        font-size: 1.8vw;
+    }
+
+    .github-card {
+        width: 70%;
+    }
+
+    .list-item {
+        grid-column: span 6;
+    }
+
+    .list-item .info .title {
+        letter-spacing: 0.15em;
+        overflow: hidden;
+    }
+
+    .list-item .info .text {
+        font-size: 1.1em;
+    }
+
+    .project-detail .page-title {
+        font-size: 2.4em;
+        inset-block-start: 11rem;
+    }
+
+    .project-detail .page-subtitle {
+        inset-block-start: 8rem;
+        font-size: 1.5em;
+    }
+
+    .project-detail .feature img {
+        width: 80%;
+    }
+
+    .details-container .detail,
+    .thanks-page-container .detail {
+        margin-block: 1.5rem;
+    }
+
+    .details-container .detail-title,
+    .thanks-page-container .detail-title {
+        grid-column: span 1;
+        margin-block-start: 0;
+    }
+
+    .details-container .detail-data,
+    .thanks-page-container .detail-data {
+        grid-column: span 2;
+        margin-block-start: 0;
+    }
+
+    .platforms .platforms-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .platforms-container .platform {
+        grid-column: span 2;
+        width: 85%;
+    }
+
+    .thanks-page-container .detail-link {
+        width: 70%;
+        height: 2.5em;
+        margin-block: auto;
+        margin-inline-start: 2em;
+        grid-column: span 1;
+        line-height: 2.5em;
+    }
+
+    .bottom-nav .ctlbutton {
+        margin-block: auto;
+        grid-column: span 1;
+    }
+
+    .bottom-nav {
+        height: 2.5rem;
     }
 }
 
-@media only screen and (max-width: 480px) {
-    .skillbar-container .skill-name {
-        font-size: 1em;
-        line-height: 2.5em;
-        letter-spacing: 0;
+/* Desktop (1366px+) */
+@media only screen and (min-width: 1366px) {
+
+    .page .feature .feature-image {
+        width: 85%;
     }
 
-    .github-card .github-card-title {
+    .home .page-title {
+        font-size: 4.2vw;
+    }
+
+    .home .page-akatitle {
+        font-size: 1.3vw;
+    }
+
+    .home .page-subtitle {
+        font-size: 1.6vw;
+    }
+
+    .footer-menu .menu-item {
+        font-size: 1.5em;
+    }
+
+    .header .logo {
+        height: 4em;
+    }
+
+    .page-title {
+        font-size: 8.5vw;
+        inset-block-start: 0.6em;
+    }
+
+    .page-subtitle {
+        font-size: 1.8vw;
+        inset-block-start: 5.6em;
+    }
+
+    .github-card {
+        width: 45%;
+    }
+
+    .info .bio,
+    .info .skill-intro,
+    .info .ethic,
+    .platforms .platforms-intro,
+    .search-container,
+    .project-detail .description {
+        width: 80%;
+    }
+
+    .skillbar-container {
+        width: 75%;
+    }
+
+    .thanks-page-container,
+    .details-container {
+        width: 75%;
+        padding: 1em 2em;
+    }
+}
+
+/* Large Desktop (1920px+) */
+@media only screen and (min-width: 1920px) {
+
+    .page-title {
+        inset-block-start: 7.5rem;
+        font-size: clamp(4em, 12vw, 8em);
+    }
+
+    .page-subtitle {
+        inset-block-start: 12rem;
+        font-size: clamp(1.2em, 2vw, 2em);
+    }
+
+    .page .feature .feature-image {
+        width: 65%;
+    }
+
+    .search-container {
+        width: 60%;
+    }
+
+    .search-input {
+        padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 3em;
         font-size: 1.2em;
+    }
+
+    .data-detail-button {
+        padding: 0.9375rem 2rem;
+        font-size: 1em;
+    }
+
+    .section-title {
+        font-size: clamp(1.5em, 2vw, 2em);
+    }
+
+    .home .page-title {
+        font-size: clamp(2.5em, 5vw, 5em);
+    }
+
+    .home .page-akatitle {
+        font-size: clamp(1em, 1.7vw, 1.7em);
+    }
+
+    .home .page-subtitle {
+        font-size: clamp(0.8em, 1.3vw, 1.3em);
+        letter-spacing: 0.8em;
+    }
+
+    .list-item {
+        grid-column: span 4;
+    }
+
+    .project-detail .page-title {
+        font-size: 3em;
+        inset-block-start: 12rem;
+    }
+
+    .project-detail .page-subtitle {
+        inset-block-start: 9rem;
+        font-size: 2em;
+    }
+
+    .project-detail .feature img {
+        width: 65%;
+    }
+
+    .platforms .platforms-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .platforms-container .platform {
+        grid-column: span 1;
     }
 }
