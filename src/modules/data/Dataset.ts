@@ -2,7 +2,7 @@
 const dataset: any = {
     "information": {
         "title": "LightDestory's Personal Portfolio",
-        "version": "0.4"
+        "version": "0.5"
     },
     "webGL": {
         "upgradeMessage": "It appears you are on an older device or browser. Please retry using a WebGL enabled device.",
@@ -28,7 +28,7 @@ const dataset: any = {
         "menu": [
             { "title": "home", "link": "home" },
             { "title": "about", "link": "info" },
-            { "title": "work", "link": "work" },
+            //{ "title": "work", "link": "work" },
             { "title": "projects", "link": "projects" },
             { "title": "Contact", "link": "platforms" },
             { "title": "Special Thanks", "link": "thanks" }
@@ -515,6 +515,12 @@ const dataset: any = {
                     "icon": "devicon-twitter-original",
                     "note": "Hmm... yeah, Twitter!",
                     "link": "https://twitter.com/LightDestory"
+                },
+                {
+                    "name": "MakerWorld",
+                    "icon": "fa-solid fa-cube",
+                    "note": "Check out my 3D models for 3D printing!",
+                    "link": "https://makerworld.com/it/@LightDestory"
                 }
             ]
         },
