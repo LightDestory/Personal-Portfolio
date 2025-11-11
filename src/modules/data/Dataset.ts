@@ -450,7 +450,7 @@ const dataset: any = {
             "title": "projects",
             "subtitle": "Projects | Contributions",
             "githubUserAPI": "https://api.github.com/users/LightDestory",
-            "githubProjectsAPI": "https://api.github.com/users/LightDestory/repos?sort=pushed",
+            "githubProjectsAPI": "https://api.github.com/users/LightDestory/repos?sort=pushed&per_page=100",
             "placeHolder": "assets/images/projects/placeholder.png",
             "projectDetailTags": { // the element must be called 'collection'
                 "type": "(`This is a <i>${collection.fork ? 'forked' : 'original'}</i> repository`)",

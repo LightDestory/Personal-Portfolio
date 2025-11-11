@@ -73,37 +73,51 @@ class Projects extends modelView {
         this.fetchData();
     }
 
-    fetchData(): void {
+    async fetchData(): Promise<void> {
         console.log('async fetch repositories');
         this.fetchOnProgress = true;
-        fetch(DataView.projects.githubUserAPI)
-            .then(response => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
+
+        try {
+            // Fetch user data
+            const userResponse = await fetch(DataView.projects.githubUserAPI);
+            if (!userResponse.ok) {
+                throw Error(userResponse.statusText);
+            }
+            this.userData = await userResponse.json();
+
+            // Fetch all repository pages
+            let allRepos: any[] = [];
+            let page = 1;
+            let hasMorePages = true;
+
+            while (hasMorePages) {
+                const reposUrl = `${DataView.projects.githubProjectsAPI}&page=${page}`;
+                console.log(`Fetching repositories page ${page}...`);
+
+                const reposResponse = await fetch(reposUrl);
+                if (!reposResponse.ok) {
+                    throw Error(reposResponse.statusText);
                 }
-                return response.json();
-            })
-            .then(response => {
-                this.userData = response;
-                return fetch(DataView.projects.githubProjectsAPI)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
+
+                const repos = await reposResponse.json();
+
+                if (repos.length === 0) {
+                    hasMorePages = false;
+                } else {
+                    allRepos = allRepos.concat(repos);
+                    page++;
                 }
-                return response.json();
-            })
-            .then(response => {
-                this.projectsData = response;
-                this.fetchComplete = true;
-                this.loadData();
-            })
-            .catch(error => {
-                console.log(error);
-            })
-            .finally(() => {
-                this.fetchOnProgress = false;
-            });
+            }
+
+            console.log(`Total repositories fetched: ${allRepos.length}`);
+            this.projectsData = allRepos;
+            this.fetchComplete = true;
+            this.loadData();
+        } catch (error) {
+            console.log(error);
+        } finally {
+            this.fetchOnProgress = false;
+        }
     }
 
     private loadData(): void {
