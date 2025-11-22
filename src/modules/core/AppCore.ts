@@ -79,7 +79,7 @@ export default class AppCore {
             // @ts-ignore
             _self.hidden = !!document[hidden];
             if (_self.hidden && soundSystemInstance.isSoundOn()) {
-                soundSystemInstance.muteAll();
+                soundSystemInstance.muteAll(true);
             } else if (!_self.hidden && soundSystemInstance.isSoundOn()) {
                 soundSystemInstance.unMuteAll();
             }

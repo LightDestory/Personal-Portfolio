@@ -65,9 +65,10 @@ class soundSystem {
     /**
      * Disable all sound sources. It fades out the ambient sound and then mutes all sounds
      */
-    muteAll(): void {
+    muteAll(from_tab_focus: boolean = false): void {
         console.log("mute all");
-        this.soundOn = false;
+        if (!from_tab_focus)
+            this.soundOn = false;
         this.toggleAnimation();
         this.loadedSounds['ambient'].fade(1, 0, 1000);
         this.muteDelay = setTimeout(function () {
