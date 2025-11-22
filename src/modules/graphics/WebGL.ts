@@ -46,8 +46,11 @@ class webGL {
         this.scene.background = new THREE.Color(0x00ff00);
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas!!,
-            antialias: true,
-            powerPreference: "high-performance"
+            antialias: !AppCore.isMobile,
+            powerPreference: "high-performance",
+            alpha: false,
+            depth: false,
+            stencil: false
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.target = new THREE.Object3D();
