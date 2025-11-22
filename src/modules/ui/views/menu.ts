@@ -77,7 +77,10 @@ class Menu extends modelView {
         let footer_menu_components: string = "";
         let menu_components: string = "";
         DataView.menu.forEach(function (menu_item: Menu, index: number) {
-            header_menu_components += `<li class="menu-item menu-${menu_item.link}" data-link="${menu_item.link}">${index === 0 ? "" : " | "}${menu_item.title}</li>`;
+            header_menu_components += `<li class="menu-item menu-${menu_item.link}" data-link="${menu_item.link}">${menu_item.title}</li>`;
+            if (index < DataView.menu.length - 1) {
+                header_menu_components += "<li class='menu-item separator'> | </li>";
+            }
             if (menu_item.link !== "home") {
                 footer_menu_components += `<li class="menu-item menu-${menu_item.link}" data-link="${menu_item.link}">${menu_item.title}</li>`;
             }
