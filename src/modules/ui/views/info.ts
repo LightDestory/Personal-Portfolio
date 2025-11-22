@@ -7,8 +7,10 @@ class Info extends modelView {
             id: "info",
             template: `
                 <div class="info page hide">
-                    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
-                    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+                    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200">
+                        <span class="title-text"></span>
+                        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+                    </div>
                     <div class="feature">
                         <img alt="Bio Image" class='lazy feature-image'/>
                     </div>
@@ -51,7 +53,7 @@ class Info extends modelView {
 
         if (!element) return;
 
-        const pageTitle = element.querySelector(".page-title");
+        const pageTitle = element.querySelector(".page-title .title-text");
         const pageSubtitle = element.querySelector(".page-subtitle");
         const featureImage = element.querySelector(".feature .feature-image");
 

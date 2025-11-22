@@ -40,7 +40,6 @@ class soundSystem {
         Howler.mute(true);
         this.loadSoundData();
         if (mutedCookie === "0") {
-            this.soundOn = true;
             this.unMuteAll();
         }
         this.enableSoundControls();
@@ -68,6 +67,7 @@ class soundSystem {
      */
     muteAll(): void {
         console.log("mute all");
+        this.soundOn = false;
         this.toggleAnimation();
         this.loadedSounds['ambient'].fade(1, 0, 1000);
         this.muteDelay = setTimeout(function () {
@@ -80,6 +80,7 @@ class soundSystem {
      */
     unMuteAll(): void {
         console.log("unMute all");
+        this.soundOn = true;
         this.toggleAnimation();
         clearTimeout(this.muteDelay);
         Howler.mute(false);
@@ -148,7 +149,6 @@ class soundSystem {
                 this.unMuteAll();
                 utilsInstance.setCookie("muted", 0, 7);
             }
-            this.soundOn = !this.soundOn;
         });
     }
 

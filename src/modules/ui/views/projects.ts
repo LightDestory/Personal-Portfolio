@@ -16,8 +16,10 @@ class Projects extends modelView {
             id: "projects",
             template: `
                 <div class="projects page hide">
-                    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
-                    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+                    <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200">
+                        <span class="title-text"></span>
+                        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+                    </div>
                     <div class="feature">
                         <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='5' data-aos-duration='1000'
                              data-aos-delay='5' class="data-container github-card"></div>
@@ -59,7 +61,7 @@ class Projects extends modelView {
         if (!element) return;
 
         // Titles
-        const pageTitle = element.querySelector(".page-title");
+        const pageTitle = element.querySelector(".page-title .title-text");
         const pageSubtitle = element.querySelector(".page-subtitle");
         const projectsTitle = element.querySelector(".projects-title");
         const contributionsTitle = element.querySelector(".contributions-title");

@@ -10,8 +10,9 @@ class ProjectDetail extends modelView {
             id: "project-detail",
             template: `
                 <div class="project-detail page hide">
-                    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
                     <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+                    <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+                    
                     <div class="feature" data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000'
                          data-aos-delay='50'>
                         <img class="projectDetailImage lazy" alt="Project Image"/>

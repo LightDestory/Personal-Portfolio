@@ -155,31 +155,40 @@ p {
 
 .page-title {
     position: absolute;
-    inset-block-start: clamp(8rem, 25vh, 12rem);
+    inset-block-start: 7rem;
     inset-inline: 0;
     margin: 0 auto;
     white-space: nowrap;
-    font-size: 11.5vw;
     text-align: center;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+}
+
+.page-title .title-text {
+    grid-area: 1 / 1;
+    z-index: 1;
     color: var(--page-title-color);
     letter-spacing: 0.35em;
-    font-weight: 00;
+    font-size: clamp(3rem, 10vw, 8rem);
 }
 
 .page-subtitle {
+    grid-area: 1 / 1;
+    z-index: 2;
     position: relative;
-    inset-block-start: clamp(8rem, 24vh, 13.5rem);
     margin: 0 auto;
     white-space: nowrap;
     color: var(--page-subtitle-color);
     letter-spacing: 0.35em;
-    font-size: 3.5vw;
+    font-size: clamp(1rem, 2.2vw, 2rem);
     text-align: center;
+    pointer-events: none;
 }
 
 .page .feature {
     user-select: none;
-    margin-block-start: 18em;
+    margin-block-start: 15em;
 }
 
 .page .feature .feature-image {
@@ -1110,23 +1119,12 @@ p {
 }
 
 /* Small Phones (480px+) */
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 480px) {}
 
-    .page-title {
-        inset-block-start: 9rem;
-    }
-
-    .page-subtitle {
-        inset-block-start: 10.8rem;
-    }
-}
 
 /* Tablets and Large Phones (600px+) */
 @media only screen and (min-width: 600px) {
 
-    .page-subtitle {
-        inset-block-start: 11.55rem;
-    }
 
     .github-card,
     .list-item,
@@ -1134,18 +1132,18 @@ p {
     .platforms-container .platform {
         width: 70%;
     }
+
+    .page .feature {
+        margin-block-start: 16em;
+    }
+
 }
 
 /* Tablets (800px+) */
 @media only screen and (min-width: 800px) {
-    .page-title {
-        font-size: 11vw;
-        inset-block-start: 8rem;
-    }
 
-    .page-subtitle {
-        font-size: 3vw;
-        inset-block-start: 11.45rem;
+    .page-title {
+        inset-block-start: clamp(6.5rem, 5vh, 7rem);
     }
 
     .home .page-title {
@@ -1268,16 +1266,6 @@ p {
         height: 5em;
     }
 
-    .page-title {
-        font-size: 10vw;
-        inset-block-start: 7rem;
-    }
-
-    .page-subtitle {
-        font-size: 2vw;
-        inset-block-start: 11rem;
-    }
-
     .section-title {
         font-size: 1.6em;
     }
@@ -1315,16 +1303,6 @@ p {
 
     .list-item .info .text {
         font-size: 1.1em;
-    }
-
-    .project-detail .page-title {
-        font-size: 2.4em;
-        inset-block-start: 11rem;
-    }
-
-    .project-detail .page-subtitle {
-        inset-block-start: 8rem;
-        font-size: 1.5em;
     }
 
     .project-detail .feature img {
@@ -1374,6 +1352,10 @@ p {
     .bottom-nav {
         height: 2.5rem;
     }
+
+    .page .feature {
+        margin-block-start: 18em;
+    }
 }
 
 /* Desktop (1366px+) */
@@ -1403,18 +1385,12 @@ p {
         height: 4em;
     }
 
-    .page-title {
-        font-size: 8.5vw;
-        inset-block-start: 0.6em;
-    }
-
-    .page-subtitle {
-        font-size: 1.8vw;
-        inset-block-start: 5.6em;
-    }
-
     .github-card {
         width: 45%;
+    }
+
+    .page .feature {
+        margin-block-start: 20em;
     }
 
     .info .bio,
@@ -1443,16 +1419,6 @@ p {
 
 /* Large Desktop (1920px+) */
 @media only screen and (min-width: 1920px) {
-
-    .page-title {
-        inset-block-start: 7.5rem;
-        font-size: clamp(4em, 12vw, 8em);
-    }
-
-    .page-subtitle {
-        inset-block-start: 12rem;
-        font-size: clamp(1.2em, 2vw, 2em);
-    }
 
     .page .feature .feature-image {
         width: 65%;
