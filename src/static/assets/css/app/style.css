@@ -152,6 +152,7 @@ p {
     text-transform: uppercase;
 }
 
+
 .page-title {
     position: absolute;
     inset-block-start: clamp(8rem, 25vh, 12rem);
@@ -713,7 +714,7 @@ p {
 
 .more-skill-container {
     display: none;
-    width: 90%;
+    width: 85%;
     border-radius: 0 0 1.5rem 1.5rem;
     border: 0.06rem solid var(--generic-border-color);
     border-block-start: none;
@@ -721,7 +722,7 @@ p {
     background-color: var(--more-skill-background-color);
     text-align: center;
     font-size: 1.2em;
-    margin-block: -1.5rem 2rem;
+    margin-block: -1.8rem 2rem;
     margin-inline: auto;
 }
 
@@ -1427,6 +1428,10 @@ p {
 
     .skillbar-container {
         width: 75%;
+    }
+
+    .more-skill-container {
+        width: 65%;
     }
 
     .thanks-page-container,
