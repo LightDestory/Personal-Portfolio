@@ -1,6 +1,13 @@
 import modelView, { ViewConfig } from "./modelView";
 import { DataView } from "../../data/Dataset";
 
+interface HomeDataView {
+    pageTitle: string;
+    title: string;
+    subtitle: string;
+    subtitle2: string;
+}
+
 class Home extends modelView {
     constructor() {
         const config: ViewConfig = {
@@ -33,7 +40,7 @@ class Home extends modelView {
 
     init(): void {
         console.log("init home");
-        const data_view = DataView.home;
+        const data_view: HomeDataView = DataView.home;
         const element = this.getElement();
         if (element) {
             const titleEl = element.querySelector(".page-title");

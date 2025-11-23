@@ -1113,6 +1113,189 @@ p {
     color: var(--important-text-hover-color);
 }
 
+/* Timeline */
+.timeline-container {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 4em;
+}
+
+.timeline-category {
+    margin-bottom: 4em;
+}
+
+.category-title {
+    text-align: center;
+    margin-bottom: 2em;
+    color: var(--section-title-color);
+}
+
+.timeline-items {
+    position: relative;
+    border-left: 0.25rem solid var(--main-border-color);
+    margin-left: 1em;
+    padding-left: 2em;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3em;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -2.6em;
+    top: 0.5em;
+    width: 1em;
+    height: 1em;
+    background-color: var(--color-cyan);
+    border-radius: 50%;
+    border: 2px solid var(--generic-background-color);
+    box-shadow: 0 0 0 2px var(--main-border-color);
+    transition: all var(--transition-fast);
+}
+
+.timeline-item:hover .timeline-marker {
+    background-color: var(--color-yellow);
+    transform: scale(1.2);
+}
+
+.timeline-content {
+    background: var(--background-shade);
+    padding: 1.5em;
+    border-radius: 1em;
+    border: 1px solid var(--generic-border-color);
+    transition: all var(--transition-normal);
+}
+
+.timeline-item:hover .timeline-content {
+    border-color: var(--color-cyan);
+    transform: translateX(10px);
+}
+
+.timeline-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.timeline-date {
+    color: var(--color-blue-light);
+    font-weight: bold;
+    font-size: 0.9em;
+    letter-spacing: 0.1em;
+    margin-bottom: 0;
+}
+
+.timeline-type {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    padding: 0.2em 0.6em;
+    border-radius: 0.5em;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.badge-paper {
+    background-color: rgba(0, 140, 190, 0.2);
+    color: var(--color-cyan-bright);
+    border: 1px solid var(--color-cyan-bright);
+}
+
+.badge-journal {
+    background-color: rgba(210, 210, 50, 0.2);
+    color: var(--color-yellow);
+    border: 1px solid var(--color-yellow);
+}
+
+.timeline-title {
+    color: var(--main-title-color);
+    margin: 0 0 0.5em 0;
+    font-size: 1.3em;
+    letter-spacing: 0.05em;
+}
+
+.timeline-subtitle {
+    color: var(--page-subtitle-color);
+    font-style: italic;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+
+.timeline-description {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+/* Timeline Publication Styles */
+.timeline-authors {
+    font-size: 0.95em;
+    margin-bottom: 0.5em;
+    font-style: italic;
+}
+
+.timeline-link {
+    margin-bottom: 1em;
+}
+
+.timeline-link a {
+    color: var(--color-cyan-bright);
+    font-weight: bold;
+}
+
+.timeline-link a:hover {
+    text-decoration: underline;
+}
+
+.timeline-accordion {
+    margin-top: 1em;
+    border-top: 1px solid var(--generic-border-color);
+}
+
+.accordion-header {
+    padding: 0.8em 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-blue-light);
+    font-weight: bold;
+    transition: color var(--transition-fast);
+}
+
+.accordion-header:hover {
+    color: var(--color-cyan);
+}
+
+.accordion-header i {
+    transition: transform var(--transition-normal);
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out, opacity var(--transition-normal) ease-out;
+    opacity: 0;
+}
+
+.accordion-content.show {
+    opacity: 1;
+    transition: max-height var(--transition-normal) ease-in, opacity var(--transition-normal) ease-in;
+}
+
+.accordion-content p {
+    margin: 0.5em 0;
+    font-size: 0.95em;
+    line-height: 1.5;
+    text-align: justify;
+}
+
 /* Scrollbar - WebKit Only */
 ::-webkit-scrollbar {
     width: 0;
@@ -1129,7 +1312,8 @@ p {
     .github-card,
     .list-item,
     .search-container,
-    .platforms-container .platform {
+    .platforms-container .platform,
+    .timeline-container {
         width: 70%;
     }
 
@@ -1188,7 +1372,8 @@ p {
 
     .list-item,
     .search-container,
-    .platforms-container .platform {
+    .platforms-container .platform,
+    .timeline-container {
         width: 80%;
     }
 
@@ -1398,7 +1583,8 @@ p {
     .info .ethic,
     .platforms .platforms-intro,
     .search-container,
-    .project-detail .description {
+    .project-detail .description,
+    .timeline-container {
         width: 80%;
     }
 

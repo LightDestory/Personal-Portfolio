@@ -2,7 +2,7 @@
 const dataset: any = {
     "information": {
         "title": "LightDestory's Personal Portfolio",
-        "version": "0.5"
+        "version": "0.6"
     },
     "webGL": {
         "upgradeMessage": "It appears you are on an older device or browser. Please retry using a WebGL enabled device.",
@@ -28,7 +28,7 @@ const dataset: any = {
         "menu": [
             { "title": "home", "link": "home" },
             { "title": "about", "link": "info" },
-            //{ "title": "work", "link": "work" },
+            { "title": "work", "link": "work" },
             { "title": "projects", "link": "projects" },
             { "title": "Contact", "link": "platforms" },
             { "title": "Special Thanks", "link": "thanks" }
@@ -443,6 +443,130 @@ const dataset: any = {
             "pageTitle": "Alessio Tudisco | Work",
             "title": "work",
             "subtitle": "Work | Experience",
+            "splash": "assets/images/splashes/biography.jpg",
+            "timeline": [
+                {
+                    "category": "Work Experience",
+                    "items": [
+                        {
+                            "date": "2025",
+                            "title": "Technical Program Committee (TPC)",
+                            "description": "Technical Program Committee (TPC) for '4th International Workshop on Hybrid Internet of Everything Models for Industry 5.0 (HIEMI 2025 2nd)'"
+                        },
+                        {
+                            "date": "15/05/2025-15/08/2025",
+                            "title": "Research Scholarship for the 'AGRIMET' project",
+                            "subtitle": "University of Catania",
+                            "description": "Continuation of the “Agrimet” research project concerning the development of software solutions for the integration and use of and autonomous robotic system with an anthropomorphic manipulator for monitoring wine crops."
+                        },
+                        {
+                            "date": "02/09/2024-01/03/2025",
+                            "title": "Research Scholarship for the 'ISMI' project",
+                            "subtitle": "University of Catania",
+                            "description": "ISMI (Integrated Storage for Microgrid Innovation) research project relating to the development of advanced technologies and systems for dynamic, distributed multi-agent systems."
+                        },
+                        {
+                            "date": "01/07/2023-30/04/2024",
+                            "title": "Research Scholarship for the 'AGRIMET' project",
+                            "subtitle": "University of Catania",
+                            "description": "Agrimet research project concerning the development of software solutions for the integration and use of and autonomous robotic system with an anthropomorphic manipulator for monitoring wine crops."
+                        },
+                        {
+                            "date": "2024",
+                            "title": "UniCT-Team Eurobot",
+                            "subtitle": "University of Catania",
+                            "description": "Software Developer within the UniCT-Team for the 2024 edition of the international robotics competition Eurobot."
+                        },
+                        {
+                            "date": "05/06/2023-31/10/2023",
+                            "title": "University Tutor",
+                            "description": "“Fondo Giovani” tutoring for the Web Programming, Design & Usability course."
+                        },
+                    ]
+                },
+                {
+                    "category": "Scientific Publications",
+                    "items": [
+                        {
+                            "date": "2024",
+                            "title": "Smart IoT System for Real-Time Worker Safety Monitoring in Dead Zones",
+                            "subtitle": "32nd International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises (WETICE 2024)",
+                            "type": "paper",
+                            "authors": "M. Gallina, M. Recca, M. Russo, C. Santoro, F. F. Santoro, A. Tudisco",
+                            "abstract": "This work introduces an advanced system designed to ensure operator safety in dead zones, common in underground and remote areas with limited internet connectivity. Using Internet of Things technologies, the system employs wearable devices with sensors to provide real-time data for precise location tracking, movement analysis, and monitoring of high-risk areas within these zones. The system enables real-time vital sign monitoring through wearable technology and integrates machine learning for fall detection, health monitoring, and distance estimation between operators and anchors in tunnels. These wearable devices operate independently in connectivity-challenged environments, enhancing system coverage and troubleshooting efficiency. Data collected is securely stored internally and accessible via an external IP network for remote monitoring, configuration management, and oversight of operator location and health status.",
+                            "link": "https://ieeexplore.ieee.org/document/10880238/",
+                        },
+                        {
+                            "date": "2024",
+                            "title": "A Comprehensive System for Indoor Assistance and User Interaction",
+                            "subtitle": "2024 IEEE Conference on Pervasive and Intelligent Computing (PICom), Workshop HIEMI 2024",
+                            "type": "paper",
+                            "authors": "F. Cauteruccio, M. Russo, C. Santoro, F. F. Santoro and A. Tudisco",
+                            "abstract": "The contemporary world is characterized by a growing integration of virtual assistants that simplify everyday life by supporting users in multiple activities. In recent years, we have witnessed the rising necessity to design and develop multi-agent systems, with which users can interact using natural language, allowing them to locate points of interest and carry out specific activities. With this research, we aim to provide a contribution to this setting by developing a practical and real application that allows an autonomous system to answer different questions, such as “Where is this user?” and “Bring documents to this specific user”. We present an architecture that allows users to interact with an autonomous system based on Neural Networks and equipped with advanced algorithms for indoor localization and path-finding implementation to achieve specific goals. The implemented system was subjected to various experiments, demonstrating the effectiveness of specific frameworks, such as DEMOCLE and Hermes, in achieving the ultimate goal. The solution also integrates the implementation of a mesh network and the use of the Bluetooth protocol to facilitate internal localization.",
+                            "link": "https://ieeexplore.ieee.org/document/10795384",
+                        },
+                        {
+                            "date": "2025",
+                            "title": "Smart IoT System for Boat Theft Prevention Using LoRaMesh and Edge ML",
+                            "subtitle": "33rd International Conference on Enabling Technologies: Infrastructure for Collaborative Enterprises (WETICE 2025)",
+                            "type": "paper",
+                            "authors": "D. V. Coppola, G. G. Messina, C. Santoro, F.F. Santoro, A. Spadola, E. Sorbello, A. Tudisco",
+                            "abstract": "This paper introduces an intelligent monitoring and anti-theft system designed for marine environments. Using Internet of Things technologies, the system utilises onboard devices that function as a finite-state machine, equipped with multiple sensors to gather speed, orientation and movement data. The onboard device is configured by the user with a personal device, which is used to arm and disarm the system via Bluetooth Low Energy. In case of theft, live position data is transmitted across a LoRa Mesh network, enabling long-range communication provided that enough boat nodes are available. The packets are transmitted using an adequate cryptography system based on AES128 keys. The data transmitted is recovered by a dock node, and it can be seen by the dock keeper and simultaneously provided to the users’ application.",
+                            "link": "https://ieeexplore.ieee.org/document/11092217",
+                        },
+                        {
+                            "date": "2025",
+                            "title": "Multi-Agent Parking in Smart Cities: The ChirpPark Protocol for Connected Vehicles",
+                            "subtitle": "21th International Conference on Distributed Computing in Smart Systems and the Internet of Things (DCOSS-IoT 2025), Workshop HIEMI 2025",
+                            "type": "paper",
+                            "authors": "M. Russo, C. Santoro, F. F. Santoro, A. Tudisco",
+                            "abstract": "City traffic congestion and air pollution are also brought about by poor parking management and in the city it is always more difficult to identify a vacant parking slot. In this article, we present ChirpPark, an energy-efficient distributed IoT-based intelligent parking system protocol based on the LoRa communication protocol. ChirpPark operates autonomously without the need for an Internet connection, facilitating realtime parking allocation and status inquiries through long-range communication. It also has an optional MQTT-based sync system for gateway-to-gateway and gateway-to-central data collector data exchange, utilised for telemetry and analytics. In contrast to conventional centralised approaches, ChirpPark promotes decentralised decision-making, thereby enhancing resilience and scalability for deployment in urban areas that may experience intermittent or no connectivity. The experimental findings, encompassing a real proof-of-concept deployment, using ESP32 boards and a simulated environment, demonstrate a drastic decrease in parking search duration without sacrificing the tolerable system latency level. The seamless integration of ChirpPark into new and pre-existing smart mobility systems, along with high-energy sustainable solutions, is an imperative move towards green urban mobility. This integration aids in minimising the environmental footprint and enhancing the quality of life within the smart city context.",
+                            "link": "https://ieeexplore.ieee.org/document/11096161",
+                        },
+                        {
+                            "date": "2025",
+                            "title": "Advancing Robotic Systems with Distributed Multi-Agent Digital Twins: A Scalable and Adaptive Framework",
+                            "subtitle": "SN Computer Science",
+                            "type": "journal",
+                            "authors": "M. Russo, C. Santoro, F. F. Santoro, A. Tudisco",
+                            "abstract": "Digital Twins are emerging as one of the core technologies in robotics, enabling real-time simulation, optimisation and predictive maintenance. This article proposes a Distributed Multi-Agent Digital Twin Environment, a scalable architecture to maximise robotic system performance and safety. Through the combination of real-time virtual models and physical robotic agents, Distributed Multi-Agent Digital Twin Environment enables adaptive decision-making, multi-agent collaboration and optimal task completion in dynamic environments. The architecture is geared towards the support of single-agent and multi-agent systems through advanced communication protocols that enable synchronisation and real-world usage. The system leverages the Digital Twin Protocol over UDP for real-time synchronisation, ensuring the communication between digital twins and physical robots. Experimental results, conducted on a TurtleBot, demonstrate the system’s ability to optimise the navigation of robots, avoid collisions, and improve operational effectiveness. This work provides the gateway to more intelligent, responsive, and adaptive robotic systems in numerous industrial applications.",
+                            "link": "https://link.springer.com/article/10.1007/s42979-025-04525-w",
+                        },
+                        {
+                            "date": "2025",
+                            "title": "Evaluation of a Lightweight IoT Protocol for Intelligent Parking Management in Urban Environments",
+                            "subtitle": " Applied Sciences",
+                            "type": "journal",
+                            "authors": "Messina, F., Russo, M., Santoro, C., Santoro, F. F., & Tudisco, A.",
+                            "abstract": "This work presents the design and evaluation of a distributed IoT protocol for intelligent parking management. It exploits the communication protocol LoRa and is designed to operate fully autonomously, without requiring Internet connectivity, enabling real-time parking slot detection and allocation through long-range wireless communication. The protocol also includes an optional MQTT-based synchronisation layer to support data exchange between gateways and with a central collector, allowing for telemetry, system monitoring, and analytics. We performed a set of experiments, proving that the protocol holds system resilience and scalability, which are key aspects for deployment in urban environments with unreliable or limited network access. We also observed a significant reduction in parking search time while preserving acceptable levels of system latency. To complete our evaluation, we deployed, in our laboratory, a test-bed made by ESP32-based nodes and simulated gateway breakage and replacement, in order to prove the fault recovery capabilities of the entire network. Finally, we conducted a few empirical stress tests simulating high communication traffic and interactions, confirming acceptable effectiveness and stability for real urban contexts.",
+                            "link": "https://www.mdpi.com/2076-3417/15/17/9621",
+                        }
+                    ]
+                },
+                {
+                    "category": "Education",
+                    "items": [
+                        {
+                            "date": "2022 - 2025",
+                            "title": "Master's Degree in Computer Science",
+                            "subtitle": "University of Catania",
+                            "description": "110/110 cum laude. Specialization in Robotics, IoT, Data Science, Machine Learning, and Software Engineering.<br>Thesis: AGRIMET: Sviluppo di una piattaforma mobile autonoma per il monitoraggio avanzato della crescita e della salute delle vigne "
+                        },
+                        {
+                            "date": "2018 - 2023",
+                            "title": "Bachelor's Degree in Computer Science",
+                            "subtitle": "University of Catania",
+                            "description": "110/110 cum laude.<br>Thesis: Riconoscimento di design pattern su blockchain tramite analisi statica del codice"
+                        },
+                        {
+                            "date": "2013 - 2018",
+                            "title": "High School Diploma",
+                            "subtitle": "I.T.I.S. Ettore Majorana",
+                            "description": "100/100 cum laude. Computer Science and Telecommunications."
+                        }
+                    ]
+                }
+            ]
         },
         "projects": {
             "pageTitle": "Alessio Tudisco | Projects",
