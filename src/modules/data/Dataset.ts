@@ -443,7 +443,7 @@ const dataset: any = {
             "pageTitle": "Alessio Tudisco | Work",
             "title": "work",
             "subtitle": "Work | Experience",
-            "splash": "assets/images/splashes/biography.jpg",
+            "splash": "assets/images/splashes/work.jpg",
             "notes": "<p>Please check my <a href='https://scholar.google.com/citations?user=-IoxznQAAAAJ' target='_blank'>Google Scholar</a> profile for a complete list of scientific publications. Feel free to contact me for an updated CV.</p>",
             "timeline": [
                 {
