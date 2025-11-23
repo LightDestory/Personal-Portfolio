@@ -627,7 +627,8 @@ p {
 /* Info Page */
 .info .bio,
 .info .skill-intro,
-.info .ethic {
+.info .ethic,
+.work .work-notes {
     margin-inline: auto;
     width: 90%;
     font-size: 1.3em;
@@ -1120,16 +1121,6 @@ p {
     padding-bottom: 4em;
 }
 
-.timeline-category {
-    margin-bottom: 4em;
-}
-
-.category-title {
-    text-align: center;
-    margin-bottom: 2em;
-    color: var(--section-title-color);
-}
-
 .timeline-items {
     position: relative;
     border-left: 0.25rem solid var(--main-border-color);
@@ -1240,13 +1231,26 @@ p {
     margin-bottom: 1em;
 }
 
-.timeline-link a {
-    color: var(--color-cyan-bright);
+.timeline-btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: var(--color-cyan);
+    color: var(--color-white) !important;
+    border-radius: 0.5em;
+    text-decoration: none !important;
     font-weight: bold;
+    transition: all var(--transition-fast);
+    border: 1px solid var(--color-cyan);
 }
 
-.timeline-link a:hover {
-    text-decoration: underline;
+.timeline-btn:hover {
+    background-color: transparent;
+    color: var(--color-cyan) !important;
+    transform: translateY(-2px);
+}
+
+.timeline-btn i {
+    margin-left: 0.5em;
 }
 
 .timeline-accordion {
@@ -1300,10 +1304,6 @@ p {
 ::-webkit-scrollbar {
     width: 0;
 }
-
-/* Small Phones (480px+) */
-@media only screen and (min-width: 480px) {}
-
 
 /* Tablets and Large Phones (600px+) */
 @media only screen and (min-width: 600px) {
@@ -1584,6 +1584,7 @@ p {
     .platforms .platforms-intro,
     .search-container,
     .project-detail .description,
+    .work .work-notes,
     .timeline-container {
         width: 80%;
     }

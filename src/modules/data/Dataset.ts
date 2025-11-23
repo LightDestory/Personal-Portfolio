@@ -444,6 +444,7 @@ const dataset: any = {
             "title": "work",
             "subtitle": "Work | Experience",
             "splash": "assets/images/splashes/biography.jpg",
+            "notes": "<p>Please check my <a href='https://scholar.google.com/citations?user=-IoxznQAAAAJ' target='_blank'>Google Scholar</a> profile for a complete list of scientific publications. Feel free to contact me for an updated CV.</p>",
             "timeline": [
                 {
                     "category": "Work Experience",
@@ -645,6 +646,12 @@ const dataset: any = {
                     "icon": "fa-solid fa-cube",
                     "note": "Check out my 3D models for 3D printing!",
                     "link": "https://makerworld.com/it/@LightDestory"
+                },
+                {
+                    "name": "Google Scholar",
+                    "icon": "fa-solid fa-atom",
+                    "note": "I wrote some scientific publications!",
+                    "link": "https://scholar.google.com/citations?user=-IoxznQAAAAJ"
                 }
             ]
         },
