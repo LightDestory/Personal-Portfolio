@@ -93,6 +93,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 body {
@@ -147,7 +148,6 @@ p {
 .page-title,
 .page-subtitle,
 .section-title {
-    user-select: none;
     pointer-events: none;
     text-transform: uppercase;
 }
@@ -187,7 +187,6 @@ p {
 }
 
 .page .feature {
-    user-select: none;
     margin-block-start: 15em;
 }
 
@@ -288,7 +287,6 @@ p {
 }
 
 .header .header-menu .menu-item {
-    user-select: none;
     display: inline-block;
     cursor: pointer;
     text-transform: uppercase;
@@ -387,7 +385,6 @@ p {
 }
 
 .menu .menu-item {
-    user-select: none;
     cursor: pointer;
     list-style: none;
     opacity: 0.5;
@@ -574,7 +571,6 @@ p {
     position: relative;
     inset-inline-start: auto;
     transform: none;
-    user-select: none;
 }
 
 .home .page-subtitle {
@@ -615,7 +611,6 @@ p {
     font-size: 1.2em;
     opacity: 0.5;
     padding-inline: 1.5rem;
-    user-select: none;
     transition: opacity var(--transition-fast);
 }
 
@@ -665,7 +660,6 @@ p {
     font-size: 1.4em;
     color: var(--main-title-color);
     text-shadow: 0 0.2rem 0.25rem var(--title-shadow-color);
-    user-select: none;
 }
 
 .skill-container ul {
@@ -1039,7 +1033,6 @@ p {
     margin-block-start: 2em;
     inset-block-end: 0;
     font-size: 1.3em;
-    user-select: none;
 }
 
 .bottom-nav .ctlbutton {
