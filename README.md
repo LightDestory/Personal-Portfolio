@@ -51,7 +51,7 @@ get a production ready site to put on your servers!
 
 #### Prerequisites
 
-- NodeJS
+- NodeJS (or any compatible JS Runtime)
 
 The following instruction will help you getting your own copy working:
 
